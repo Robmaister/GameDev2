@@ -13,6 +13,12 @@ public class DoParkour : MonoBehaviour {
 	//wall run --> if collide with wall, allow movement along wall, ignoring gravity
 	//
 
+
+
+
+	//mantle --> if player arms near edge, pull self up and over
+	//wall jump --> if player contacts wall, jump off it
+
 	public bool canControl = true;
 
 	public float maxSpeed = 10f;
@@ -192,4 +198,6 @@ public class DoParkour : MonoBehaviour {
 		//Debug.DrawRay(transform.position,hit.normal,Color.red);
 		//print(Vector3.Angle(transform.up, hit.normal));
 	//}
+
+
 }
