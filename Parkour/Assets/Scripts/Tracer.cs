@@ -1,11 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//notes:
+//need something to deal with multiple meshes making the found ledges not ledges
+//or multiple meshes intersected
+//also need to fix situations where scrambles should be climbable... or something
+//something to do with sharp edges between sides and scrambles and similar situations
+
 public class Tracer : MonoBehaviour {
 	public GameObject cube;
 	// Use this for initialization
 	void Start () {
-		Mesh objMesh = cube.GetComponent<MeshFilter>().mesh;
+		//GameObject[] allObjs = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+		GameObject[] allObjs = GameObject.FindGameObjectsWithTag("Parkour");
+		for (int OBJ=0; OBJ<allObjs.Length; OBJ++){
+			MeshFilter cube = allObjs[OBJ].GetComponent<MeshFilter>();
+			if (cube != null){  //Sanity check, shouldnt be nessisary
+				Mesh objMesh = cube.mesh;
+		
+
+
 		Vector3[] verts = objMesh.vertices;
 		//Vector3[] norms = objMesh.normals;
 		int[] tris = objMesh.triangles;
@@ -13,6 +27,17 @@ public class Tracer : MonoBehaviour {
 		Vector3[] triNorm = new Vector3[tris.Length / 3];
 		Vector3[] triCent = new Vector3[tris.Length / 3];
 		int[] triType = new int[tris.Length / 3]; //0=top 1=scramble 2=side 3=bottom
+
+		//need to calculate new position of verts based on the scaleing/translation/rotation of the geometry
+		Vector3 geoTrans = cube.transform.localPosition;
+		Quaternion geoQuat = cube.transform.localRotation;
+		Vector3 geoScale = cube.transform.localScale;
+		Matrix4x4 matrixAreForKids = Matrix4x4.identity;
+		matrixAreForKids.SetTRS(geoTrans, geoQuat, geoScale);
+		for (int v=0; v<verts.Length; v++){
+					verts[v] = matrixAreForKids.MultiplyPoint3x4(verts[v]); //
+		}
+
 
 		/*
 		Debug.Log (verts.Length);
@@ -90,13 +115,13 @@ public class Tracer : MonoBehaviour {
 		float angleVal = 0;
 		for (int tri=0; tri<triNorm.Length; tri++){
 			angleVal = Vector3.Dot(triNorm[tri],Vector3.up);
-			if (angleVal >= 0.6){
+			if (angleVal >= 0.75){ //0.6
 				triType[tri] = 0; //top
 				Debug.DrawRay(triCent[tri], triNorm[tri], Color.blue, 200);
 			} else if (angleVal >= 0.4){
 				triType[tri] = 1; //scramble
 				Debug.DrawRay(triCent[tri], triNorm[tri], Color.yellow, 200);
-			} else if (angleVal >= -0.1){
+			} else if (angleVal >= -0.4){ //0.2
 				triType[tri] = 2; //side
 				Debug.DrawRay(triCent[tri], triNorm[tri], Color.red, 200);
 			} else if (angleVal >= -1){
@@ -119,6 +144,10 @@ public class Tracer : MonoBehaviour {
 		for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
 			if (edges[e].ledge){
 				Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200, true);
+			}
+		}
+
+			///BAD formating dont mind it...
 			}
 		}
 	}

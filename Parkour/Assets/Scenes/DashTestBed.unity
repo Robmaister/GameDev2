@@ -410,15 +410,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.18549991
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .552590013
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.92350006
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalRotation.x
@@ -426,11 +426,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -451,6 +451,10 @@ Prefab:
     - target: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
+      propertyPath: m_TagString
+      value: Parkour
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
@@ -496,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f474832013e1794d8a2979b63f92585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 1682808169}
+  cube: {fileID: 1464815245}
 --- !u!1 &1463118265
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +567,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &1464815245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1464815249}
+  - 33: {fileID: 1464815248}
+  - 136: {fileID: 1464815247}
+  - 23: {fileID: 1464815246}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Parkour
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1464815246
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464815245}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!136 &1464815247
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464815245}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1464815248
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464815245}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1464815249
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464815245}
+  m_LocalRotation: {x: .5, y: .5, z: .5, w: .5}
+  m_LocalPosition: {x: 1.4497, y: .870000005, z: 1.52709997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1682808169
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +650,7 @@ GameObject:
   - 95: {fileID: 1682808170}
   m_Layer: 0
   m_Name: TestGeo
-  m_TagString: Untagged
+  m_TagString: Parkour
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,8 +706,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5c59bb93a72d1f448958f37b3f7e64ff, type: 3}
   m_PrefabInternal: {fileID: 905367226}
   m_GameObject: {fileID: 1682808169}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.18549991, y: .552590013, z: -4.92350006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
