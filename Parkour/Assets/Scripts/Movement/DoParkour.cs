@@ -76,8 +76,8 @@ public class DoParkour : MonoBehaviour {
 
 		getInput();//get input state for buttons
 
-		Screen.showCursor = false;
-		Screen.lockCursor = true;
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 
 
 

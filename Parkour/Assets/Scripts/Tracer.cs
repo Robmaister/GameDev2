@@ -4,8 +4,13 @@ using System.Collections;
 //notes:
 //need something to deal with multiple meshes making the found ledges not ledges
 //or multiple meshes intersected
+
 //also need to fix situations where scrambles should be climbable... or something
 //something to do with sharp edges between sides and scrambles and similar situations
+
+//need to fix scaleing problem
+
+//
 
 public class Tracer : MonoBehaviour {
 	public GameObject cube;
@@ -31,11 +36,11 @@ public class Tracer : MonoBehaviour {
 				//need to calculate new position of verts based on the scaleing/translation/rotation of the geometry
 				Vector3 geoTrans = cube.transform.localPosition;
 				Quaternion geoQuat = cube.transform.localRotation;
-				Vector3 geoScale = cube.transform.localScale;
+				Vector3 geoScale = cube.transform.localScale;//ector3 geoScale = cube.transform.lossyScale;
 				Matrix4x4 matrixAreForKids = Matrix4x4.identity;
 				matrixAreForKids.SetTRS(geoTrans, geoQuat, geoScale);
 				for (int v=0; v<verts.Length; v++){
-							verts[v] = matrixAreForKids.MultiplyPoint3x4(verts[v]); //
+					verts[v] = matrixAreForKids.MultiplyPoint3x4(verts[v]); //
 				}
 
 
@@ -62,6 +67,8 @@ public class Tracer : MonoBehaviour {
 					triCent[t3/3][0] = triCent[t3/3][0];//*cube.transform.localScale[0]; 
 					triCent[t3/3][1] = triCent[t3/3][1];//*cube.transform.localScale[1]; 
 					triCent[t3/3][2] = triCent[t3/3][2];//*cube.transform.localScale[2]; 
+					triCent[t3/3][2] = triCent[t3/3][2];//cube.transform.localScale[2]; 
+
 					//Debug.DrawRay(triCent+ cube.transform.localPosition, norms[tris[t3]], Color.cyan, 100, false);
 				}
 				//for (int vn=0; vn<verts.Length; vn++) {
@@ -144,6 +151,7 @@ public class Tracer : MonoBehaviour {
 				for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
 					if (edges[e].ledge){
 						Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200, true);
+
 						GameObject tmp = new GameObject();//create empty child to hold collider
 
 						tmp.transform.localPosition = (verts[edges[e].leftVert] + verts[edges[e].rightVert])/2;
@@ -159,6 +167,7 @@ public class Tracer : MonoBehaviour {
 						col.height = Vector3.Distance(verts[edges[e].leftVert], verts[edges[e].rightVert]);
 
 						tmp.transform.parent = cube.transform;
+
 					}
 				}
 
