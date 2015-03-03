@@ -560,9 +560,10 @@ GameObject:
   - 65: {fileID: 1643984246}
   - 23: {fileID: 1643984245}
   - 54: {fileID: 1643984249}
+  - 114: {fileID: 1643984250}
   m_Layer: 0
   m_Name: Cube3
-  m_TagString: Untagged
+  m_TagString: Parkour
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -633,6 +634,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1643984250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1643984244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f474832013e1794d8a2979b63f92585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 1643984244}
 --- !u!1 &1746929024
 GameObject:
   m_ObjectHideFlags: 0

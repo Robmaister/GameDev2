@@ -14,6 +14,9 @@ public class DoParkour : MonoBehaviour {
 	//
 
 
+	//run into wall --> jump up wall
+
+
 
 
 	//mantle --> if player arms near edge, pull self up and over
@@ -110,6 +113,7 @@ public class DoParkour : MonoBehaviour {
 		
 		// Apply the direction to the CharacterMotor
 		inputMoveDirection = transform.rotation * directionVector;
+
 		Vector3 velocity = controller.velocity;
 
 		// Update velocity based on input
@@ -155,24 +159,21 @@ public class DoParkour : MonoBehaviour {
 	}
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
+
 		if (controller.isGrounded)
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		else {
 			velocity.y = controller.velocity.y - gravity * Time.deltaTime;
 			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
 		}
-		
 		if (controller.isGrounded) {
 			if (inputJump.pressed) {
-				velocity += Vector3.up * CalculateJumpVerticalSpeed (jumpHeight);
+				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.pressed = false;
 			}
 		}		
 		return velocity;
 	}
-
-
-
 
 	private Vector3 GetDesiredHorizontalVelocity () {
 		// Find desired velocity
