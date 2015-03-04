@@ -22,6 +22,14 @@ public class DoParkour : MonoBehaviour {
 	//mantle --> if player arms near edge, pull self up and over
 	//wall jump --> if player contacts wall, jump off it
 
+	public GameObject arms;
+	public GameObject legs;
+
+	public SurfaceType armState = 0;
+	public SurfaceType legState = 0;
+
+
+
 	public bool canControl = true;
 
 	public float maxSpeed = 10f;
@@ -77,7 +85,6 @@ public class DoParkour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		getInput();//get input state for buttons
 
 
@@ -129,6 +136,12 @@ public class DoParkour : MonoBehaviour {
 		controller.Move (currentMovementOffset);
 	}
 
+	void LateUpdate(){
+		if(armState != 0 || legState != 0){
+			Debug.Log(": arms: " + armState + " | legs: " + legState);
+		}
+	}
+
 
 	Vector3 ApplyInputVelocityChange (Vector3 velocity) {	
 		if (!canControl)
@@ -167,7 +180,6 @@ public class DoParkour : MonoBehaviour {
 		if (controller.isGrounded)
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		else {
-			print(controller.velocity);
 			if((controller.velocity.y > 0) && (Mathf.Abs (controller.velocity.x) < .1f || Mathf.Abs(controller.velocity.z) < .1f)){
 				Vector3 desiredVelocity = GetDesiredHorizontalVelocity();
 
@@ -218,22 +230,48 @@ public class DoParkour : MonoBehaviour {
 
 
 	void OnCollisionEnter(Collision col){
-		//print(col.gameObject + " " + col.contacts[0].point);
-	
-
 		//raycast on object to get triangle data
+		foreach( ContactPoint P in col.contacts){
+			RaycastHit hit;
+			Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
+			if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
+				int triangle = hit.triangleIndex;
+				if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
-		/*ContactPoint P = col.contacts[0];
-		RaycastHit hit;
-		Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
-		if (P.otherCollider.RayCast(ray, out hit, 0.1f))
-		{
-			int triangle = hit.triangleIndex;
-		}*/
+				SurfaceType s = GeometryManager.Instance.objectDict[col.gameObject].triType[triangle];
 
-
-
+				if(P.thisCollider.gameObject == arms){
+					armState |= s;
+				}
+				else if(P.thisCollider.gameObject == legs){
+					legState |= s;
+				}
+			}
+		}
 	}
 
+	void OnCollisionStay(Collision col){
+		//raycast on object to get triangle data
+		foreach( ContactPoint P in col.contacts){
+			RaycastHit hit;
+			Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
+			if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
+				int triangle = hit.triangleIndex;
+				if(triangle == -1) continue;//this means we collided with a non-mesh collider
+				
+				SurfaceType s = GeometryManager.Instance.objectDict[col.gameObject].triType[triangle];
+				
+				if(P.thisCollider.gameObject == arms){
+					armState |= s;
+				}
+				else if(P.thisCollider.gameObject == legs){
+					legState |= s;
+				}
+			}
+		}
+	}
 
+	void OnCollisionExit(Collision col){
+		armState = legState = 0;
+	}
 }

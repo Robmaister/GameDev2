@@ -11,6 +11,13 @@ using System.Collections;
 //need to fix scaleing problem
 
 //
+[System.Flags]
+public enum SurfaceType{
+	top = 1,
+	scramble = 2,
+	side = 4,
+	bottom = 8
+}
 
 public class Tracer : MonoBehaviour {
 
@@ -27,7 +34,7 @@ public class Tracer : MonoBehaviour {
 
 			Vector3[] triNorm = new Vector3[tris.Length / 3];
 			Vector3[] triCent = new Vector3[tris.Length / 3];
-			int[] triType = new int[tris.Length / 3]; //0=top 1=scramble 2=side 3=bottom
+			SurfaceType[] triType = new SurfaceType[tris.Length / 3];
 
 
 
@@ -98,22 +105,26 @@ public class Tracer : MonoBehaviour {
 			for (int tri=0; tri<triNorm.Length; tri++){
 				angleVal = Vector3.Dot(triNorm[tri],Vector3.up);
 				if (angleVal >= 0.75){ //0.6
-					triType[tri] = 0; //top
+					//triType[tri] = 0; //top
+					triType[tri] = SurfaceType.top;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.blue, 200);
 				} else if (angleVal >= 0.4){
-					triType[tri] = 1; //scramble
+					//triType[tri] = 1; //scramble
+					triType[tri] = SurfaceType.scramble;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.yellow, 200);
 				} else if (angleVal >= -0.4){ //0.2
-					triType[tri] = 2; //side
+					//triType[tri] = 2; //side
+					triType[tri] = SurfaceType.side;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.red, 200);
 				} else if (angleVal >= -1){
-					triType[tri] = 3; //bottom
+					//triType[tri] = 3; //bottom
+					triType[tri] = SurfaceType.bottom;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.green, 200);
 				}
 			}
 
 			for (int e=0; e<edges.Length; e++) {
-				if (triType[edges[e].triangle] == 0 && (triType[edges[e].oppositeEdge.triangle] == 2 || triType[edges[e].oppositeEdge.triangle] == 3) ){ //top and side
+				if (triType[edges[e].triangle] == SurfaceType.top && (triType[edges[e].oppositeEdge.triangle] == SurfaceType.side || triType[edges[e].oppositeEdge.triangle] == SurfaceType.bottom) ){ //top and side
 					if (triCent[edges[e].triangle][1] > triCent[edges[e].oppositeEdge.triangle][1]){ 
 						//if top center y value is above side center
 						//then the edges are part of a ledge.
@@ -153,7 +164,7 @@ public class Tracer : MonoBehaviour {
 			//assign values and return object data 
 			objd.edges = edges;
 			objd.tris = tris;
-			objd.tritype = triType;
+			objd.triType = triType;
 
 		}
 		return objd;
