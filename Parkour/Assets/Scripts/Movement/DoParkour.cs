@@ -32,6 +32,9 @@ public class DoParkour : MonoBehaviour {
 	private CharacterController controller;
 	private Vector3 inputMoveDirection = Vector3.zero;
 
+
+	private Vector3 lastInputMoveDirection = Vector3.zero;
+
 	[System.NonSerializedAttribute]
 	public looseInput inputJump = new looseInput("Jump",.2f);
 	public looseInput inputHands = new looseInput("Fire1",.2f);
@@ -69,6 +72,7 @@ public class DoParkour : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		controller = GetComponent<CharacterController>();
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -76,9 +80,9 @@ public class DoParkour : MonoBehaviour {
 
 		getInput();//get input state for buttons
 
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
 
+
+		Cursor.visible = false;
 
 
 
@@ -163,13 +167,31 @@ public class DoParkour : MonoBehaviour {
 		if (controller.isGrounded)
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		else {
+			print(controller.velocity);
+			if((controller.velocity.y > 0) && (Mathf.Abs (controller.velocity.x) < .1f || Mathf.Abs(controller.velocity.z) < .1f)){
+				Vector3 desiredVelocity = GetDesiredHorizontalVelocity();
+
+
+				float maxVelocityChange = maxAcceleration * Time.deltaTime;
+				Vector3 velocityChangeVector = (desiredVelocity - velocity);
+				if (velocityChangeVector.sqrMagnitude > maxVelocityChange * maxVelocityChange) {
+					velocityChangeVector = velocityChangeVector.normalized * maxVelocityChange;
+				}
+
+				velocity += velocityChangeVector;
+
+			}
+
 			velocity.y = controller.velocity.y - gravity * Time.deltaTime;
 			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
+
+
 		}
 		if (controller.isGrounded) {
 			if (inputJump.pressed) {
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.pressed = false;
+				lastInputMoveDirection = inputMoveDirection;
 			}
 		}		
 		return velocity;
@@ -177,7 +199,13 @@ public class DoParkour : MonoBehaviour {
 
 	private Vector3 GetDesiredHorizontalVelocity () {
 		// Find desired velocity
-		Vector3 desiredLocalDirection = transform.InverseTransformDirection(inputMoveDirection);
+		Vector3 desiredLocalDirection;
+		if(controller.isGrounded){
+			desiredLocalDirection = transform.InverseTransformDirection(inputMoveDirection);
+		}else{
+			desiredLocalDirection = transform.InverseTransformDirection(lastInputMoveDirection);
+			//lastInputMoveDirection /= (controller.velocity.y + 0.001f);
+		}
 		return transform.TransformDirection(desiredLocalDirection * maxSpeed);
 	}
 
@@ -189,16 +217,23 @@ public class DoParkour : MonoBehaviour {
 	}
 
 
+	void OnCollisionEnter(Collision col){
+		//print(col.gameObject + " " + col.contacts[0].point);
+	
+
+		//raycast on object to get triangle data
+
+		/*ContactPoint P = col.contacts[0];
+		RaycastHit hit;
+		Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
+		if (P.otherCollider.RayCast(ray, out hit, 0.1f))
+		{
+			int triangle = hit.triangleIndex;
+		}*/
 
 
 
-
-
-
-	//void OnControllerColliderHit (ControllerColliderHit hit) {
-		//Debug.DrawRay(transform.position,hit.normal,Color.red);
-		//print(Vector3.Angle(transform.up, hit.normal));
-	//}
+	}
 
 
 }

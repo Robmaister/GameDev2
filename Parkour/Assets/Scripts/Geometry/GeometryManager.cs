@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GeometryManager : Singleton<GeometryManager> {
+	//this class keeps track of the parkourable objects
 	public Dictionary<GameObject,ObjectData> objectDict;
 	
 	void Awake () {
@@ -26,9 +27,9 @@ public class GeometryManager : Singleton<GeometryManager> {
 public class ObjectData{
 	//this class holds data generated from tracing the level and stores it for each object
 	public GameObject obj;
-	public HalfEdge[] edges;
+	public HalfEdge[] edges;//each index is the edge for a triagles vert to another of that triangles
 	public int[] tris;
-	public int[] tritype;
+	public int[] tritype; //0=top 1=scramble 2=side 3=bottom
 
 	public ObjectData(GameObject g){
 		obj = g;
