@@ -8,7 +8,15 @@ using System.Collections;
 //also need to fix situations where scrambles should be climbable... or something
 //something to do with sharp edges between sides and scrambles and similar situations
 
-//need to fix scaleing problem
+//too scrambles that are 90 from eachother are totaly usable to grab the edge of.
+//once you are on the top... not sure, you could definitly straddle the edge, like waliking on the top of a roof, but im not sure
+//can definitly get away with forcing the player to just hold on, or climb over and slide down.
+//nevermind, if an edge is there then you can balence on that edge.
+
+//++need to fix scaleing problem
+
+//need to fix scramble to flat top situation.  if the change in angle is around 45 degrees, then it should be an edge
+
 
 //
 [System.Flags]
