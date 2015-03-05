@@ -13,6 +13,9 @@ using System.Collections;
 //can definitly get away with forcing the player to just hold on, or climb over and slide down.
 //nevermind, if an edge is there then you can balence on that edge.
 
+//also related if the edge between too sides is enough to be considered an edge, make sure its not a vertival edge
+//should have the same angle to the up vec as a top.
+
 //++need to fix scaleing problem
 
 //need to fix scramble to flat top situation.  if the change in angle is around 45 degrees, then it should be an edge
@@ -112,19 +115,19 @@ public class Tracer : MonoBehaviour {
 			float angleVal = 0;
 			for (int tri=0; tri<triNorm.Length; tri++){
 				angleVal = Vector3.Dot(triNorm[tri],Vector3.up);
-				if (angleVal >= 0.75){ //0.6
+				if (angleVal >= 0.75){ //0.6   max 41 degrees from normal directly up
 					//triType[tri] = 0; //top
 					triType[tri] = SurfaceType.top;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.blue, 200);
-				} else if (angleVal >= 0.4){
+				} else if (angleVal >= 0.4){  //  24 to 48 from parallel to ground
 					//triType[tri] = 1; //scramble
 					triType[tri] = SurfaceType.scramble;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.yellow, 200);
-				} else if (angleVal >= -0.4){ //0.2
-					//triType[tri] = 2; //side
+				} else if (angleVal >= -0.4){ //0.2   max 23 degrees from parallel to ground plane
+					//triType[tri] = 2; //side        min -23 from parllel
 					triType[tri] = SurfaceType.side;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.red, 200);
-				} else if (angleVal >= -1){
+				} else if (angleVal >= -1){          //min -24 from parallel
 					//triType[tri] = 3; //bottom
 					triType[tri] = SurfaceType.bottom;
 					Debug.DrawRay(triCent[tri], triNorm[tri], Color.green, 200);
@@ -132,24 +135,50 @@ public class Tracer : MonoBehaviour {
 			}
 
 			for (int e=0; e<edges.Length; e++) {
-				if (triType[edges[e].triangle] == SurfaceType.top && (triType[edges[e].oppositeEdge.triangle] == SurfaceType.side || triType[edges[e].oppositeEdge.triangle] == SurfaceType.bottom) ){ //top and side
+				if (triType[edges[e].triangle] == SurfaceType.top 
+				    	&& 	(triType[edges[e].oppositeEdge.triangle] == SurfaceType.side 
+				    	|| triType[edges[e].oppositeEdge.triangle] == SurfaceType.bottom) 
+				    	){ //top and side
 					if (triCent[edges[e].triangle][1] > triCent[edges[e].oppositeEdge.triangle][1]){ 
 						//if top center y value is above side center
 						//then the edges are part of a ledge.
-						//Now do I set both to be the edge or just the top side....
+						//Now do I set both to be the edge or just the top side....  now setting both
 
-						Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200);
+						//Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200);
 
 
 						edges[e].ledge = true;
+						edges[e].oppositeEdge.ledge = true;
+					}
+				}
+				//if scramble and the opposite side is top, scramble or side, and is enough of an angle appart from
+				//the first side, and if the resulting edge is flat enogh to be a top
+				if(triType[edges[e].triangle] == SurfaceType.scramble && triType[edges[e].oppositeEdge.triangle] != SurfaceType.bottom){
+					//if the scramble edge is connecting to anything other than a bottom.
+					//need to calculate the differnce between the angles, they need to be 225 degrees appart or 45
+					//im confusing myself with the math and geometry at the moment....
+					//take face normals, calculate dot, if dot > .5 not an edge, else, it should be good
+					//then check flatness of edge
+					if (Vector3.Dot( triNorm[edges[e].triangle], triNorm[edges[e].oppositeEdge.triangle]) < 0.75){  //Side to top angle tolerance
+						float edgeToUpAngle = Vector3.Dot( 
+						            new Vector3(verts[edges[e].leftVert].x - verts[edges[e].rightVert].x , 
+						        			verts[edges[e].leftVert].y - verts[edges[e].rightVert].y , 
+						        verts[edges[e].leftVert].z - verts[edges[e].rightVert].z) , Vector3.up);
+						//print(edgeToUpAngle);
+						if ( edgeToUpAngle < 0.25 && edgeToUpAngle > -0.25){  //angle to decide if edge is within the line to be a top
+							//Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200);
+							//print("setting edge");
+							edges[e].ledge = true;
+							edges[e].oppositeEdge.ledge = true;
+						}
 					}
 				}
 			}
 
-			/*for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
+			for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
 				if (edges[e].ledge){
 					Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200, true);
-
+					/*
 					GameObject tmp = new GameObject();//create empty child to hold collider
 
 					tmp.transform.localPosition = (verts[edges[e].leftVert] + verts[edges[e].rightVert])/2;
@@ -165,9 +194,10 @@ public class Tracer : MonoBehaviour {
 					col.height = Vector3.Distance(verts[edges[e].leftVert], verts[edges[e].rightVert]);
 
 					tmp.transform.parent = cube.transform;
+					*/
 
 				}
-			}*/
+			}
 
 			//assign values and return object data 
 			objd.edges = edges;
