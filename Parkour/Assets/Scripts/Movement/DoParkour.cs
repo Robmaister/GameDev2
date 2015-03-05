@@ -26,6 +26,7 @@ public class DoParkour : MonoBehaviour {
 
 
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
+	private bool mantling = false;
 
 	private ParkourController pkc;
 
@@ -50,7 +51,15 @@ public class DoParkour : MonoBehaviour {
 		//mantle
 		if(pkc.inputHands.pressed && ((pkc.armState & (SurfaceType.top | SurfaceType.side)) != 0)){
 			//pkc.controller.Move(transform.up);
-			print("mantling");
+			if(!mantling){
+				//pkc.controller.Move(-pkc.controller.velocity  * Time.deltaTime);
+				mantling = true;
+				pkc.apply_forces = false;
+			}
+		}
+
+		if(mantling){
+			pkc.controller.Move (Vector3.up * Time.deltaTime);
 		}
 	}
 }

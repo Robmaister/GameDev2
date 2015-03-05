@@ -19,6 +19,7 @@ public class ParkourController : MonoBehaviour {
 	private Vector3 inputMoveDirection = Vector3.zero;
 
 	public bool can_jump = false;
+	public bool apply_forces = true;
 
 	//for debugging purposes
 	public Text vtxt;
@@ -114,7 +115,10 @@ public class ParkourController : MonoBehaviour {
 		velocity = ApplyGravityAndJumping (velocity);
 
 		Vector3 currentMovementOffset = velocity * Time.deltaTime;
-		controller.Move (currentMovementOffset);
+
+		if(apply_forces){
+			controller.Move (currentMovementOffset);
+		}
 	}
 
 	void LateUpdate(){
