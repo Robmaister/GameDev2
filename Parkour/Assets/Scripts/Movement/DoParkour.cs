@@ -34,7 +34,7 @@ public class DoParkour : MonoBehaviour {
 		pkc = GetComponent<ParkourController>();
 	}
 
-	void Update(){
+	void LateUpdate(){
 		if(pkc.controller.isGrounded){//reset double jump flag
 			jumpedOnce = false;
 		}
@@ -43,23 +43,26 @@ public class DoParkour : MonoBehaviour {
 		//wall jump
 		if(pkc.inputJump.pressed && (pkc.legState & SurfaceType.side) != 0){//if player presses jump and has legs touching side
 			if(!jumpedOnce){
+				print("walljump");
 				pkc.can_jump = true;
 				jumpedOnce = true;
 			}
 		}
 
 		//mantle
-		if(pkc.inputHands.pressed && ((pkc.armState & (SurfaceType.top | SurfaceType.side)) != 0)){
-			//pkc.controller.Move(transform.up);
-			if(!mantling){
+		if(pkc.inputHands.pressed && (pkc.armState == (SurfaceType.top | SurfaceType.side))){//if player arms are on top and side specifically
+			//print("mantling: " + pkc.armState);
+			pkc.inputHands.pressed = false;
+			//if(!mantling){
 				//pkc.controller.Move(-pkc.controller.velocity  * Time.deltaTime);
 				mantling = true;
-				pkc.apply_forces = false;
-			}
+				//pkc.apply_forces = false;
+				pkc.addImpulse(pkc.transform.up,.1f,true);
+				pkc.addImpulse(pkc.transform.forward,.2f,true);
+			//}
 		}
 
-		if(mantling){
-			pkc.controller.Move (Vector3.up * Time.deltaTime);
-		}
+
+		//if arms and top --> apply upwards force
 	}
 }

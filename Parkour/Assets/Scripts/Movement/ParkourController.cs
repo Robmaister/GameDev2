@@ -18,6 +18,8 @@ public class ParkourController : MonoBehaviour {
 	public CharacterController controller;
 	private Vector3 inputMoveDirection = Vector3.zero;
 
+	private Vector3 lastPos = Vector3.zero;
+
 	public bool can_jump = false;
 	public bool apply_forces = true;
 
@@ -26,7 +28,8 @@ public class ParkourController : MonoBehaviour {
 	public Text otxt;
 	public Text ptxt;
 	public Text ltxt;
-
+	public Text itxt;
+	//----------------------
 
 	private Vector3 lastInputMoveDirection = Vector3.zero;
 
@@ -36,6 +39,10 @@ public class ParkourController : MonoBehaviour {
 	public looseInput inputJump = new looseInput("Jump",.2f);
 	public looseInput inputHands = new looseInput("Fire1",.2f);
 	public looseInput inputFeet = new looseInput("Fire2",.2f);
+
+	private Vector3 currentMovementOffset = Vector3.zero;
+
+	private Vector3 netImpulse = Vector3.zero;
 
 	public class looseInput{//manage input by allowing leeway when pressing buttons
 		public looseInput(string bt, float lw){
@@ -60,6 +67,46 @@ public class ParkourController : MonoBehaviour {
 		}
 	}
 
+	public void addImpulse(Vector3 force, float duration, bool amplified = false){
+		if(!amplified){
+			StartCoroutine(_addImpulse(force, duration));
+		}else{
+			StartCoroutine(_addImpulse2(force, duration));
+		}
+	}
+
+	private IEnumerator _addImpulse(Vector3 force, float duration) {
+		//adds a constant force over a set period of time
+		float endtime = Time.time + duration;
+
+		while(Time.time < endtime){
+			netImpulse += force;
+			yield return null;
+		}
+	}
+
+	private IEnumerator _addImpulse2(Vector3 force, float duration) {
+		//adds a variable force over a set period of time
+		//force is multiplied by player's initial momentum
+
+		float mul = (force.magnitude + controller.velocity.magnitude) / 2;
+		print("mul: " + mul);
+
+		force = force.normalized * mul;
+
+		duration /= mul;
+
+		float endtime = Time.time + duration;
+
+		print("force" + force);
+		
+		while(Time.time < endtime){
+			netImpulse += force;
+			yield return null;
+		}
+	}
+	
+	
 	void getInput(){
 		inputJump.checkInput();
 		inputHands.checkInput();
@@ -71,13 +118,15 @@ public class ParkourController : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		Physics.IgnoreCollision(controller,arms.GetComponent<Collider>());
 		Physics.IgnoreCollision(controller,legs.GetComponent<Collider>());
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons
 
-		Cursor.visible = false;
+		//have to do this every frame because unity 5
+		//Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
@@ -114,22 +163,30 @@ public class ParkourController : MonoBehaviour {
 		// Apply gravity and jumping force
 		velocity = ApplyGravityAndJumping (velocity);
 
-		Vector3 currentMovementOffset = velocity * Time.deltaTime;
+		currentMovementOffset = (velocity) * Time.deltaTime;
 
-		if(apply_forces){
-			controller.Move (currentMovementOffset);
-		}
+		netImpulse = Vector3.zero;
+
 	}
 
 	void LateUpdate(){
-		//if(armState != 0 || legState != 0){
-			//Debug.Log("arms: " + armState + " | legs: " + legState);
-		//}
+		netImpulse *= Time.deltaTime;
+
+
+		//debug stuff
 		vtxt.text = "Velocity: " + controller.velocity;
 		ptxt.text = "Position: " + transform.position;
 		otxt.text = "Rotation: " + transform.rotation.eulerAngles;
 		ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
+		itxt.text = "Impulse: " + netImpulse;
+		//--------------------------
 
+		//moved to lateupdate to allow coroutines to execute
+		if(apply_forces){//if regular forces should be applied
+			//print("NetImpulse: " + netImpulse + " combined: " + (currentMovementOffset + netImpulse));
+			controller.Move (currentMovementOffset + netImpulse);
+			lastPos = transform.position;
+		}
 	}
 
 
