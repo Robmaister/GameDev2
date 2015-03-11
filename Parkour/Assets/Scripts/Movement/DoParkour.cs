@@ -104,7 +104,7 @@ public class DoParkour : MonoBehaviour {
 
 						if(!pkc.hasEdge){
 							hanging = false;
-							pkc.addImpulse(pkc.transform.forward * .5f,.1f);
+							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
 							return true;
 						}
@@ -117,7 +117,7 @@ public class DoParkour : MonoBehaviour {
 								return true;
 							}
 						}else{//else if pulled self over ledge
-							pkc.addImpulse(pkc.transform.forward * .5f,.1f);
+							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
 							//hanging = false;
 						}
