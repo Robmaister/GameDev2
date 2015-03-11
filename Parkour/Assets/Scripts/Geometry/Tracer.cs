@@ -32,6 +32,8 @@ public enum SurfaceType{
 
 public class Tracer : MonoBehaviour {
 
+	public static float edge_radius = .5f;
+
 	public static ObjectData Trace (GameObject obj) {
 		MeshFilter cube = obj.GetComponent<MeshFilter>();
 		ObjectData objd = new ObjectData(obj);
@@ -174,12 +176,16 @@ public class Tracer : MonoBehaviour {
 					}
 				}
 			}
-
+			string tmpname = "";
 			for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
+
 				if (edges[e].ledge){
 					Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200, true);
-					/*
+
 					GameObject tmp = new GameObject();//create empty child to hold collider
+					tmp.tag = "edge";
+					tmpname = tmpname + "1";
+					tmp.name = tmpname;
 
 					tmp.transform.localPosition = (verts[edges[e].leftVert] + verts[edges[e].rightVert])/2;
 
@@ -189,12 +195,13 @@ public class Tracer : MonoBehaviour {
 
 
 					CapsuleCollider col = tmp.AddComponent<CapsuleCollider>();
+					col.isTrigger = true;
 
-					col.radius = .1f;
+					col.radius = edge_radius;
 					col.height = Vector3.Distance(verts[edges[e].leftVert], verts[edges[e].rightVert]);
 
 					tmp.transform.parent = cube.transform;
-					*/
+
 
 				}
 			}
@@ -203,6 +210,7 @@ public class Tracer : MonoBehaviour {
 			objd.edges = edges;
 			objd.tris = tris;
 			objd.triType = triType;
+			objd.verts = verts;
 
 		}
 		return objd;
