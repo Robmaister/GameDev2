@@ -8,7 +8,7 @@ public class ParkourController : MonoBehaviour {
 	public GameObject arms;
 	public GameObject legs;
 
-
+	private PhotonView photonView;
 
 	public bool canControl = true;
 
@@ -156,6 +156,7 @@ public class ParkourController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		controller = GetComponent<CharacterController>();
+		photonView = GetComponent<PhotonView>();
 		Physics.IgnoreCollision(controller,arms.GetComponent<Collider>());
 		Physics.IgnoreCollision(controller,legs.GetComponent<Collider>());
 
@@ -163,6 +164,9 @@ public class ParkourController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!photonView.isMine)
+			return;
+
 		getInput();//get input state for buttons
 
 		//have to do this every frame because unity 5
@@ -217,13 +221,12 @@ public class ParkourController : MonoBehaviour {
 	void LateUpdate(){
 		netImpulse *= Time.deltaTime;
 
-
 		//debug stuff
-		vtxt.text = "Velocity: " + controller.velocity;
-		ptxt.text = "Position: " + transform.position;
-		otxt.text = "Rotation: " + transform.rotation.eulerAngles;
-		ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
-		itxt.text = "Impulse: " + netImpulse;
+		if (vtxt != null) vtxt.text = "Velocity: " + controller.velocity;
+		if (ptxt != null) ptxt.text = "Position: " + transform.position;
+		if (otxt != null) otxt.text = "Rotation: " + transform.rotation.eulerAngles;
+		if (ltxt != null) ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
+		if (itxt != null) itxt.text = "Impulse: " + netImpulse;
 		//--------------------------
 
 		//moved to lateupdate to allow coroutines to execute
