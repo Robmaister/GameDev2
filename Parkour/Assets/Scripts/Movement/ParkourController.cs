@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class ParkourController : MonoBehaviour {
 	public GameObject arms;
@@ -36,26 +37,33 @@ public class ParkourController : MonoBehaviour {
 	[System.NonSerializedAttribute]
 	public SurfaceType armState = 0;
 	public SurfaceType legState = 0;
-	public looseInput inputJump = new looseInput("Jump",.2f);
+	public looseInput inputJump = new looseInput("Jump",.2f,true);
 	public looseInput inputHands = new looseInput("Fire1",.2f);
 	public looseInput inputFeet = new looseInput("Fire2",.2f);
 
-	private Vector3 currentMovementOffset = Vector3.zero;
+	public Vector3 currentMovementOffset = Vector3.zero;
 
 	private Vector3 netImpulse = Vector3.zero;
 
 	public class looseInput{//manage input by allowing leeway when pressing buttons
-		public looseInput(string bt, float lw){
+		public looseInput(string bt, float lw, bool holdFlag = false){
 			leeway = lw;
 			button = bt;
+			if(holdFlag){//discrete press
+				inputCheck = Input.GetButtonDown;
+			}else{//continuous press
+				inputCheck = Input.GetButton;
+			}
 		}
+
+		private Func<string,bool> inputCheck;
 		private float lastpress = 0;
 		public bool pressed = false;
 		private float leeway;
 		private string button;
 
 		public void checkInput(){
-			if(Input.GetButtonDown(button)){//if button is currently pressed
+			if(inputCheck(button)){//if button is currently pressed
 				lastpress = Time.time;
 				pressed = true;
 			}
@@ -67,25 +75,33 @@ public class ParkourController : MonoBehaviour {
 		}
 	}
 
-	public void addImpulse(Vector3 force, float duration, bool amplified = false){
+	public void addImpulse(Vector3 force, float duration, bool amplified = false, Func<bool> checkfunc = null, Action endfunc = null){
+		//amplified ==> determine whether player momentum should be taken into account
+		//checkfunc ==> this function checks if the impulse should stop prematurely; returns true when it should exit
+		//endfunc ==> this function gets called when the impulse ends
+
 		if(!amplified){
-			StartCoroutine(_addImpulse(force, duration));
+			StartCoroutine(_addImpulse(force, duration, checkfunc, endfunc));
 		}else{
-			StartCoroutine(_addImpulse2(force, duration));
+			StartCoroutine(_addImpulse2(force, duration, checkfunc, endfunc));
 		}
 	}
 
-	private IEnumerator _addImpulse(Vector3 force, float duration) {
+	private IEnumerator _addImpulse(Vector3 force, float duration, Func<bool> checkfunc = null, Action endfunc = null) {
 		//adds a constant force over a set period of time
 		float endtime = Time.time + duration;
 
 		while(Time.time < endtime){
+			if(checkfunc != null){
+				if(checkfunc()) break;
+			}
 			netImpulse += force;
 			yield return null;
 		}
+		if(endfunc != null) endfunc();
 	}
 
-	private IEnumerator _addImpulse2(Vector3 force, float duration) {
+	private IEnumerator _addImpulse2(Vector3 force, float duration, Func<bool> checkfunc = null, Action endfunc = null) {
 		//adds a variable force over a set period of time
 		//force is multiplied by player's initial momentum
 
@@ -104,9 +120,13 @@ public class ParkourController : MonoBehaviour {
 		print("force" + force);
 		
 		while(Time.time < endtime){
+			if(checkfunc != null){
+				if(checkfunc()) break;
+			}
 			netImpulse += force;
 			yield return null;
 		}
+		if(endfunc != null) endfunc();
 	}
 	
 	
@@ -157,16 +177,21 @@ public class ParkourController : MonoBehaviour {
 		}
 		
 		// Apply the direction to the CharacterMotor
-		inputMoveDirection = transform.rotation * directionVector;
 
-		Vector3 velocity = controller.velocity;
+		if(apply_forces){
+			inputMoveDirection = transform.rotation * directionVector;
+			Vector3 velocity = controller.velocity;
 
-		// Update velocity based on input
-		velocity = ApplyInputVelocityChange(velocity);
-		// Apply gravity and jumping force
-		velocity = ApplyGravityAndJumping (velocity);
+				// Update velocity based on input
+			velocity = ApplyInputVelocityChange(velocity);
+				// Apply gravity and jumping force
+			velocity = ApplyGravityAndJumping (velocity);
 
-		currentMovementOffset = (velocity) * Time.deltaTime;
+			currentMovementOffset = (velocity) * Time.deltaTime;
+		}else{
+			currentMovementOffset = Vector3.zero;
+		}
+
 
 		netImpulse = Vector3.zero;
 
@@ -256,7 +281,6 @@ public class ParkourController : MonoBehaviour {
 				lastInputMoveDirection = inputMoveDirection;
 			}
 			else if(can_jump){//if can jump off a jumpable surface
-				//velocity = GetDesiredHorizontalVelocity();
 				velocity += transform.up *  CalculateJumpVerticalSpeed((GetDesiredHorizontalVelocity().magnitude/maxSpeed) * jumpHeight);
 				lastInputMoveDirection = inputMoveDirection;
 				can_jump = false;
@@ -273,7 +297,6 @@ public class ParkourController : MonoBehaviour {
 			desiredLocalDirection = transform.InverseTransformDirection(inputMoveDirection);
 		}else{
 			desiredLocalDirection = transform.InverseTransformDirection(lastInputMoveDirection);
-			//lastInputMoveDirection /= (controller.velocity.y + 0.001f);
 		}
 		return transform.TransformDirection(desiredLocalDirection * maxSpeed);
 	}

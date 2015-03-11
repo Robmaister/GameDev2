@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class DoParkour : MonoBehaviour {
 	//actually do the parkour of the player
@@ -49,18 +50,44 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 
-		//mantle
+		//mantle or vault
 		if(pkc.inputHands.pressed && (pkc.armState == (SurfaceType.top | SurfaceType.side))){//if player arms are on top and side specifically
+
+			//bool vaultMode = (pkc.inputJump.pressed && (pkc.legState & SurfaceType.side) != 0);//check if legs are involved
+
+
 			//print("mantling: " + pkc.armState);
 			pkc.inputHands.pressed = false;
-			//if(!mantling){
+			if(!mantling){
+
+				Vector3 temp = pkc.currentMovementOffset;
+				temp.y = 0;
+				Func<bool> checkfunc = delegate(){
+					if (pkc.armState == 0){//if nothing on arms anymore
+						mantling = false;
+						pkc.apply_forces = true;
+						//pkc.currentMovementOffset = temp;
+						pkc.addImpulse(pkc.transform.forward * .5f,.1f,true);
+						return true;
+					}
+					return false;
+				};
+
+				Action endfunc = delegate {
+					mantling = false;
+					pkc.apply_forces = true;
+				};
+
+
 				//pkc.controller.Move(-pkc.controller.velocity  * Time.deltaTime);
 				mantling = true;
 				pkc.apply_forces = false;
-				pkc.addImpulse(pkc.transform.up * .5f,.1f,true);
-				pkc.addImpulse(pkc.transform.forward * .25f,.2f,true);
-			//}
+				pkc.addImpulse(pkc.transform.up * 3,1f,checkfunc:checkfunc,endfunc:endfunc);
+
+			}
 		}
+
+
 
 
 		//if arms and top --> apply upwards force

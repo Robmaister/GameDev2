@@ -276,13 +276,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arms: {fileID: 116080}
   legs: {fileID: 105698}
-  armState: 0
-  legState: 0
   canControl: 1
   maxSpeed: 10
   maxAcceleration: 20
   gravity: 10
   jumpHeight: 1
+  controller: {fileID: 0}
+  can_jump: 0
+  apply_forces: 1
+  vtxt: {fileID: 0}
+  otxt: {fileID: 0}
+  ptxt: {fileID: 0}
+  ltxt: {fileID: 0}
+  itxt: {fileID: 0}
+  legState: 0
+  currentMovementOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11442338
 MonoBehaviour:
   m_ObjectHideFlags: 1
