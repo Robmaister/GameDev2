@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerSpawn : MonoBehaviour {
 
+	public string attachName;
 	public GameObject cameraObject;
 	public Vector3 cameraAttachPos;
 	public Quaternion cameraAttachRot;
@@ -13,7 +14,8 @@ public class PlayerSpawn : MonoBehaviour {
 		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", position, Quaternion.identity, 0);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
 
-		cameraObject.transform.parent = newPlayerObject.transform;
+		Transform attachObj = newPlayerObject.transform.Find (attachName) ?? newPlayerObject.transform;
+		cameraObject.transform.parent = attachObj;
 		cameraObject.transform.localPosition = cameraAttachPos;
 		cameraObject.transform.localRotation = cameraAttachRot;
 		//Debug.Log ("CONNECTED");

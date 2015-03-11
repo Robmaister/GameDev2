@@ -1300,7 +1300,8 @@ Prefab:
       propertyPath: anim
       value: 
       objectReference: {fileID: 150466579}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11429822, guid: 813d1b01f37ee74459a2f3afbe9532ff, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 813d1b01f37ee74459a2f3afbe9532ff, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1350269292
