@@ -30,6 +30,7 @@ public class ObjectData{
 	public HalfEdge[] edges;//each index is the edge for a triagles vert to another of that triangles
 	public int[] tris;
 	public SurfaceType[] triType; //1=top 2=scramble 4=side 8=bottom
+	public Vector3[] verts;
 
 	public ObjectData(GameObject g){
 		obj = g;

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class ParkourController : MonoBehaviour {
 	public GameObject arms;
@@ -23,6 +24,16 @@ public class ParkourController : MonoBehaviour {
 
 	public bool can_jump = false;
 	public bool apply_forces = true;
+
+
+	// temporary hack until we fix how egdes are handled
+	public float curEdgey = 0; 
+	public bool hasEdge = false;
+	//------------------
+
+
+	public Vector3 curEdgeAvg = Vector3.zero; //average position of edges currently colliding with
+
 
 	//for debugging purposes
 	public Text vtxt;
@@ -80,6 +91,9 @@ public class ParkourController : MonoBehaviour {
 		//checkfunc ==> this function checks if the impulse should stop prematurely; returns true when it should exit
 		//endfunc ==> this function gets called when the impulse ends
 
+		//a negative duration means the impulse will be applied forever until it's terminated by the check function or StopCoroutine() or StopAllCoroutines()
+
+
 		if(!amplified){
 			StartCoroutine(_addImpulse(force, duration, checkfunc, endfunc));
 		}else{
@@ -90,8 +104,9 @@ public class ParkourController : MonoBehaviour {
 	private IEnumerator _addImpulse(Vector3 force, float duration, Func<bool> checkfunc = null, Action endfunc = null) {
 		//adds a constant force over a set period of time
 		float endtime = Time.time + duration;
+		bool infinite = (duration < 0); //infinite impulse flag
 
-		while(Time.time < endtime){
+		while(infinite || Time.time < endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}
@@ -104,6 +119,8 @@ public class ParkourController : MonoBehaviour {
 	private IEnumerator _addImpulse2(Vector3 force, float duration, Func<bool> checkfunc = null, Action endfunc = null) {
 		//adds a variable force over a set period of time
 		//force is multiplied by player's initial momentum
+
+		bool infinite = (duration < 0); //infinite impulse flag
 
 		//ignore vertical momentum
 		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.y * controller.velocity.y);
@@ -119,7 +136,7 @@ public class ParkourController : MonoBehaviour {
 
 		print("force" + force);
 		
-		while(Time.time < endtime){
+		while(infinite || Time.time < endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}
@@ -308,44 +325,88 @@ public class ParkourController : MonoBehaviour {
 		return Mathf.Sqrt (2 * targetJumpHeight * gravity);
 	}
 
+	void OnTriggerEnter(Collider col){
+		if(col.tag == "edge"){
+			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
+			hasEdge = true;
+		}
+	}
+
+	void OnTriggerExit(Collider col){
+		if(col.tag == "edge"){
+			curEdgey = 0;
+			hasEdge = false;
+		}
+	}
+
+	void OnTriggerStay(Collider col){
+		if(col.tag == "edge"){
+			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
+			hasEdge = true;
+		}
+	}
+
 
 	void OnCollisionEnter(Collision col){
-		//raycast on object to get triangle data
-		foreach( ContactPoint P in col.contacts){
-			RaycastHit hit;
-			Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
-			if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
-				int triangle = hit.triangleIndex;
-				if(triangle == -1) continue;//this means we collided with a non-mesh collider
+		if(col.gameObject.tag == "Parkour"){
+			//raycast on object to get triangle data
+			foreach( ContactPoint P in col.contacts){
+				RaycastHit hit;
+				Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
+				if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
+					int triangle = hit.triangleIndex;
+					if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
-				SurfaceType s = GeometryManager.Instance.objectDict[col.gameObject].triType[triangle];
+					ObjectData objd = GeometryManager.Instance.objectDict[col.gameObject];
+					
+					SurfaceType s = objd.triType[triangle];
 
-				if(P.thisCollider.gameObject == arms){
-					armState |= s;
-				}
-				else if(P.thisCollider.gameObject == legs){
-					legState |= s;
+					//HalfEdge tmpe = objd.edges[triangle];
+
+					//if((objd.verts[tmpe.leftVert].y == objd.verts[tmpe.rightVert].y)){
+						//curEdgey = Mathf.Max(curEdgey, objd.verts[tmpe.leftVert].y);
+					//}
+		
+
+					if(P.thisCollider.gameObject == arms){
+						armState |= s;
+					}
+					else if(P.thisCollider.gameObject == legs){
+						legState |= s;
+					}
 				}
 			}
 		}
 	}
 
 	void OnCollisionStay(Collision col){
-		//raycast on object to get triangle data
-		foreach( ContactPoint P in col.contacts){
-			RaycastHit hit;
-			Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
-			if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
-				int triangle = hit.triangleIndex;
-				if(triangle == -1) continue;//this means we collided with a non-mesh collider
-				
-				SurfaceType s = GeometryManager.Instance.objectDict[col.gameObject].triType[triangle];
-				
-				if(P.thisCollider.gameObject == arms){
-					armState |= s;
-				}
-				else if(P.thisCollider.gameObject == legs){
-					legState |= s;
+		if(col.gameObject.tag == "Parkour"){
+			//raycast on object to get triangle data
+			foreach( ContactPoint P in col.contacts){
+				RaycastHit hit;
+				Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
+				if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
+					int triangle = hit.triangleIndex;
+					if(triangle == -1) continue;//this means we collided with a non-mesh collider
+
+
+					ObjectData objd = GeometryManager.Instance.objectDict[col.gameObject];
+
+					SurfaceType s = objd.triType[triangle];
+
+					//HalfEdge tmpe = objd.edges[triangle];
+
+					//if((objd.verts[tmpe.leftVert].y == objd.verts[tmpe.rightVert].y)){
+						//curEdgey = Mathf.Max(curEdgey, objd.verts[tmpe.leftVert].y);
+					//}
+
+					
+					if(P.thisCollider.gameObject == arms){
+						armState |= s;
+					}
+					else if(P.thisCollider.gameObject == legs){
+						legState |= s;
+					}
 				}
 			}
 		}
