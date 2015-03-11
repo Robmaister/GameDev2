@@ -920,6 +920,7 @@ GameObject:
   - 54: {fileID: 5429792}
   - 114: {fileID: 11431364}
   - 114: {fileID: 11499216}
+  - 114: {fileID: 11403938}
   - 114: {fileID: 11426898}
   - 114: {fileID: 11415380}
   - 114: {fileID: 11482710}
@@ -2227,6 +2228,17 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11403938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaaf86da60066c46acaf6c32ab3f971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11412088
 MonoBehaviour:
   m_ObjectHideFlags: 1
