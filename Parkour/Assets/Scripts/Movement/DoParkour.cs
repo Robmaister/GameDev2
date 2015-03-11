@@ -56,9 +56,9 @@ public class DoParkour : MonoBehaviour {
 			//if(!mantling){
 				//pkc.controller.Move(-pkc.controller.velocity  * Time.deltaTime);
 				mantling = true;
-				//pkc.apply_forces = false;
-				pkc.addImpulse(pkc.transform.up,.1f,true);
-				pkc.addImpulse(pkc.transform.forward,.2f,true);
+				pkc.apply_forces = false;
+				pkc.addImpulse(pkc.transform.up * .5f,.1f,true);
+				pkc.addImpulse(pkc.transform.forward * .25f,.2f,true);
 			//}
 		}
 

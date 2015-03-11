@@ -89,7 +89,10 @@ public class ParkourController : MonoBehaviour {
 		//adds a variable force over a set period of time
 		//force is multiplied by player's initial momentum
 
-		float mul = (force.magnitude + controller.velocity.magnitude) / 2;
+		//ignore vertical momentum
+		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.y * controller.velocity.y);
+
+		float mul = (force.magnitude + hmag) / 2;
 		print("mul: " + mul);
 
 		force = force.normalized * mul;
@@ -185,6 +188,9 @@ public class ParkourController : MonoBehaviour {
 		if(apply_forces){//if regular forces should be applied
 			//print("NetImpulse: " + netImpulse + " combined: " + (currentMovementOffset + netImpulse));
 			controller.Move (currentMovementOffset + netImpulse);
+			lastPos = transform.position;
+		}else{
+			controller.Move (netImpulse);
 			lastPos = transform.position;
 		}
 	}

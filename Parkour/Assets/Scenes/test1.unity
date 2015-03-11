@@ -659,6 +659,11 @@ Prefab:
       propertyPath: itxt
       value: 
       objectReference: {fileID: 1669375023}
+    - target: {fileID: 14350596, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7e55bf3504cc4434393f1c79ee6e80b4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
   m_IsPrefabParent: 0
