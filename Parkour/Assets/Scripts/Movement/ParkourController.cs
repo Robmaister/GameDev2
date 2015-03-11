@@ -171,8 +171,8 @@ public class ParkourController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//if (!photonView.isMine)
-			//return;
+		if (photonView != null && !photonView.isMine)
+			return;
 
 		getInput();//get input state for buttons
 

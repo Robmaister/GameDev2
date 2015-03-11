@@ -195,7 +195,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 48013685}
   m_RootOrder: 2
---- !u!1001 &627829212
+--- !u!1001 &762183628
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -212,7 +212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 467016, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 141.619995
+      value: 144.309998
       objectReference: {fileID: 0}
     - target: {fileID: 467016, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_LocalRotation.x
