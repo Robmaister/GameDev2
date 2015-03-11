@@ -166,18 +166,21 @@ public class ParkourController : MonoBehaviour {
 		photonView = GetComponent<PhotonView>();
 		Physics.IgnoreCollision(controller,arms.GetComponent<Collider>());
 		Physics.IgnoreCollision(controller,legs.GetComponent<Collider>());
+		Physics.IgnoreLayerCollision (LayerMask.NameToLayer ("Players"), LayerMask.NameToLayer ("Players"));
 
-		//if (photonView != null && !photonView.isMine)
-			//controller.enabled = false;
+		if (photonView != null && !photonView.isMine) {
+			controller.enabled = false;
+			canControl = false;
+			Update ();
+			Update ();
+		}
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (photonView != null && !photonView.isMine)
-			return;
-
-		getInput();//get input state for buttons
+		if (photonView == null || photonView.isMine)
+			getInput();//get input state for buttons
 
 		//have to do this every frame because unity 5
 		//Cursor.visible = false;
@@ -437,6 +440,9 @@ public class ParkourController : MonoBehaviour {
 					}
 				}
 			}
+		}
+		else if (col.gameObject.tag == "Player") {
+			Physics.IgnoreCollision(controller, col.collider);
 		}
 	}
 
