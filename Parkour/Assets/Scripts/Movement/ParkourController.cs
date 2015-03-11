@@ -167,6 +167,9 @@ public class ParkourController : MonoBehaviour {
 		Physics.IgnoreCollision(controller,arms.GetComponent<Collider>());
 		Physics.IgnoreCollision(controller,legs.GetComponent<Collider>());
 
+		//if (photonView != null && !photonView.isMine)
+			//controller.enabled = false;
+
 	}
 	
 	// Update is called once per frame
@@ -184,6 +187,8 @@ public class ParkourController : MonoBehaviour {
 			//Application.Quit();
 			#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPaused = true;
+			#else
+			Application.Quit();
 			#endif
 		}
 
@@ -226,6 +231,9 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	void LateUpdate(){
+		if (photonView != null && !photonView.isMine)
+			return;
+
 		netImpulse *= Time.deltaTime;
 
 		//debug stuff
@@ -393,6 +401,9 @@ public class ParkourController : MonoBehaviour {
 					}
 				}
 			}
+		}
+		else if (col.gameObject.tag == "Player") {
+			Physics.IgnoreCollision(controller, col.collider);
 		}
 	}
 

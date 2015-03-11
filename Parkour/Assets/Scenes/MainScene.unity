@@ -246,6 +246,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11415380, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_PositionModel.InterpolateOption
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415380, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_PositionModel.ExtrapolateOption
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
   m_IsPrefabParent: 0
@@ -422,7 +430,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214755655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 227.300003, y: 8.12708282, z: 152.300003}
+  m_LocalPosition: {x: 0, y: .899999976, z: .5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1025,6 +1033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1214755655}
+  cameraAttachPos: {x: 0, y: .899999976, z: .600000024}
+  cameraAttachRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2010535679
 MonoBehaviour:
   m_ObjectHideFlags: 0
