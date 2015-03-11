@@ -4,8 +4,21 @@ using System;
 
 public class DoParkour : MonoBehaviour {
 	//actually do the parkour of the player
+
+
+
+	public Animator anim;
+	
+	//ik stuff
+	public Transform r_hand_target;
+	public Transform l_hand_target;
+	
+	public IK_Script iks;
+
 	
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
+
+
 
 
 	private bool hanging = false;
@@ -16,6 +29,24 @@ public class DoParkour : MonoBehaviour {
 	void Start(){
 		pkc = GetComponent<ParkourController>();
 	}
+
+	void Update(){
+
+		float horizspeed = Mathf.Sqrt(pkc.controller.velocity.x*pkc.controller.velocity.x + pkc.controller.velocity.z*pkc.controller.velocity.z);
+
+		anim.SetFloat("speed", horizspeed);
+		
+		if(!pkc.apply_forces){
+			iks.ikActive = true;
+			l_hand_target.position = new Vector3((l_hand_target.position.x + pkc.curEdgeX) / 2, pkc.curEdgey, (l_hand_target.position.z + pkc.curEdgeZ)/2);
+
+			r_hand_target.position = new Vector3((r_hand_target.position.x + pkc.curEdgeX)/2, pkc.curEdgey, (r_hand_target.position.z + pkc.curEdgeZ)/2);
+		}
+		else{
+			iks.ikActive = false;
+		}
+	}
+
 
 	void LateUpdate(){
 		if(pkc.controller.isGrounded){//reset double jump flag
@@ -31,11 +62,8 @@ public class DoParkour : MonoBehaviour {
 				jumpedOnce = true;
 			}
 		}
-		print("cey: " + pkc.curEdgey);
-		print(hanging);
 		//hang from ledge
 		if(pkc.inputHands.pressed && !pkc.controller.isGrounded){
-			//if(((pkc.armState & SurfaceType.top) != 0) && ((pkc.armState & SurfaceType.side) != 0)){
 			if(pkc.hasEdge){
 				//if player arms are on top and side, begin to hang
 
@@ -65,7 +93,6 @@ public class DoParkour : MonoBehaviour {
 
 					Action endfunc2 = delegate {//if the player has dropped too low
 						hanging = false;
-						print("min-droop: " + pkc.curEdgey + " posy: " + pkc.transform.position.y);
 					};
 
 					checkfunc1 = delegate(){//function to check if player should pull self up
@@ -79,8 +106,8 @@ public class DoParkour : MonoBehaviour {
 							hanging = false;
 							pkc.addImpulse(pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
+							return true;
 						}
-
 
 						if(pkc.transform.position.y <= pkc.curEdgey + 1){
 							if(Input.GetAxis("Vertical") > 0){
@@ -98,6 +125,7 @@ public class DoParkour : MonoBehaviour {
 					};
 
 					//initialize the hanging process
+					print("hanging start: " + Time.time);
 					pkc.addImpulse(pkc.transform.up * 2,-1,checkfunc:checkfunc1);
 				}
 			}

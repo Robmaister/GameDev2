@@ -8,6 +8,9 @@ public class ParkourController : MonoBehaviour {
 	public GameObject arms;
 	public GameObject legs;
 
+
+
+
 	private PhotonView photonView;
 
 	public bool canControl = true;
@@ -29,6 +32,10 @@ public class ParkourController : MonoBehaviour {
 	// temporary hack until we fix how egdes are handled
 	public float curEdgey = 0; 
 	public bool hasEdge = false;
+
+	public float curEdgeX = 0;
+	public float curEdgeZ = 0;
+
 	//------------------
 
 
@@ -164,8 +171,8 @@ public class ParkourController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!photonView.isMine)
-			return;
+		//if (!photonView.isMine)
+			//return;
 
 		getInput();//get input state for buttons
 
@@ -226,7 +233,7 @@ public class ParkourController : MonoBehaviour {
 		if (ptxt != null) ptxt.text = "Position: " + transform.position;
 		if (otxt != null) otxt.text = "Rotation: " + transform.rotation.eulerAngles;
 		if (ltxt != null) ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
-		if (itxt != null) itxt.text = "Impulse: " + netImpulse;
+		if (itxt != null) itxt.text = "HasEdge: " + hasEdge;
 		//--------------------------
 
 		//moved to lateupdate to allow coroutines to execute
@@ -238,6 +245,7 @@ public class ParkourController : MonoBehaviour {
 			controller.Move (netImpulse);
 			lastPos = transform.position;
 		}
+
 	}
 
 
@@ -331,6 +339,8 @@ public class ParkourController : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if(col.tag == "edge"){
 			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
+			curEdgeX = col.transform.position.x;
+			curEdgeZ = col.transform.position.z;
 			hasEdge = true;
 		}
 	}
@@ -338,6 +348,8 @@ public class ParkourController : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		if(col.tag == "edge"){
 			curEdgey = 0;
+			curEdgeX = 0;
+			curEdgeZ = 0;
 			hasEdge = false;
 		}
 	}
@@ -345,6 +357,8 @@ public class ParkourController : MonoBehaviour {
 	void OnTriggerStay(Collider col){
 		if(col.tag == "edge"){
 			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
+			curEdgeX = col.transform.position.x;
+			curEdgeZ = col.transform.position.z;
 			hasEdge = true;
 		}
 	}

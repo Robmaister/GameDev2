@@ -195,7 +195,7 @@ public class Tracer : MonoBehaviour {
 					CapsuleCollider col = tmp.AddComponent<CapsuleCollider>();
 					col.isTrigger = true;
 
-					col.radius = .01f;
+					col.radius = .1f;
 					col.height = Vector3.Distance(verts[edges[e].leftVert], verts[edges[e].rightVert]);
 
 					tmp.transform.parent = cube.transform;
