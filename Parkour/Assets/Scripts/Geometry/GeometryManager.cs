@@ -5,12 +5,16 @@ using System.Collections.Generic;
 public class GeometryManager : Singleton<GeometryManager> {
 	//this class keeps track of the parkourable objects
 	public Dictionary<GameObject,ObjectData> objectDict;
+
+	public float edge_radius = .5f;
 	
 	void Awake () {
 		objectDict = new Dictionary<GameObject, ObjectData>();
+
 	}
 
 	void Start(){
+		Tracer.edge_radius = edge_radius;
 		GameObject[] allObjs = GameObject.FindGameObjectsWithTag("Parkour");
 		for (int i=0; i<allObjs.Length; i++){
 			GameObject OBJ = allObjs[i];

@@ -32,6 +32,8 @@ public enum SurfaceType{
 
 public class Tracer : MonoBehaviour {
 
+	public static float edge_radius = .5f;
+
 	public static ObjectData Trace (GameObject obj) {
 		MeshFilter cube = obj.GetComponent<MeshFilter>();
 		ObjectData objd = new ObjectData(obj);
@@ -195,7 +197,7 @@ public class Tracer : MonoBehaviour {
 					CapsuleCollider col = tmp.AddComponent<CapsuleCollider>();
 					col.isTrigger = true;
 
-					col.radius = .1f;
+					col.radius = edge_radius;
 					col.height = Vector3.Distance(verts[edges[e].leftVert], verts[edges[e].rightVert]);
 
 					tmp.transform.parent = cube.transform;
