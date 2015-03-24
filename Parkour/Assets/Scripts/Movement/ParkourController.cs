@@ -347,7 +347,7 @@ public class ParkourController : MonoBehaviour {
 		return Mathf.Sqrt (2 * targetJumpHeight * gravity);
 	}
 
-	void OnTriggerEnter(Collider col){
+	/*void OnTriggerEnter(Collider col){
 		if(col.tag == "edge"){
 			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
 			curEdgeX = col.transform.position.x;
@@ -372,16 +372,22 @@ public class ParkourController : MonoBehaviour {
 			curEdgeZ = col.transform.position.z;
 			hasEdge = true;
 		}
-	}
+	}*/
 
 
 	void OnCollisionEnter(Collision col){
+		print("Collision entered with " + col.gameObject);
 		if(col.gameObject.tag == "Parkour"){
 			//raycast on object to get triangle data
 			foreach( ContactPoint P in col.contacts){
 				RaycastHit hit;
 				Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
 				if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
+					//print(P.thisCollider + " " + P.otherCollider);
+
+
+
+
 					int triangle = hit.triangleIndex;
 					if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
@@ -389,11 +395,7 @@ public class ParkourController : MonoBehaviour {
 					
 					SurfaceType s = objd.triType[triangle];
 
-					//HalfEdge tmpe = objd.edges[triangle];
-
-					//if((objd.verts[tmpe.leftVert].y == objd.verts[tmpe.rightVert].y)){
-						//curEdgey = Mathf.Max(curEdgey, objd.verts[tmpe.leftVert].y);
-					//}
+			
 		
 
 					if(P.thisCollider.gameObject == arms){
@@ -420,15 +422,23 @@ public class ParkourController : MonoBehaviour {
 					int triangle = hit.triangleIndex;
 					if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
+					Debug.DrawLine(P.thisCollider.transform.position, hit.point, Color.black, .1f, true);
 
 					ObjectData objd = GeometryManager.Instance.objectDict[col.gameObject];
 
 					SurfaceType s = objd.triType[triangle];
 
-					//HalfEdge tmpe = objd.edges[triangle];
+					HalfEdge tmpe = objd.edges[triangle];
 
-					//if((objd.verts[tmpe.leftVert].y == objd.verts[tmpe.rightVert].y)){
-						//curEdgey = Mathf.Max(curEdgey, objd.verts[tmpe.leftVert].y);
+					print (objd.verts[tmpe.leftVert] + " " +  objd.verts[tmpe.rightVert]);
+					//if(tmpe.ledge){
+						Debug.DrawLine(objd.verts[tmpe.leftVert], objd.verts[tmpe.rightVert], Color.magenta, .1f, true);
+					//}
+					//if(tmpe.oppositeEdge.ledge){
+						Debug.DrawLine(objd.verts[tmpe.oppositeEdge.leftVert], objd.verts[tmpe.oppositeEdge.rightVert], Color.cyan, .1f, true);
+					//}
+					//if(tmpe.adjacentEdge.ledge){
+						Debug.DrawLine(objd.verts[tmpe.adjacentEdge.leftVert], objd.verts[tmpe.adjacentEdge.rightVert], Color.yellow, .1f, true);
 					//}
 
 					
