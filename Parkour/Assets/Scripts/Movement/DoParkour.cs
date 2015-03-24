@@ -5,8 +5,6 @@ using System;
 public class DoParkour : MonoBehaviour {
 	//actually do the parkour of the player
 
-
-
 	public Animator anim;
 	
 	//ik stuff
@@ -127,7 +125,7 @@ public class DoParkour : MonoBehaviour {
 					};
 
 					//initialize the hanging process
-					print("hanging start: " + Time.time);
+					//print("hanging start: " + Time.time);
 					pkc.addImpulse(pkc.transform.up * 2,-1,checkfunc:checkfunc1);
 				}
 			}
