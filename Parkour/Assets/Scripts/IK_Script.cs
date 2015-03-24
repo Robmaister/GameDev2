@@ -4,9 +4,9 @@ using System.Collections;
 
 public class IK_Script : MonoBehaviour {
 	Animator anim;
-
+	public float IKWeight;
 	public bool ikActive = false;
-	public Transform RHand,RArm,LHand,LArm,lookAt = null;
+	public Transform RHandObj,LHandObj,lookAt = null;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -20,23 +20,23 @@ public class IK_Script : MonoBehaviour {
 				
 				// Set the look target position, if one has been assigned
 				if(lookAt != null) {
-					anim.SetLookAtWeight(1);
+					anim.SetLookAtWeight(Mathf.Clamp(IKWeight,0f,1f));
 					anim.SetLookAtPosition(lookAt.position);
 				}    
 				
 				// Set the right hand target position and rotation, if one has been assigned
-				if(RHand != null) {
-					anim.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
-					anim.SetIKRotationWeight(AvatarIKGoal.RightHand,1);  
-					anim.SetIKPosition(AvatarIKGoal.RightHand,RHand.position);
-					anim.SetIKRotation(AvatarIKGoal.RightHand,RHand.rotation);
+				if(RHandObj != null) {
+					anim.SetIKPositionWeight(AvatarIKGoal.RightHand,IKWeight);
+					anim.SetIKRotationWeight(AvatarIKGoal.RightHand,IKWeight);  
+					anim.SetIKPosition(AvatarIKGoal.RightHand,RHandObj.position);
+					anim.SetIKRotation(AvatarIKGoal.RightHand,RHandObj.rotation);
 				}      
 
-				if(LHand != null) {
-					anim.SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
-					anim.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);  
-					anim.SetIKPosition(AvatarIKGoal.LeftHand,LHand.position);
-					anim.SetIKRotation(AvatarIKGoal.LeftHand,LHand.rotation);
+				if(LHandObj != null) {
+					anim.SetIKPositionWeight(AvatarIKGoal.LeftHand,IKWeight);
+					anim.SetIKRotationWeight(AvatarIKGoal.LeftHand,IKWeight);  
+					anim.SetIKPosition(AvatarIKGoal.LeftHand,LHandObj.position);
+					anim.SetIKRotation(AvatarIKGoal.LeftHand,LHandObj.rotation);
 				}
 				
 			}
