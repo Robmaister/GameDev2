@@ -10,6 +10,8 @@ public class DoParkour : MonoBehaviour {
 	//ik stuff
 	public Transform r_hand_target;
 	public Transform l_hand_target;
+
+
 	
 	public IK_Script iks;
 
@@ -35,14 +37,24 @@ public class DoParkour : MonoBehaviour {
 		if (anim != null)
 			anim.SetFloat("speed", horizspeed);
 
-		if (iks != null) {
+		/*if (iks != null) {
 			if (!pkc.apply_forces) {
-				iks.ikActive = true;
+				iks.arm_ik_active = true;
 				l_hand_target.position = new Vector3 ((l_hand_target.position.x + pkc.curEdgeX) / 2, pkc.curEdgey, (l_hand_target.position.z + pkc.curEdgeZ) / 2);
 
 				r_hand_target.position = new Vector3 ((r_hand_target.position.x + pkc.curEdgeX) / 2, pkc.curEdgey, (r_hand_target.position.z + pkc.curEdgeZ) / 2);
 			} else {
-				iks.ikActive = false;
+				iks.arm_ik_active = false;
+			}
+		}*/
+		if (iks != null) {
+			if (!pkc.apply_forces) {
+				iks.arm_ik_active = true;
+				l_hand_target.position = pkc.current_hang_point;
+				r_hand_target.position = pkc.current_hang_point;
+			}
+			else {
+				iks.arm_ik_active = false;
 			}
 		}
 	}
@@ -64,7 +76,8 @@ public class DoParkour : MonoBehaviour {
 		}
 		//hang from ledge
 		if(pkc.inputHands.pressed && !pkc.controller.isGrounded){
-			if(pkc.hasEdge){
+			//if(pkc.armState == (SurfaceType.side | SurfaceType.top)){
+			if(pkc.current_ledge_object != null){
 				//if player arms are on top and side, begin to hang
 
 				//when hanging, player can be up to 1 arms length above or below ledge
@@ -82,10 +95,20 @@ public class DoParkour : MonoBehaviour {
 							return true;
 						}
 						if(Input.GetAxis("Horizontal") != 0){
+
+
+							//4564356456460000000000000333333333333333333000000000000222222222222222200000000000000000000000000000000000000000000000000000001110
+							//this needs to be changed so it retargets based on interpolation on edge
+
+
+
 							pkc.addImpulse(pkc.transform.right * Input.GetAxis("Horizontal"), .05f);
+
+
+
 						}
 
-						if(pkc.transform.position.y > pkc.curEdgey - 1){
+						if(pkc.transform.position.y > pkc.current_hang_point.y - 1){//-1 because arm length
 							return false;
 						}
 						return true;
@@ -102,14 +125,15 @@ public class DoParkour : MonoBehaviour {
 							return true;
 						}
 
-						if(!pkc.hasEdge){
+						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
+						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
 							hanging = false;
 							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
 							return true;
 						}
 
-						if(pkc.transform.position.y <= pkc.curEdgey + 1){
+						if(pkc.transform.position.y <= pkc.current_hang_point.y + 1){
 							if(Input.GetAxis("Vertical") > 0){
 								return false;
 							}else{

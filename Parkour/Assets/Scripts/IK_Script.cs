@@ -5,7 +5,8 @@ using System.Collections;
 public class IK_Script : MonoBehaviour {
 	Animator anim;
 	public float IKWeight;
-	public bool ikActive = false;
+	public bool arm_ik_active = false;
+	public bool head_ik_active = true;
 	public Transform RHandObj,LHandObj,lookAt = null;
 	// Use this for initialization
 	void Start () {
@@ -16,13 +17,15 @@ public class IK_Script : MonoBehaviour {
 		if(anim) {
 			
 			//if the IK is active, set the position and rotation directly to the goal. 
-			if(ikActive) {
+			if(head_ik_active) {
 				
 				// Set the look target position, if one has been assigned
 				if(lookAt != null) {
 					anim.SetLookAtWeight(Mathf.Clamp(IKWeight,0f,1f));
 					anim.SetLookAtPosition(lookAt.position);
-				}    
+				}  
+			}
+			if(arm_ik_active){
 				
 				// Set the right hand target position and rotation, if one has been assigned
 				if(RHandObj != null) {

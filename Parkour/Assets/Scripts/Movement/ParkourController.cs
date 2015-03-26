@@ -29,17 +29,21 @@ public class ParkourController : MonoBehaviour {
 	public bool apply_forces = true;
 
 
-	// temporary hack until we fix how egdes are handled
-	public float curEdgey = 0; 
-	public bool hasEdge = false;
+	// stuff for handling edge data
 
-	public float curEdgeX = 0;
-	public float curEdgeZ = 0;
+
+	public Vector3 currentEdge_left = Vector3.zero;
+	public Vector3 currentEdge_right = Vector3.zero;
+
+	//this allows hanging on a sloped edge
+	public Vector3 current_hang_point = Vector3.zero;//current point on the current edge to target hanging
+
+	public GameObject current_ledge_object = null;
 
 	//------------------
 
 
-	public Vector3 curEdgeAvg = Vector3.zero; //average position of edges currently colliding with
+
 
 
 	//for debugging purposes
@@ -160,6 +164,28 @@ public class ParkourController : MonoBehaviour {
 		inputFeet.checkInput();
 	}
 
+	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
+	{
+		Vector3 vVector1 = vPoint - vA;
+		Vector3 vVector2 = (vB - vA).normalized;
+		
+		float d = Vector3.Distance(vA, vB);
+		float t = Vector3.Dot(vVector2, vVector1);
+		
+		if (t <= 0)
+			return vA;
+		
+		if (t >= d)
+			return vB;
+		
+		Vector3 vVector3 = vVector2 * t;
+		
+		Vector3 vClosestPoint = vA + vVector3;
+		
+		return vClosestPoint;
+	}
+
+
 	// Use this for initialization
 	void Awake () {
 		controller = GetComponent<CharacterController>();
@@ -244,7 +270,7 @@ public class ParkourController : MonoBehaviour {
 		if (ptxt != null) ptxt.text = "Position: " + transform.position;
 		if (otxt != null) otxt.text = "Rotation: " + transform.rotation.eulerAngles;
 		if (ltxt != null) ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
-		if (itxt != null) itxt.text = "HasEdge: " + hasEdge;
+		if (itxt != null) itxt.text = "HangPoint: " + current_hang_point;
 		//--------------------------
 
 		//moved to lateupdate to allow coroutines to execute
@@ -347,47 +373,13 @@ public class ParkourController : MonoBehaviour {
 		return Mathf.Sqrt (2 * targetJumpHeight * gravity);
 	}
 
-	/*void OnTriggerEnter(Collider col){
-		if(col.tag == "edge"){
-			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
-			curEdgeX = col.transform.position.x;
-			curEdgeZ = col.transform.position.z;
-			hasEdge = true;
-		}
-	}
-
-	void OnTriggerExit(Collider col){
-		if(col.tag == "edge"){
-			curEdgey = 0;
-			curEdgeX = 0;
-			curEdgeZ = 0;
-			hasEdge = false;
-		}
-	}
-
-	void OnTriggerStay(Collider col){
-		if(col.tag == "edge"){
-			curEdgey = Mathf.Max(curEdgey, col.transform.position.y);
-			curEdgeX = col.transform.position.x;
-			curEdgeZ = col.transform.position.z;
-			hasEdge = true;
-		}
-	}*/
-
-
 	void OnCollisionEnter(Collision col){
-		print("Collision entered with " + col.gameObject);
 		if(col.gameObject.tag == "Parkour"){
 			//raycast on object to get triangle data
 			foreach( ContactPoint P in col.contacts){
 				RaycastHit hit;
 				Ray ray = new Ray(P.point + P.normal * 0.05f, -P.normal);
 				if (P.otherCollider.Raycast(ray, out hit, 0.1f)){
-					//print(P.thisCollider + " " + P.otherCollider);
-
-
-
-
 					int triangle = hit.triangleIndex;
 					if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
@@ -395,11 +387,20 @@ public class ParkourController : MonoBehaviour {
 					
 					SurfaceType s = objd.triType[triangle];
 
-			
-		
-
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
+
+						HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
+						
+						if(tmpe.ledge){
+							if(current_ledge_object == null){
+								currentEdge_left = objd.verts[tmpe.leftVert];
+								currentEdge_right = objd.verts[tmpe.rightVert];
+								
+								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								current_ledge_object = col.gameObject;
+							}
+						}
 					}
 					else if(P.thisCollider.gameObject == legs){
 						legState |= s;
@@ -422,28 +423,27 @@ public class ParkourController : MonoBehaviour {
 					int triangle = hit.triangleIndex;
 					if(triangle == -1) continue;//this means we collided with a non-mesh collider
 
-					Debug.DrawLine(P.thisCollider.transform.position, hit.point, Color.black, .1f, true);
-
 					ObjectData objd = GeometryManager.Instance.objectDict[col.gameObject];
 
 					SurfaceType s = objd.triType[triangle];
-
-					HalfEdge tmpe = objd.edges[triangle];
-
-					print (objd.verts[tmpe.leftVert] + " " +  objd.verts[tmpe.rightVert]);
-					//if(tmpe.ledge){
-						Debug.DrawLine(objd.verts[tmpe.leftVert], objd.verts[tmpe.rightVert], Color.magenta, .1f, true);
-					//}
-					//if(tmpe.oppositeEdge.ledge){
-						Debug.DrawLine(objd.verts[tmpe.oppositeEdge.leftVert], objd.verts[tmpe.oppositeEdge.rightVert], Color.cyan, .1f, true);
-					//}
-					//if(tmpe.adjacentEdge.ledge){
-						Debug.DrawLine(objd.verts[tmpe.adjacentEdge.leftVert], objd.verts[tmpe.adjacentEdge.rightVert], Color.yellow, .1f, true);
-					//}
-
-					
+			
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
+
+						HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
+						
+						if(tmpe.ledge){
+							if(current_ledge_object == null){
+								currentEdge_left = objd.verts[tmpe.leftVert];
+								currentEdge_right = objd.verts[tmpe.rightVert];
+
+								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								current_ledge_object = col.gameObject;
+							}else{
+								//current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								//print(current_hang_point);
+							}
+						}
 					}
 					else if(P.thisCollider.gameObject == legs){
 						legState |= s;
@@ -459,6 +459,11 @@ public class ParkourController : MonoBehaviour {
 	void OnCollisionExit(Collision col){
 		if(col.gameObject.tag == "Parkour"){
 			armState = legState = 0;
+
+			if(col.gameObject == current_ledge_object){
+				//currentEdge_left = currentEdge_right = current_hang_point = Vector3.zero;//current point on the current edge to target hanging
+				current_ledge_object = null;
+			}
 		}
 	}
 }
