@@ -117,7 +117,7 @@ public class ParkourController : MonoBehaviour {
 		float endtime = Time.time + duration;
 		bool infinite = (duration < 0); //infinite impulse flag
 
-		while(infinite || Time.time < endtime){
+		while(infinite || Time.time <= endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}
@@ -134,20 +134,19 @@ public class ParkourController : MonoBehaviour {
 		bool infinite = (duration < 0); //infinite impulse flag
 
 		//ignore vertical momentum
-		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.y * controller.velocity.y);
+		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.z * controller.velocity.z);
+		print("hmag: " + hmag);
+		force = (force.normalized) * (force.magnitude + hmag);
 
-		float mul = (force.magnitude + hmag) / 2;
-		print("mul: " + mul);
-
-		force = force.normalized * mul;
-
-		duration /= mul;
+		if(hmag > 1){
+			duration /= hmag;
+		}
 
 		float endtime = Time.time + duration;
 
 		print("force" + force);
 		
-		while(infinite || Time.time < endtime){
+		while(infinite || Time.time <= endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}

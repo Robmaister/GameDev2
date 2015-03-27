@@ -2344,11 +2344,10 @@ MonoBehaviour:
   controller: {fileID: 0}
   can_jump: 0
   apply_forces: 1
-  curEdgey: 0
-  hasEdge: 0
-  curEdgeX: 0
-  curEdgeZ: 0
-  curEdgeAvg: {x: 0, y: 0, z: 0}
+  currentEdge_left: {x: 0, y: 0, z: 0}
+  currentEdge_right: {x: 0, y: 0, z: 0}
+  current_hang_point: {x: 0, y: 0, z: 0}
+  current_ledge_object: {fileID: 0}
   vtxt: {fileID: 0}
   otxt: {fileID: 0}
   ptxt: {fileID: 0}
@@ -2367,11 +2366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11783faee4de5a43b381b3141af6d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ikActive: 1
-  RHand: {fileID: 417780}
-  RArm: {fileID: 0}
-  LHand: {fileID: 414062}
-  LArm: {fileID: 0}
+  IKWeight: 1
+  arm_ik_active: 0
+  head_ik_active: 1
+  RHandObj: {fileID: 417780}
+  LHandObj: {fileID: 414062}
   lookAt: {fileID: 468446}
 --- !u!114 &11439230
 MonoBehaviour:
@@ -2402,7 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e7f22c01da2314487ac82c4fd3a01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 409428}
+  parent: {fileID: 418638}
   localPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11499216
 MonoBehaviour:
