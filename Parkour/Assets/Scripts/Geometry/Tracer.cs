@@ -176,7 +176,7 @@ public class Tracer : MonoBehaviour {
 					}
 				}
 			}
-			string tmpname = "";
+			/*string tmpname = "";
 			for (int e=0; e<edges.Length; e++) { //this is where you would construct the trigger
 
 				if (edges[e].ledge){
@@ -204,7 +204,7 @@ public class Tracer : MonoBehaviour {
 
 
 				}
-			}
+			}*/
 
 			//assign values and return object data 
 			objd.edges = edges;
