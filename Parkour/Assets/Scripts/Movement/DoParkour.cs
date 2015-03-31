@@ -26,8 +26,13 @@ public class DoParkour : MonoBehaviour {
 
 	private ParkourController pkc;
 
+	private Vector3 lhandoffset, rhandoffset;
+
 	void Start(){
 		pkc = GetComponent<ParkourController>();
+
+		lhandoffset = l_hand_target.localPosition;
+		rhandoffset = r_hand_target.localPosition;
 	}
 
 	void Update(){
@@ -50,8 +55,8 @@ public class DoParkour : MonoBehaviour {
 		if (iks != null) {
 			if (!pkc.apply_forces) {
 				iks.arm_ik_active = true;
-				l_hand_target.position = pkc.current_hang_point;
-				r_hand_target.position = pkc.current_hang_point;
+				l_hand_target.position = pkc.current_hang_point + lhandoffset;
+				r_hand_target.position = pkc.current_hang_point + rhandoffset;
 			}
 			else {
 				iks.arm_ik_active = false;

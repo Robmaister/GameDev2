@@ -7,7 +7,7 @@ public class IK_Script : MonoBehaviour {
 	public float IKWeight;
 	public bool arm_ik_active = false;
 	public bool head_ik_active = true;
-	public Transform RHandObj,LHandObj,lookAt = null;
+	public Transform RHandObj,LHandObj,lookAt = null;//,RElbowObj,LElbowObj;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -41,6 +41,13 @@ public class IK_Script : MonoBehaviour {
 					anim.SetIKPosition(AvatarIKGoal.LeftHand,LHandObj.position);
 					anim.SetIKRotation(AvatarIKGoal.LeftHand,LHandObj.rotation);
 				}
+
+				/*if(RElbowObj != null){
+					anim.SetIKHintPosition(AvatarIKHint.RightElbow,RElbowObj.position);
+				}
+				if(LElbowObj != null){
+					anim.SetIKHintPosition(AvatarIKHint.LeftElbow,LElbowObj.position);
+				}*/
 				
 			}
 			

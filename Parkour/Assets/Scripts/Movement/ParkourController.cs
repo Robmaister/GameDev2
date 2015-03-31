@@ -396,7 +396,7 @@ public class ParkourController : MonoBehaviour {
 								currentEdge_left = objd.verts[tmpe.leftVert];
 								currentEdge_right = objd.verts[tmpe.rightVert];
 								
-								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
 								current_ledge_object = col.gameObject;
 							}
 						}
@@ -436,7 +436,7 @@ public class ParkourController : MonoBehaviour {
 								currentEdge_left = objd.verts[tmpe.leftVert];
 								currentEdge_right = objd.verts[tmpe.rightVert];
 
-								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
 								current_ledge_object = col.gameObject;
 							}else{
 								//current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
