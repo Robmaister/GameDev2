@@ -37,19 +37,13 @@ public class DoParkour : MonoBehaviour {
 		if (anim != null)
 			anim.SetFloat("speed", horizspeed);
 
-		/*if (iks != null) {
-			if (!pkc.apply_forces) {
-				iks.arm_ik_active = true;
-				l_hand_target.position = new Vector3 ((l_hand_target.position.x + pkc.curEdgeX) / 2, pkc.curEdgey, (l_hand_target.position.z + pkc.curEdgeZ) / 2);
 
-				r_hand_target.position = new Vector3 ((r_hand_target.position.x + pkc.curEdgeX) / 2, pkc.curEdgey, (r_hand_target.position.z + pkc.curEdgeZ) / 2);
-			} else {
-				iks.arm_ik_active = false;
-			}
-		}*/
+
 		if (iks != null) {
 			if (!pkc.apply_forces) {
+		
 				iks.arm_ik_active = true;
+				print(pkc.current_hang_point);
 				l_hand_target.position = pkc.current_hang_point;
 				r_hand_target.position = pkc.current_hang_point;
 			}
