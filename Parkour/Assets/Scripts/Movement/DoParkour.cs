@@ -84,6 +84,9 @@ public class DoParkour : MonoBehaviour {
 				if(!hanging){
 					hanging = true;
 					pkc.apply_forces = false;
+					anim.SetTrigger("grabbing");
+					//anim.MatchTarget(pkc.current_hang_point,Quaternion.identity,AvatarTarget.LeftHand,
+					  //               new MatchTargetWeightMask(Vector3.one,1f),0.0f);
 
 					//assume arm length = 1
 					Func<bool> checkfunc1 = null;
@@ -95,20 +98,13 @@ public class DoParkour : MonoBehaviour {
 							return true;
 						}
 						if(Input.GetAxis("Horizontal") != 0){
-
-
 							//4564356456460000000000000333333333333333333000000000000222222222222222200000000000000000000000000000000000000000000000000000001110
 							//this needs to be changed so it retargets based on interpolation on edge
-
-
-
 							pkc.addImpulse(pkc.transform.right * Input.GetAxis("Horizontal"), .05f);
-
-
-
 						}
 
 						if(pkc.transform.position.y > pkc.current_hang_point.y - 1){//-1 because arm length
+							anim.SetTrigger("onTop");
 							return false;
 						}
 						return true;
@@ -158,6 +154,7 @@ public class DoParkour : MonoBehaviour {
 			//print("nothanging");
 			hanging = false;
 			pkc.apply_forces = true;
+			anim.SetTrigger("letGo");
 		}
 
 
