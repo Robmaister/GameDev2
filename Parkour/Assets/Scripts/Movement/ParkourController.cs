@@ -426,18 +426,6 @@ public class ParkourController : MonoBehaviour {
 
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
-
-						/*HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
-						
-						if(tmpe.ledge){
-							if(current_ledge_object == null){
-								currentEdge_left = objd.verts[tmpe.leftVert];
-								currentEdge_right = objd.verts[tmpe.rightVert];
-								
-								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
-								current_ledge_object = col.gameObject;
-							}
-						}*/
 					}
 					else if(P.thisCollider.gameObject == legs){
 						legState |= s;
@@ -469,18 +457,32 @@ public class ParkourController : MonoBehaviour {
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
 
-						HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
-						
-						if(tmpe.ledge){
-							if(current_ledge_object == null){
+						HalfEdge tmpe = objd.edges[triangle * 3];
+	
+					
+						if(current_ledge_object == null){
+							if(tmpe.ledge){
 								currentEdge_left = objd.verts[tmpe.leftVert];
 								currentEdge_right = objd.verts[tmpe.rightVert];
-
-								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
-								if(Vector3.Distance(current_hang_point,arms.transform.position) <= .75f){//ensure arms are actually in range to grab
-									current_ledge_object = col.gameObject;
-								}
 							}
+							if(tmpe.adjacentEdge.ledge){
+								currentEdge_left = objd.verts[tmpe.adjacentEdge.leftVert];
+								currentEdge_right = objd.verts[tmpe.adjacentEdge.rightVert];
+							}
+							if(tmpe.adjacentEdge.adjacentEdge.ledge){
+								currentEdge_left = objd.verts[tmpe.adjacentEdge.adjacentEdge.leftVert];
+								currentEdge_right = objd.verts[tmpe.adjacentEdge.adjacentEdge.rightVert];
+							}
+
+							current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+							print(current_hang_point);
+
+
+
+							if(Vector3.Distance(current_hang_point,arms.transform.position) <= .75f){//ensure arms are actually in range to grab
+								current_ledge_object = col.gameObject;
+							}
+
 						}
 					}
 					else if(P.thisCollider.gameObject == legs){

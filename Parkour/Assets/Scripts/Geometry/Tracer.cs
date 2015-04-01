@@ -146,8 +146,7 @@ public class Tracer : MonoBehaviour {
 						//then the edges are part of a ledge.
 						//Now do I set both to be the edge or just the top side....  now setting both
 
-						//Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200);
-
+						Debug.DrawLine(verts[edges[e].leftVert], verts[edges[e].rightVert], Color.magenta, 200);
 
 						edges[e].ledge = true;
 						edges[e].oppositeEdge.ledge = true;

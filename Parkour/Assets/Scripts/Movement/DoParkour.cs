@@ -48,10 +48,10 @@ public class DoParkour : MonoBehaviour {
 			if (!pkc.apply_forces) {
 		
 				iks.arm_ik_active = true;
-
+				print(pkc.current_hang_point);
 				l_hand_target.position = pkc.current_hang_point + lhandoffset;
 				r_hand_target.position = pkc.current_hang_point + rhandoffset;
-
+				print (l_hand_target.transform.localPosition);
 			}
 			else {
 				iks.arm_ik_active = false;
@@ -84,7 +84,7 @@ public class DoParkour : MonoBehaviour {
 				if(!hanging){
 					hanging = true;
 					pkc.apply_forces = false;
-					anim.SetTrigger("grabbing");
+					//anim.SetTrigger("grabbing");
 					//anim.MatchTarget(pkc.current_hang_point,Quaternion.identity,AvatarTarget.LeftHand,
 					  //               new MatchTargetWeightMask(Vector3.one,1f),0.0f);
 
@@ -105,7 +105,7 @@ public class DoParkour : MonoBehaviour {
 
 						if(pkc.transform.position.y > pkc.current_hang_point.y - .75f){//-1 because arm length
 
-							anim.SetTrigger("onTop");
+							//anim.SetTrigger("onTop");
 
 							return false;
 						}
@@ -158,7 +158,7 @@ public class DoParkour : MonoBehaviour {
 			//print("nothanging");
 			hanging = false;
 			pkc.apply_forces = true;
-			anim.SetTrigger("letGo");
+			//anim.SetTrigger("letGo");
 		}
 
 
@@ -187,7 +187,7 @@ public class DoParkour : MonoBehaviour {
 
 					Action endfunc = delegate {
 						vaulting = false;
-						pkc.controller.height = 2;
+						pkc.controller.height = 1.5f;
 					};
 					//pkc.addImpulse(pkc.transform.forward * .15f,-1f,endfunc:endfunc,checkfunc:checkfunc2);
 					pkc.addImpulse(pkc.transform.forward * .05f,1,true,endfunc:endfunc,checkfunc:checkfunc);
