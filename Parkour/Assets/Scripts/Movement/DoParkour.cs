@@ -106,7 +106,7 @@ public class DoParkour : MonoBehaviour {
 
 						}
 
-						if(pkc.transform.position.y > pkc.current_hang_point.y - 1){//-1 because arm length
+						if(pkc.transform.position.y > pkc.current_hang_point.y - .75f){//-1 because arm length
 							return false;
 						}
 						return true;
@@ -131,7 +131,7 @@ public class DoParkour : MonoBehaviour {
 							return true;
 						}
 
-						if(pkc.transform.position.y <= pkc.current_hang_point.y + 1){
+						if(pkc.transform.position.y <= pkc.current_hang_point.y + .75f){
 							if(pkc.networkInputV > 0){
 								return false;
 							}else{

@@ -52,9 +52,9 @@ public class Tracer : MonoBehaviour {
 
 
 			//need to calculate new position of verts based on the scaleing/translation/rotation of the geometry
-			Vector3 geoTrans = cube.transform.localPosition;
-			Quaternion geoQuat = cube.transform.localRotation;
-			Vector3 geoScale = cube.transform.localScale;//ector3 geoScale = cube.transform.lossyScale;
+			Vector3 geoTrans = cube.transform.position;///cube.transform.localPosition;
+			Quaternion geoQuat = cube.transform.rotation;//cube.transform.localRotation;
+			Vector3 geoScale = cube.transform.lossyScale;//cube.transform.localScale;//ector3 geoScale = cube.transform.lossyScale;
 			Matrix4x4 matrixAreForKids = Matrix4x4.identity;
 			matrixAreForKids.SetTRS(geoTrans, geoQuat, geoScale);
 			for (int v=0; v<verts.Length; v++){

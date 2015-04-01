@@ -447,6 +447,8 @@ public class ParkourController : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Player") {
 			Physics.IgnoreCollision(controller, col.collider);
+
+			col.gameObject.BroadcastMessage("OnFlagDrop");
 		}
 	}
 
@@ -475,7 +477,7 @@ public class ParkourController : MonoBehaviour {
 								currentEdge_right = objd.verts[tmpe.rightVert];
 
 								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
-								if(Vector3.Distance(current_hang_point,arms.transform.position) <= 1){//ensure arms are actually in range to grab
+								if(Vector3.Distance(current_hang_point,arms.transform.position) <= .75f){//ensure arms are actually in range to grab
 									current_ledge_object = col.gameObject;
 								}
 							}

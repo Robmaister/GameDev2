@@ -10,8 +10,8 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnJoinedRoom()
 	{
-		Vector3 position = new Vector3(227.3f, 15.2f, 152.3f);
-		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", position, Quaternion.identity, 0);
+		//Vector3 position = new Vector3(227.3f, 15.2f, 152.3f);
+		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", transform.position, Quaternion.identity, 0);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
 
 		Transform attachObj = newPlayerObject.transform.Find (attachName) ?? newPlayerObject.transform;
