@@ -1175,6 +1175,7 @@ GameObject:
   - 114: {fileID: 11426898}
   - 114: {fileID: 11415380}
   - 114: {fileID: 11447944}
+  - 114: {fileID: 11413576}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1556,7 +1557,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 441040}
   - 137: {fileID: 13725410}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GuyHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3527,6 +3528,18 @@ MonoBehaviour:
   lookAt: {fileID: 0}
   RElbowObj: {fileID: 469300}
   LElbowObj: {fileID: 431944}
+--- !u!114 &11413576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b34d484cfe36d149998eda42508813e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guyhead: {fileID: 13725410}
 --- !u!114 &11415380
 MonoBehaviour:
   m_ObjectHideFlags: 1

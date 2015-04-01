@@ -30,7 +30,7 @@ public class PlayerSpawn : MonoBehaviour {
 		softParent sp = cameraObject.AddComponent<softParent>();
 		sp.parent = attachObj;
 
-		newPlayerObject.FindInChildren("GuyHead").layer = LayerMask.NameToLayer("head");
+		//newPlayerObject.FindInChildren("GuyHead").layer = LayerMask.NameToLayer("head");
 
 	}
 }
