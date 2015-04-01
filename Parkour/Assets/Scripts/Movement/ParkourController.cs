@@ -301,8 +301,8 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		if (photonView != null && !photonView.isMine)
-			return;
+		//if (photonView != null && !photonView.isMine)
+			//return;
 
 		netImpulse *= Time.deltaTime;
 
