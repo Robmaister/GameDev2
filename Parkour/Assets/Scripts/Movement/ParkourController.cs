@@ -12,6 +12,8 @@ public class ParkourController : MonoBehaviour {
 
 
 	private PhotonView photonView;
+	public float networkInputH;
+	public float networkInputV;
 
 	public bool canControl = true;
 
@@ -57,16 +59,26 @@ public class ParkourController : MonoBehaviour {
 	[System.NonSerializedAttribute]
 	public SurfaceType armState = 0;
 	public SurfaceType legState = 0;
-	public looseInput inputJump = new looseInput("Jump",.2f,true);
-	public looseInput inputHands = new looseInput("Fire1",.2f);
-	public looseInput inputFeet = new looseInput("Fire2",.2f);
+	public IInput inputJump;
+	public IInput inputHands;
+	public IInput inputFeet;
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
-	private Vector3 netImpulse = Vector3.zero;
+	public Vector3 netImpulse = Vector3.zero;
 
-	public class looseInput{//manage input by allowing leeway when pressing buttons
-		public looseInput(string bt, float lw, bool holdFlag = false){
+	public interface IInput
+	{
+		bool Pressed { get; set; }
+
+		void Update();
+	}
+
+	//manage input by allowing leeway when pressing buttons
+	public class LooseInput : IInput
+	{
+		public LooseInput(string bt, float lw, bool holdFlag = false){
+			Pressed = false;
 			leeway = lw;
 			button = bt;
 			if(holdFlag){//discrete press
@@ -78,20 +90,29 @@ public class ParkourController : MonoBehaviour {
 
 		private Func<string,bool> inputCheck;
 		private float lastpress = 0;
-		public bool pressed = false;
+		public bool Pressed { get; set; }
 		private float leeway;
 		private string button;
 
-		public void checkInput(){
+		public void Update(){
 			if(inputCheck(button)){//if button is currently pressed
 				lastpress = Time.time;
-				pressed = true;
+				Pressed = true;
 			}
 			else{//else check if outside leeway zone
 				if((Time.time - lastpress) > leeway){
-					pressed = false;
+					Pressed = false;
 				}
 			}
+		}
+	}
+
+	public class NetworkInput : IInput
+	{
+		public bool Pressed { get; set; }
+
+		public void Update()
+		{
 		}
 	}
 
@@ -156,9 +177,9 @@ public class ParkourController : MonoBehaviour {
 	
 	
 	void getInput(){
-		inputJump.checkInput();
-		inputHands.checkInput();
-		inputFeet.checkInput();
+		inputJump.Update();
+		inputHands.Update();
+		inputFeet.Update();
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
@@ -192,18 +213,42 @@ public class ParkourController : MonoBehaviour {
 		Physics.IgnoreLayerCollision (LayerMask.NameToLayer ("Players"), LayerMask.NameToLayer ("Players"));
 
 		if (photonView != null && !photonView.isMine) {
+			inputJump = new NetworkInput();
+			inputHands = new NetworkInput();
+			inputFeet = new NetworkInput();
 			controller.enabled = false;
 			canControl = false;
+			//GetComponent<Rigidbody>().useGravity = false;
+			//gravity = 0;
 			Update ();
 			Update ();
 		}
-
+		else {
+			inputJump = new LooseInput("Jump",.2f,true);
+			inputHands = new LooseInput("Fire1",.2f);
+			inputFeet = new LooseInput("Fire2",.2f);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (photonView == null || photonView.isMine)
-			getInput();//get input state for buttons
+		getInput();//get input state for buttons 
+
+		float inputH, inputV;
+		if (photonView != null && !photonView.isMine) {
+			inputH = networkInputH;
+			inputV = networkInputV;
+		}
+		else {
+			inputH = Input.GetAxis("Horizontal");
+			inputV = Input.GetAxis("Vertical");
+
+			networkInputH = inputH;
+			networkInputV = inputV;
+		}
+
+		// Get the input vector from keyboard or analog stick
+		Vector3 directionVector = new Vector3(inputH, 0, inputV);
 
 		//have to do this every frame because unity 5
 		//Cursor.visible = false;
@@ -218,9 +263,6 @@ public class ParkourController : MonoBehaviour {
 			#endif
 		}
 
-		// Get the input vector from keyboard or analog stick
-		Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
 			// Dividing by the length is cheaper than normalizing when we already have the length anyway
@@ -334,17 +376,17 @@ public class ParkourController : MonoBehaviour {
 			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
 
 		}
-		if (inputJump.pressed) {
+		if (inputJump.Pressed) {
 			if (controller.isGrounded) {//can jump off ground
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
-				inputJump.pressed = false;
+				inputJump.Pressed = false;
 				lastInputMoveDirection = inputMoveDirection;
 			}
 			else if(can_jump){//if can jump off a jumpable surface
 				velocity += transform.up *  CalculateJumpVerticalSpeed((GetDesiredHorizontalVelocity().magnitude/maxSpeed) * jumpHeight);
 				lastInputMoveDirection = inputMoveDirection;
 				can_jump = false;
-				inputJump.pressed = false;
+				inputJump.Pressed = false;
 			}
 		}		
 		return velocity;
