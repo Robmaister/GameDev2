@@ -17,9 +17,9 @@ public class CTFGoal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (collected1 || collected2) {
-			GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
-		}
+		//if (collected1 || collected2) {
+		//	GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+		//}
 
 		if (collected1 && collected2){
 			//win condition

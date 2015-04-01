@@ -73,4 +73,8 @@ public class RagdollControl : MonoBehaviour {
 			disableRagdoll();
 		}
 	}
+
+	void OnFlagDrop(){
+		enableRagdoll();
+	}
 }
