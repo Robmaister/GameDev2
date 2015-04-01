@@ -15,6 +15,8 @@ public class DoParkour : MonoBehaviour {
 	
 	public IK_Script iks;
 
+	private bool tackling = false;
+
 	
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
 
@@ -48,10 +50,11 @@ public class DoParkour : MonoBehaviour {
 			if (!pkc.apply_forces) {
 		
 				iks.arm_ik_active = true;
-				print(pkc.current_hang_point);
+				//print(pkc.current_hang_point);
 				l_hand_target.position = pkc.current_hang_point + lhandoffset;
 				r_hand_target.position = pkc.current_hang_point + rhandoffset;
-				print (l_hand_target.transform.localPosition);
+				//print(lhandoffset);
+				//print (l_hand_target.transform.localPosition);
 			}
 			else {
 				iks.arm_ik_active = false;
@@ -197,6 +200,33 @@ public class DoParkour : MonoBehaviour {
 						pkc.addImpulse(pkc.transform.up * .15f,0);
 					}
 				}
+			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.E)){
+			if(!tackling){
+				tackling = true;
+				print("tackling");
+				pkc.apply_forces = false;
+				//pkc.canControl = false;
+				anim.SetTrigger("tackle");
+
+
+
+				/*Func<bool> checkfunc = delegate {
+					if(pkc.controller.isGrounded){
+						return true;
+					}
+					return false;
+				};*/
+
+				Action endfunc = delegate {
+					tackling = false;
+					pkc.apply_forces = true;
+					//pkc.canControl = true;
+				};
+
+				pkc.addImpulse(transform.forward * 10,0.05f,endfunc:endfunc);
 			}
 		}
 

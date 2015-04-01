@@ -33,9 +33,13 @@ public class RagdollControl : MonoBehaviour {
 		ctrl.enabled = false;
 		anim.enabled = false;
 		player_body.isKinematic = true;
-		headctrl.enable_rotation = true;
+		if(headctrl != null){
+			headctrl.enable_rotation = true;
+		}
 		mlk.enabled = false;
-		mlk2.enabled = false;
+		if(mlk2!=null){
+			mlk2.enabled = true;
+		}
 		dpk.enabled = false;
 		pkc.enabled = false;
 	}
@@ -47,12 +51,18 @@ public class RagdollControl : MonoBehaviour {
 		ctrl.enabled = true;
 		anim.enabled = true;
 		player_body.isKinematic = false;
-		headctrl.enable_rotation = false;
+		if(headctrl != null){
+			headctrl.enable_rotation = true;
+		}
 		mlk.enabled = true;
-		mlk2.enabled = true;
+		if(mlk2!=null){
+			mlk2.enabled = true;
+		}
 		dpk.enabled = true;
 		pkc.enabled = true;
-		headctrl.resetRot();
+		if(headctrl != null){
+			headctrl.resetRot();
+		}
 	}
 
 	void Update(){

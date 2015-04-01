@@ -1408,6 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d869703ab97527546939185bbdc34cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachName: Head
   cameraObject: {fileID: 1214755655}
   cameraAttachPos: {x: 0, y: 1.403, z: .356999993}
   cameraAttachRot: {x: 0, y: 0, z: 0, w: 0}

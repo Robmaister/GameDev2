@@ -481,7 +481,7 @@ public class ParkourController : MonoBehaviour {
 							}
 
 							current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
-							print(current_hang_point);
+							//print(current_hang_point);
 
 
 
