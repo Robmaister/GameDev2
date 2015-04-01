@@ -3619,9 +3619,6 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 1
-    Name: jumping
   - Type: 9
     SynchronizeType: 1
     Name: grabbing
@@ -3712,6 +3709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arms: {fileID: 116080}
   legs: {fileID: 105698}
+  anim: {fileID: 0}
   networkInputH: 0
   networkInputV: 0
   canControl: 1
