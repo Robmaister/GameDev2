@@ -130,6 +130,7 @@ public class DoParkour : MonoBehaviour {
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
 							hanging = false;
 							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
+							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
 							pkc.apply_forces = true;
 							return true;
 						}
