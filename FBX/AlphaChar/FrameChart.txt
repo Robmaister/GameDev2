@@ -6,3 +6,5 @@ Frame 135: Landing - Frame 145: end(Including)
 Frame 150: Scramble - Frame 165: end(Including)
 Frame 170: Ledge Grab - Frame 183: end(Including)
 Frame 190: Pull - Frame 216: end
+Frame 220: Lunge start - Frame 230: end
+Frame 235: Tackle Succeed - Frame 250: end
