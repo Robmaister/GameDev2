@@ -9,6 +9,8 @@ public class ParkourController : MonoBehaviour {
 	public GameObject legs;
 
 
+	public Animator anim;
+
 
 
 	private PhotonView photonView;
@@ -357,9 +359,11 @@ public class ParkourController : MonoBehaviour {
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
 
-		if (controller.isGrounded)
+		if (controller.isGrounded){
+			anim.SetBool("jumping",false);
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
-		else {
+		}
+			else {
 			if((controller.velocity.y > 0) && (Mathf.Abs (controller.velocity.x) < .1f || Mathf.Abs(controller.velocity.z) < .1f)){
 				Vector3 desiredVelocity = GetDesiredHorizontalVelocity();
 
@@ -378,6 +382,7 @@ public class ParkourController : MonoBehaviour {
 		}
 		if (inputJump.Pressed) {
 			if (controller.isGrounded) {//can jump off ground
+				anim.SetBool("jumping",true);
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;
 				lastInputMoveDirection = inputMoveDirection;
