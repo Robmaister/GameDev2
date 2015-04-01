@@ -13,12 +13,13 @@ public class CTFFlag : MonoBehaviour {
 	
 	}
 
-	void OnCollisionEnter(Collision col) {
+	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player") {
-			CTFCarrier carrier = col.gameObject.GetComponent<CTFCarrier>();
+			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
 			if (carrier != null && !carrier.HasFlag) {
 				carrier.SendMessage("OnFlagPickup", this); 
-				Destroy(gameObject);
+				//Destroy(gameObject);
+				gameObject.SetActive(false);
 			}
 		}
 	}
