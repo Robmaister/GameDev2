@@ -22,7 +22,7 @@ public class DoParkour : MonoBehaviour {
 
 
 	private bool hanging = false;
-	private bool mantling = false;
+	//private bool mantling = false;
 
 	private ParkourController pkc;
 

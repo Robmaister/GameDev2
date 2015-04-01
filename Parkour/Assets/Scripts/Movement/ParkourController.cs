@@ -23,8 +23,6 @@ public class ParkourController : MonoBehaviour {
 	public CharacterController controller;
 	private Vector3 inputMoveDirection = Vector3.zero;
 
-	private Vector3 lastPos = Vector3.zero;
-
 	public bool can_jump = false;
 	public bool apply_forces = true;
 
@@ -276,10 +274,8 @@ public class ParkourController : MonoBehaviour {
 		if(apply_forces){//if regular forces should be applied
 			//print("NetImpulse: " + netImpulse + " combined: " + (currentMovementOffset + netImpulse));
 			controller.Move (currentMovementOffset + netImpulse);
-			lastPos = transform.position;
 		}else{
 			controller.Move (netImpulse);
-			lastPos = transform.position;
 		}
 
 	}
@@ -389,7 +385,7 @@ public class ParkourController : MonoBehaviour {
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
 
-						HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
+						/*HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
 						
 						if(tmpe.ledge){
 							if(current_ledge_object == null){
@@ -399,7 +395,7 @@ public class ParkourController : MonoBehaviour {
 								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
 								current_ledge_object = col.gameObject;
 							}
-						}
+						}*/
 					}
 					else if(P.thisCollider.gameObject == legs){
 						legState |= s;
@@ -437,10 +433,9 @@ public class ParkourController : MonoBehaviour {
 								currentEdge_right = objd.verts[tmpe.rightVert];
 
 								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
-								current_ledge_object = col.gameObject;
-							}else{
-								//current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
-								//print(current_hang_point);
+								if(Vector3.Distance(current_hang_point,arms.transform.position) <= 1){//ensure arms are actually in range to grab
+									current_ledge_object = col.gameObject;
+								}
 							}
 						}
 					}
@@ -452,6 +447,9 @@ public class ParkourController : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Player") {
 			Physics.IgnoreCollision(controller, col.collider);
+
+			col.gameObject.BroadcastMessage("OnTackle");
+
 		}
 	}
 
