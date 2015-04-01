@@ -31,10 +31,12 @@ public class CTFCarrier : MonoBehaviour {
 		//drop the flag (if get tackled or something)
 		hasFlag = false;
 		tr.enabled = false;
-		flagobj.transform.position = transform.position;
-		flagobj.SetActive(true);
-		print("dropping flag");
-		flagobj = null;
+		if(flagobj != null){
+			flagobj.transform.position = transform.position;
+			flagobj.SetActive(true);
+			print("dropping flag");
+			flagobj = null;
+		}
 
 	}
 

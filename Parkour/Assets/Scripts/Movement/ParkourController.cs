@@ -489,12 +489,12 @@ public class ParkourController : MonoBehaviour {
 				}
 			}
 		}
-		else if (col.gameObject.tag == "Player") {
+		/*else if (col.gameObject.tag == "Player") {
 			Physics.IgnoreCollision(controller, col.collider);
 
 			col.gameObject.BroadcastMessage("OnTackle");
 
-		}
+		}*/
 	}
 
 	void OnCollisionExit(Collision col){
