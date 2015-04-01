@@ -1340,57 +1340,21 @@ Prefab:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 14419278, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: 38.2778931
+    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: viewIdField
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 14419278, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.z
-      value: 5.48295784
-      objectReference: {fileID: 0}
-    - target: {fileID: 14445730, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.x
-      value: 17.362606
-      objectReference: {fileID: 0}
-    - target: {fileID: 14445730, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: -.219484001
-      objectReference: {fileID: 0}
-    - target: {fileID: 14445730, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.z
-      value: 1.52738142
-      objectReference: {fileID: 0}
-    - target: {fileID: 14407914, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.x
-      value: 17.5489731
-      objectReference: {fileID: 0}
-    - target: {fileID: 14407914, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.z
-      value: -.027539134
-      objectReference: {fileID: 0}
-    - target: {fileID: 14432478, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: 25.1836109
-      objectReference: {fileID: 0}
-    - target: {fileID: 14468744, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: -33.2668343
-      objectReference: {fileID: 0}
-    - target: {fileID: 14415500, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: -33.2668648
-      objectReference: {fileID: 0}
-    - target: {fileID: 14410622, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: m_ConnectedAnchor.y
-      value: -5.18289185
+    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: instantiationId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 162886, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_IsActive
@@ -1441,12 +1405,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010535677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea35e4681b30d041b99dee14fce71c7, type: 3}
+  m_Script: {fileID: 11500000, guid: d869703ab97527546939185bbdc34cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachName: IK_Player/Joints/Hips/LowBack/MidBack/Chest/Neck/Head/HeadTip
   cameraObject: {fileID: 1214755655}
-  cameraAttachPos: {x: 0, y: -.158999994, z: 0}
+  cameraAttachPos: {x: 0, y: 1.403, z: .356999993}
   cameraAttachRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2010535679
 MonoBehaviour:
