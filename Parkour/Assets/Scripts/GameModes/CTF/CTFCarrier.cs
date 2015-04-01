@@ -21,6 +21,7 @@ public class CTFCarrier : MonoBehaviour {
 	}
 
 	void OnFlagPickup(CTFFlag flag) {
+		print("picked up flag");
 		hasFlag = true;
 		tr.enabled = true;
 		flagobj = flag.gameObject;

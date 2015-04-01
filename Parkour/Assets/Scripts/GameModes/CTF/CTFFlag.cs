@@ -14,6 +14,7 @@ public class CTFFlag : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
+		print(col.name + " entered trigger");
 		if (col.gameObject.tag == "Player") {
 			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
 			if (carrier != null && !carrier.HasFlag) {
