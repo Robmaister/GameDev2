@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e80ac8fa1669d1f4591a17e07aff8faf
-timeCreated: 1427838083
+timeCreated: 1427862158
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -4801,6 +4801,31 @@ ModelImporter:
       rotation: {x: -1.42128229e-08, y: -2.52505418e-17, z: 1.77660286e-09, w: 1}
       scale: {x: 1, y: .99999994, z: 1}
       transformModified: 1
+    - name: L_UpLeg
+      position: {x: -8.24060631, y: -5.18285799, z: -2.61943245e-16}
+      rotation: {x: -.00227240357, y: -.0833096728, z: -.00459157396, w: .996510565}
+      scale: {x: .999999881, y: 1, z: .999999762}
+      transformModified: 1
+    - name: L_LoLeg
+      position: {x: -.554630041, y: -33.2668495, z: .216901794}
+      rotation: {x: -1.81607902e-08, y: 7.36690708e-09, z: 1.99361239e-09, w: 1}
+      scale: {x: .99999994, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: L_Ankle
+      position: {x: -1.10926008, y: -27.7329655, z: -3.57887959}
+      rotation: {x: .00118869613, y: .0931691378, z: -.00780364312, w: .995619059}
+      scale: {x: 1.00000012, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: L_Ball
+      position: {x: 7.10542736e-15, y: -9.53744221, z: 12.0332003}
+      rotation: {x: -3.98329612e-05, y: -.010001258, z: .0166545752, w: .999811351}
+      scale: {x: 1.00000024, y: 1, z: .999999821}
+      transformModified: 1
+    - name: L_ToeToe
+      position: {x: -0, y: -.216901794, z: 7.26621008}
+      rotation: {x: 2.68926159e-10, y: -1.17738308e-08, z: 9.31282718e-10, w: 1}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
     - name: LoBack
       position: {x: 1.41512012, y: 7.43599892, z: -.136599258}
       rotation: {x: -1.78266956e-15, y: -3.55320529e-09, z: -5.32980815e-09, w: 1}
@@ -4816,21 +4841,6 @@ ModelImporter:
       rotation: {x: .0524486005, y: 3.54374774e-09, z: 2.59075511e-10, w: .998623669}
       scale: {x: 1.00000012, y: .99999994, z: .999999821}
       transformModified: 1
-    - name: Neck
-      position: {x: 2.60000524e-33, y: 17.4776001, z: 2.33146818e-14}
-      rotation: {x: .0102523947, y: -1.06408438e-08, z: -1.88579707e-09, w: .999947488}
-      scale: {x: 1.00000012, y: 1.00000012, z: .99999994}
-      transformModified: 1
-    - name: Head
-      position: {x: -1.20518303, y: 7.21041584, z: 3.70356512}
-      rotation: {x: 2.91139859e-08, y: 1.77660442e-09, z: 1.99867811e-09, w: 1}
-      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
-    - name: HeadTip
-      position: {x: -1.06145305e-17, y: 17.9357471, z: .0348276272}
-      rotation: {x: 2.32830616e-10, y: -8.45280623e-10, z: -4.34849534e-09, w: 1}
-      scale: {x: 1, y: 1, z: 1.00000012}
-      transformModified: 1
     - name: L_Shoulder
       position: {x: -11.3609381, y: 12.2908163, z: -1.01246142}
       rotation: {x: .0102523947, y: -1.06408438e-08, z: -1.88579707e-09, w: .999947488}
@@ -4845,6 +4855,21 @@ ModelImporter:
       position: {x: -17.362608, y: .220106125, z: -1.52737677}
       rotation: {x: -4.470348e-08, y: 5.68512917e-08, z: -6.39577067e-08, w: 1}
       scale: {x: .999999702, y: 1, z: 1.00000024}
+      transformModified: 1
+    - name: L_Fore1
+      position: {x: -5.48122692, y: .0910071209, z: .212648377}
+      rotation: {x: 6.28463313e-05, y: 2.13810854e-05, z: .00347133144, w: .99999398}
+      scale: {x: 1, y: 1, z: .99999994}
+      transformModified: 1
+    - name: L_Fore2
+      position: {x: -11.9892855, y: .19498159, z: .444851995}
+      rotation: {x: .000125666658, y: 4.28579733e-05, z: .00694257626, w: .99997592}
+      scale: {x: 1.00000024, y: 1.00000024, z: .999999762}
+      transformModified: 1
+    - name: L_Fore3
+      position: {x: -17.65769, y: .257680595, z: .619175076}
+      rotation: {x: .000188478487, y: 6.42323357e-05, z: .0104137063, w: .99994576}
+      scale: {x: .99999994, y: 1.00000012, z: .999999762}
       transformModified: 1
     - name: L_Hand_IK_GRP
       position: {x: -22.6629314, y: .347700417, z: .799866021}
@@ -4863,7 +4888,7 @@ ModelImporter:
       transformModified: 1
     - name: L_Palm
       position: {x: -3.55271368e-15, y: -1.42108547e-14, z: -4.4408921e-16}
-      rotation: {x: -.725663126, y: -.0132011333, z: .414182842, w: .549264252}
+      rotation: {x: -.725663185, y: -.0132011343, z: .414182872, w: .549264312}
       scale: {x: 1, y: 1.00000024, z: .99999994}
       transformModified: 1
     - name: L_IB_GRP
@@ -4893,7 +4918,7 @@ ModelImporter:
       transformModified: 1
     - name: L_IT
       position: {x: -0, y: -1.42108547e-14, z: 0}
-      rotation: {x: 5.05973006e-08, y: 2.22872654e-08, z: -.0165299512, w: .999863446}
+      rotation: {x: -.00598191144, y: .000578672742, z: -.066773288, w: .997750103}
       scale: {x: .999999762, y: 1, z: 1}
       transformModified: 1
     - name: L_ITT
@@ -4928,7 +4953,7 @@ ModelImporter:
       transformModified: 1
     - name: L_MT
       position: {x: 1.42108547e-14, y: -1.42108547e-14, z: 8.8817842e-16}
-      rotation: {x: 7.06942913e-08, y: -2.28417072e-08, z: -.0244690701, w: .999700546}
+      rotation: {x: -.00854873471, y: -.0158914216, z: -.131584138, w: .991140783}
       scale: {x: .99999994, y: 1.00000012, z: .99999994}
       transformModified: 1
     - name: L_MTT
@@ -4943,7 +4968,7 @@ ModelImporter:
       transformModified: 1
     - name: L_PB
       position: {x: 7.10542736e-15, y: -1.42108547e-14, z: 0}
-      rotation: {x: -.0117929606, y: -.101735458, z: -.115053751, w: .988065481}
+      rotation: {x: -.0117929615, y: -.101735465, z: -.115053758, w: .988065541}
       scale: {x: 1.00000036, y: 1, z: 1}
       transformModified: 1
     - name: L_PM_GRP
@@ -4953,7 +4978,7 @@ ModelImporter:
       transformModified: 1
     - name: L_PM
       position: {x: -1.42108547e-14, y: 1.42108547e-14, z: -1.77635684e-15}
-      rotation: {x: .0108858524, y: -.0239391439, z: -.0305707753, w: .999186635}
+      rotation: {x: .0105319899, y: -.0401956774, z: -.0936883688, w: .994734108}
       scale: {x: .999999762, y: 1.00000012, z: .999999762}
       transformModified: 1
     - name: L_PT_GRP
@@ -4963,7 +4988,7 @@ ModelImporter:
       transformModified: 1
     - name: L_PT
       position: {x: -1.42108547e-14, y: 1.42108547e-14, z: 0}
-      rotation: {x: -8.16841705e-08, y: -2.8235501e-08, z: -.0130508281, w: .999914825}
+      rotation: {x: -.000840712746, y: -.00429785158, z: -.0333224088, w: .999435127}
       scale: {x: .99999994, y: 1.00000012, z: .99999994}
       transformModified: 1
     - name: L_PTT
@@ -4988,7 +5013,7 @@ ModelImporter:
       transformModified: 1
     - name: L_RM
       position: {x: -0, y: -1.42108547e-14, z: 8.8817842e-16}
-      rotation: {x: .0017905765, y: -.0158076063, z: -.112538278, w: .993520081}
+      rotation: {x: .00555531401, y: -.0440658927, z: -.126543552, w: .99096626}
       scale: {x: 1.00000024, y: 1.00000012, z: 1.00000012}
       transformModified: 1
     - name: L_RT_GRP
@@ -4998,7 +5023,7 @@ ModelImporter:
       transformModified: 1
     - name: L_RT
       position: {x: 1.42108547e-14, y: -1.42108547e-14, z: 8.8817842e-16}
-      rotation: {x: 1.24701902e-08, y: 2.93659905e-08, z: -.131398201, w: .99132967}
+      rotation: {x: -.00828737859, y: .0165360477, z: -.172419786, w: .98484987}
       scale: {x: .999999702, y: 1, z: .999999881}
       transformModified: 1
     - name: L_RTT
@@ -5026,20 +5051,20 @@ ModelImporter:
       rotation: {x: 4.40151489e-08, y: -1.78803488e-15, z: 2.42998482e-10, w: 1}
       scale: {x: 1.00000012, y: 1.00000024, z: 1.00000036}
       transformModified: 1
-    - name: L_Fore1
-      position: {x: -5.48122692, y: .0910071209, z: .212648377}
-      rotation: {x: 6.28463313e-05, y: 2.13810854e-05, z: .00347133144, w: .99999398}
-      scale: {x: 1, y: 1, z: .99999994}
+    - name: Neck
+      position: {x: 2.60000524e-33, y: 17.4776001, z: 2.33146818e-14}
+      rotation: {x: .0102523947, y: -1.06408438e-08, z: -1.88579707e-09, w: .999947488}
+      scale: {x: 1.00000012, y: 1.00000012, z: .99999994}
       transformModified: 1
-    - name: L_Fore2
-      position: {x: -11.9892855, y: .19498159, z: .444851995}
-      rotation: {x: .000125666658, y: 4.28579733e-05, z: .00694257626, w: .99997592}
-      scale: {x: 1.00000024, y: 1.00000024, z: .999999762}
+    - name: Head
+      position: {x: -1.20518303, y: 7.21041584, z: 3.70356512}
+      rotation: {x: 2.91139859e-08, y: 1.77660442e-09, z: 1.99867811e-09, w: 1}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000012}
       transformModified: 1
-    - name: L_Fore3
-      position: {x: -17.65769, y: .257680595, z: .619175076}
-      rotation: {x: .000188478487, y: 6.42323357e-05, z: .0104137063, w: .99994576}
-      scale: {x: .99999994, y: 1.00000012, z: .999999762}
+    - name: HeadTip
+      position: {x: -1.06145305e-17, y: 17.9357471, z: .0348276272}
+      rotation: {x: 2.32830616e-10, y: -8.45280623e-10, z: -4.34849534e-09, w: 1}
+      scale: {x: 1, y: 1, z: 1.00000012}
       transformModified: 1
     - name: R_Shoulder
       position: {x: 11.3609333, y: 12.2906094, z: -1.01246893}
@@ -5055,6 +5080,21 @@ ModelImporter:
       position: {x: 17.3625965, y: -.219508559, z: 1.52738285}
       rotation: {x: 2.2348825e-08, y: -1.75932655e-08, z: 7.65430741e-09, w: 1}
       scale: {x: .999999583, y: 1, z: 1.00000072}
+      transformModified: 1
+    - name: R_Fore1
+      position: {x: 5.48127794, y: -.0908007175, z: -.212650001}
+      rotation: {x: 6.27925037e-05, y: 2.14043976e-05, z: .00347123551, w: .99999404}
+      scale: {x: .999999762, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: R_Fore2
+      position: {x: 11.9893093, y: -.19482483, z: -.444853038}
+      rotation: {x: .000125633451, y: 4.28464991e-05, z: .00694250129, w: .999975979}
+      scale: {x: 1, y: 1.00000048, z: 1.00000012}
+      transformModified: 1
+    - name: R_Fore3
+      position: {x: 17.6577435, y: -.258297205, z: -.619181633}
+      rotation: {x: .000188485545, y: 6.42524392e-05, z: .0104136569, w: .999945819}
+      scale: {x: .99999994, y: 1.00000036, z: .99999994}
       transformModified: 1
     - name: R_Hand_IK_GRP
       position: {x: 22.6629791, y: -.348216355, z: -.799866199}
@@ -5083,7 +5123,7 @@ ModelImporter:
       transformModified: 1
     - name: R_IB
       position: {x: 2.13162821e-14, y: -1.42108547e-14, z: 1.33226763e-15}
-      rotation: {x: .0115874633, y: -.051801458, z: -.421505719, w: .905270815}
+      rotation: {x: .0115874643, y: -.0518014617, z: -.421505749, w: .905270875}
       scale: {x: 1, y: 1.00000024, z: 1}
       transformModified: 1
     - name: R_IM_GRP
@@ -5093,7 +5133,7 @@ ModelImporter:
       transformModified: 1
     - name: R_IM
       position: {x: -1.42108547e-14, y: 0, z: -6.66133815e-16}
-      rotation: {x: -.0424789898, y: .0758418292, z: -.128137589, w: .987939417}
+      rotation: {x: -.0424789935, y: .0758418366, z: -.128137603, w: .987939477}
       scale: {x: 1.00000012, y: 1.00000012, z: 1.00000024}
       transformModified: 1
     - name: R_IT_GRP
@@ -5103,7 +5143,7 @@ ModelImporter:
       transformModified: 1
     - name: R_IT
       position: {x: 1.42108547e-14, y: 0, z: 4.4408921e-16}
-      rotation: {x: 4.87341651e-08, y: -7.73143256e-08, z: -.0888920128, w: .996041298}
+      rotation: {x: -.00591643574, y: .00101059908, z: -.1387804, w: .990305007}
       scale: {x: 1, y: .999999881, z: .999999762}
       transformModified: 1
     - name: R_ITT
@@ -5118,7 +5158,7 @@ ModelImporter:
       transformModified: 1
     - name: R_MB
       position: {x: 2.13162821e-14, y: 0, z: 8.8817842e-16}
-      rotation: {x: .0156828519, y: -.052932214, z: -.45549345, w: .888525665}
+      rotation: {x: .0156828538, y: -.0529322177, z: -.45549348, w: .888525724}
       scale: {x: 1, y: 1.00000012, z: 1.00000024}
       transformModified: 1
     - name: R_MM_GRP
@@ -5138,7 +5178,7 @@ ModelImporter:
       transformModified: 1
     - name: R_MT
       position: {x: 1.42108547e-14, y: -1.42108547e-14, z: 8.8817842e-16}
-      rotation: {x: 2.99724796e-08, y: -7.2250252e-08, z: -.116141066, w: .993232727}
+      rotation: {x: -.00996764749, y: -.0150380535, z: -.221981511, w: .974883974}
       scale: {x: 1, y: .999999762, z: 1.00000012}
       transformModified: 1
     - name: R_MTT
@@ -5153,7 +5193,7 @@ ModelImporter:
       transformModified: 1
     - name: R_PB
       position: {x: 7.10542736e-15, y: -1.42108547e-14, z: 1.77635684e-15}
-      rotation: {x: .0125289476, y: -.0455891788, z: -.351742148, w: .934902132}
+      rotation: {x: .0125289485, y: -.0455891825, z: -.351742178, w: .934902191}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: R_PM_GRP
@@ -5163,7 +5203,7 @@ ModelImporter:
       transformModified: 1
     - name: R_PM
       position: {x: -0, y: 0, z: 1.77635684e-15}
-      rotation: {x: .00341879204, y: -.0344471931, z: -.0987020954, w: .994514823}
+      rotation: {x: .00258943182, y: -.0509769656, z: -.161230966, w: .985595942}
       scale: {x: 1.00000012, y: 1.00000012, z: 1.00000036}
       transformModified: 1
     - name: R_PT_GRP
@@ -5173,7 +5213,7 @@ ModelImporter:
       transformModified: 1
     - name: R_PT
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -.004470299, y: -.00779580744, z: -.11906039, w: .99284637}
+      rotation: {x: -.00559750153, y: -.0120609635, z: -.139080495, w: .990191817}
       scale: {x: 1, y: 1.00000024, z: 1}
       transformModified: 1
     - name: R_PTT
@@ -5188,7 +5228,7 @@ ModelImporter:
       transformModified: 1
     - name: R_RB
       position: {x: 2.13162821e-14, y: 0, z: 8.8817842e-16}
-      rotation: {x: .0317139514, y: -.0696805418, z: -.425444096, w: .901740611}
+      rotation: {x: .0317139551, y: -.0696805492, z: -.425444126, w: .90174067}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: R_RM_GRP
@@ -5198,7 +5238,7 @@ ModelImporter:
       transformModified: 1
     - name: R_RM
       position: {x: -0, y: -2.84217094e-14, z: 8.8817842e-16}
-      rotation: {x: -.0245826747, y: .0349904671, z: -.217453495, w: .975133479}
+      rotation: {x: -.0245579183, y: .00613496359, z: -.230763465, w: .972680628}
       scale: {x: .99999994, y: 1, z: 1}
       transformModified: 1
     - name: R_RT_GRP
@@ -5208,7 +5248,7 @@ ModelImporter:
       transformModified: 1
     - name: R_RT
       position: {x: -1.42108547e-14, y: 0, z: -1.77635684e-15}
-      rotation: {x: -9.76888259e-09, y: -2.83034751e-08, z: -.0686228201, w: .997642756}
+      rotation: {x: -.00930891838, y: .0159747098, z: -.10994231, w: .99376601}
       scale: {x: 1, y: 1.00000024, z: 1.00000024}
       transformModified: 1
     - name: R_RTT
@@ -5235,46 +5275,6 @@ ModelImporter:
       position: {x: 3.75544739, y: 1.13897598, z: -.947598159}
       rotation: {x: 4.93671912e-08, y: 3.1592208e-08, z: -3.92901711e-09, w: 1}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: R_Fore1
-      position: {x: 5.48127794, y: -.0908007175, z: -.212650001}
-      rotation: {x: 6.27925037e-05, y: 2.14043976e-05, z: .00347123551, w: .99999404}
-      scale: {x: .999999762, y: 1.00000024, z: 1}
-      transformModified: 1
-    - name: R_Fore2
-      position: {x: 11.9893093, y: -.19482483, z: -.444853038}
-      rotation: {x: .000125633451, y: 4.28464991e-05, z: .00694250129, w: .999975979}
-      scale: {x: 1, y: 1.00000048, z: 1.00000012}
-      transformModified: 1
-    - name: R_Fore3
-      position: {x: 17.6577435, y: -.258297205, z: -.619181633}
-      rotation: {x: .000188485545, y: 6.42524392e-05, z: .0104136569, w: .999945819}
-      scale: {x: .99999994, y: 1.00000036, z: .99999994}
-      transformModified: 1
-    - name: L_UpLeg
-      position: {x: -8.24060631, y: -5.18285799, z: -2.61943245e-16}
-      rotation: {x: -.00227240357, y: -.0833096728, z: -.00459157396, w: .996510565}
-      scale: {x: .999999881, y: 1, z: .999999762}
-      transformModified: 1
-    - name: L_LoLeg
-      position: {x: -.554630041, y: -33.2668495, z: .216901794}
-      rotation: {x: -1.81607902e-08, y: 7.36690708e-09, z: 1.99361239e-09, w: 1}
-      scale: {x: .99999994, y: 1.00000024, z: 1.00000024}
-      transformModified: 1
-    - name: L_Ankle
-      position: {x: -1.10926008, y: -27.7329655, z: -3.57887959}
-      rotation: {x: .00118869613, y: .0931691378, z: -.00780364312, w: .995619059}
-      scale: {x: 1.00000012, y: .99999994, z: 1.00000012}
-      transformModified: 1
-    - name: L_Ball
-      position: {x: 7.10542736e-15, y: -9.53744221, z: 12.0332003}
-      rotation: {x: -3.98329612e-05, y: -.010001258, z: .0166545752, w: .999811351}
-      scale: {x: 1.00000024, y: 1, z: .999999821}
-      transformModified: 1
-    - name: L_ToeToe
-      position: {x: -0, y: -.216901794, z: 7.26621008}
-      rotation: {x: 2.68926159e-10, y: -1.17738308e-08, z: 9.31282718e-10, w: 1}
-      scale: {x: 1.00000012, y: 1, z: 1}
       transformModified: 1
     - name: R_UpLeg
       position: {x: 8.24060917, y: -5.18288708, z: 2.6208296e-08}
