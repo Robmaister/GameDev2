@@ -47,6 +47,7 @@ public class CTFCarrier : MonoBehaviour {
 		flagobj.transform.position = pos;
 		flagobj.SetActive(true);
 		flagobj.GetComponent<Collider>().enabled = false;
+		flagobj.GetComponent<Rigidbody>().isKinematic = true;
 		print("capturing flag");
 		flagobj = null;
 	}
