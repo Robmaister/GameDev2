@@ -282,8 +282,6 @@ GameObject:
   - 4: {fileID: 451468}
   - 95: {fileID: 9529832}
   - 114: {fileID: 11412088}
-  - 114: {fileID: 11401864}
-  - 114: {fileID: 11426846}
   m_Layer: 0
   m_Name: IK_Player
   m_TagString: Untagged
@@ -923,7 +921,7 @@ GameObject:
   - 114: {fileID: 11403938}
   - 114: {fileID: 11426898}
   - 114: {fileID: 11415380}
-  - 114: {fileID: 11482710}
+  - 114: {fileID: 11447944}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2203,31 +2201,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11401864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11426846}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &11403938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2273,7 +2246,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     InterpolateMoveTowardsAcceleration: 2
@@ -2336,23 +2309,6 @@ MonoBehaviour:
   maximumX: 360
   minimumY: 0
   maximumY: 0
---- !u!114 &11426846
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0
 --- !u!114 &11426898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2374,7 +2330,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11415380}
-  - {fileID: 11482710}
+  - {fileID: 11447944}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -2392,6 +2348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arms: {fileID: 116080}
   legs: {fileID: 105698}
+  networkInputH: 0
+  networkInputV: 0
   canControl: 1
   maxSpeed: 10
   maxAcceleration: 20
@@ -2411,7 +2369,8 @@ MonoBehaviour:
   itxt: {fileID: 0}
   legState: 0
   currentMovementOffset: {x: 0, y: 0, z: 0}
---- !u!114 &11482710
+  netImpulse: {x: 0, y: 0, z: 0}
+--- !u!114 &11447944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2419,11 +2378,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 162886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 68802239ea17f3f4c9722a42f1b80c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
+  controller: {fileID: 0}
 --- !u!114 &11499216
 MonoBehaviour:
   m_ObjectHideFlags: 1

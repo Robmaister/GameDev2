@@ -1767,14 +1767,6 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11401864, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: viewIdField
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11401864, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
-      propertyPath: instantiationId
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 162886, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -4186,6 +4178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564a25d25722ea5499de8d9ca0b326ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flag1slot: {fileID: 0}
+  flag2slot: {fileID: 0}
 --- !u!23 &2041478844
 MeshRenderer:
   m_ObjectHideFlags: 0

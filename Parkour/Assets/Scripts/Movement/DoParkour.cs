@@ -11,8 +11,6 @@ public class DoParkour : MonoBehaviour {
 	public Transform r_hand_target;
 	public Transform l_hand_target;
 
-
-	
 	public IK_Script iks;
 
 	
@@ -67,7 +65,7 @@ public class DoParkour : MonoBehaviour {
 
 
 		//wall jump
-		if(pkc.inputJump.pressed && (pkc.legState & SurfaceType.side) != 0){//if player presses jump and has legs touching side
+		if(pkc.inputJump.Pressed && (pkc.legState & SurfaceType.side) != 0){//if player presses jump and has legs touching side
 			if(!jumpedOnce){
 				print("walljump");
 				pkc.can_jump = true;
@@ -75,7 +73,7 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 		//hang from ledge
-		if(pkc.inputHands.pressed && !pkc.controller.isGrounded){
+		if(pkc.inputHands.Pressed && !pkc.controller.isGrounded){
 			//if(pkc.armState == (SurfaceType.side | SurfaceType.top)){
 			if(pkc.current_ledge_object != null){
 				//if player arms are on top and side, begin to hang
@@ -94,7 +92,7 @@ public class DoParkour : MonoBehaviour {
 							pkc.apply_forces = true;
 							return true;
 						}
-						if(Input.GetAxis("Horizontal") != 0){
+						if(pkc.networkInputH != 0){
 
 
 							//4564356456460000000000000333333333333333333000000000000222222222222222200000000000000000000000000000000000000000000000000000001110
@@ -102,7 +100,7 @@ public class DoParkour : MonoBehaviour {
 
 
 
-							pkc.addImpulse(pkc.transform.right * Input.GetAxis("Horizontal"), .05f);
+							pkc.addImpulse(pkc.transform.right * pkc.networkInputH, .05f);
 
 
 
@@ -128,20 +126,20 @@ public class DoParkour : MonoBehaviour {
 						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
 							hanging = false;
-							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
+							pkc.addImpulse(pkc.networkInputV * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
 							return true;
 						}
 
 						if(pkc.transform.position.y <= pkc.current_hang_point.y + 1){
-							if(Input.GetAxis("Vertical") > 0){
+							if(pkc.networkInputV > 0){
 								return false;
 							}else{
 								pkc.addImpulse(-pkc.transform.up * pkc.gravity/3,-1,checkfunc:checkfunc2,endfunc:endfunc2);
 								return true;
 							}
 						}else{//else if pulled self over ledge
-							pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
+							pkc.addImpulse(pkc.networkInputV * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
 							//hanging = false;
 						}
@@ -162,7 +160,7 @@ public class DoParkour : MonoBehaviour {
 
 
 		//vaulting
-		if(pkc.inputFeet.pressed){
+		if(pkc.inputFeet.Pressed){
 			//if(pkc.legState == (SurfaceType.top | SurfaceType.side)){
 			if((pkc.armState & SurfaceType.top) != 0){
 				if(!vaulting){
