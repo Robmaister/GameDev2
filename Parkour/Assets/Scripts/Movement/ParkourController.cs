@@ -23,8 +23,6 @@ public class ParkourController : MonoBehaviour {
 	public CharacterController controller;
 	private Vector3 inputMoveDirection = Vector3.zero;
 
-	private Vector3 lastPos = Vector3.zero;
-
 	public bool can_jump = false;
 	public bool apply_forces = true;
 
@@ -117,7 +115,7 @@ public class ParkourController : MonoBehaviour {
 		float endtime = Time.time + duration;
 		bool infinite = (duration < 0); //infinite impulse flag
 
-		while(infinite || Time.time < endtime){
+		while(infinite || Time.time <= endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}
@@ -134,20 +132,19 @@ public class ParkourController : MonoBehaviour {
 		bool infinite = (duration < 0); //infinite impulse flag
 
 		//ignore vertical momentum
-		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.y * controller.velocity.y);
+		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.z * controller.velocity.z);
+		print("hmag: " + hmag);
+		force = (force.normalized) * (force.magnitude + hmag);
 
-		float mul = (force.magnitude + hmag) / 2;
-		print("mul: " + mul);
-
-		force = force.normalized * mul;
-
-		duration /= mul;
+		if(hmag > 1){
+			duration /= hmag;
+		}
 
 		float endtime = Time.time + duration;
 
 		print("force" + force);
 		
-		while(infinite || Time.time < endtime){
+		while(infinite || Time.time <= endtime){
 			if(checkfunc != null){
 				if(checkfunc()) break;
 			}
@@ -277,10 +274,8 @@ public class ParkourController : MonoBehaviour {
 		if(apply_forces){//if regular forces should be applied
 			//print("NetImpulse: " + netImpulse + " combined: " + (currentMovementOffset + netImpulse));
 			controller.Move (currentMovementOffset + netImpulse);
-			lastPos = transform.position;
 		}else{
 			controller.Move (netImpulse);
-			lastPos = transform.position;
 		}
 
 	}
@@ -390,17 +385,17 @@ public class ParkourController : MonoBehaviour {
 					if(P.thisCollider.gameObject == arms){
 						armState |= s;
 
-						HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
+						/*HalfEdge tmpe = objd.edges[triangle*3];//has to be *3 because reasons
 						
 						if(tmpe.ledge){
 							if(current_ledge_object == null){
 								currentEdge_left = objd.verts[tmpe.leftVert];
 								currentEdge_right = objd.verts[tmpe.rightVert];
 								
-								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
 								current_ledge_object = col.gameObject;
 							}
-						}
+						}*/
 					}
 					else if(P.thisCollider.gameObject == legs){
 						legState |= s;
@@ -437,11 +432,10 @@ public class ParkourController : MonoBehaviour {
 								currentEdge_left = objd.verts[tmpe.leftVert];
 								currentEdge_right = objd.verts[tmpe.rightVert];
 
-								current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
-								current_ledge_object = col.gameObject;
-							}else{
-								//current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
-								//print(current_hang_point);
+								current_hang_point = (ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position) + transform.position) / 2;
+								if(Vector3.Distance(current_hang_point,arms.transform.position) <= 1){//ensure arms are actually in range to grab
+									current_ledge_object = col.gameObject;
+								}
 							}
 						}
 					}
@@ -453,6 +447,9 @@ public class ParkourController : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Player") {
 			Physics.IgnoreCollision(controller, col.collider);
+
+			col.gameObject.BroadcastMessage("OnTackle");
+
 		}
 	}
 

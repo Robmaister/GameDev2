@@ -18,16 +18,21 @@ public class DoParkour : MonoBehaviour {
 	
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
 
-
+	private bool vaulting = false;
 
 
 	private bool hanging = false;
-	private bool mantling = false;
+	//private bool mantling = false;
 
 	private ParkourController pkc;
 
+	private Vector3 lhandoffset, rhandoffset;
+
 	void Start(){
 		pkc = GetComponent<ParkourController>();
+
+		lhandoffset = l_hand_target.localPosition;
+		rhandoffset = r_hand_target.localPosition;
 	}
 
 	void Update(){
@@ -43,9 +48,10 @@ public class DoParkour : MonoBehaviour {
 			if (!pkc.apply_forces) {
 		
 				iks.arm_ik_active = true;
-				print(pkc.current_hang_point);
-				l_hand_target.position = pkc.current_hang_point;
-				r_hand_target.position = pkc.current_hang_point;
+
+				l_hand_target.position = pkc.current_hang_point + lhandoffset;
+				r_hand_target.position = pkc.current_hang_point + rhandoffset;
+
 			}
 			else {
 				iks.arm_ik_active = false;
@@ -155,41 +161,48 @@ public class DoParkour : MonoBehaviour {
 		}
 
 
+		//vaulting
+		if(pkc.inputFeet.pressed){
+			//if(pkc.legState == (SurfaceType.top | SurfaceType.side)){
+			if((pkc.armState & SurfaceType.top) != 0){
+				if(!vaulting){
+					vaulting = true;
 
-		//mantle or vault
-		/*if(pkc.inputHands.pressed && (pkc.armState == (SurfaceType.top | SurfaceType.side))){//if player arms are on top and side specifically
+					pkc.controller.height = 0;
 
-			//bool vaultMode = (pkc.inputJump.pressed && (pkc.legState & SurfaceType.side) != 0);//check if legs are involved
+					Func<bool> checkfunc = delegate {
+						if(pkc.controller.isGrounded){
+							return true;
+						}
+						return false;
+					};
 
+					/*Func<bool> checkfunc2 = delegate {
+						if(pkc.armState == 0){
+							return true;
+						}
+						return false;
+					};*/
 
-			//print("mantling: " + pkc.armState);
-			pkc.inputHands.pressed = false;
-			if(!mantling){
-
-				Vector3 temp = pkc.currentMovementOffset;
-				temp.y = 0;
-				Func<bool> checkfunc = delegate(){
-					if (pkc.armState == 0){//if nothing on arms anymore
-						mantling = false;
-						pkc.apply_forces = true;
-						//pkc.currentMovementOffset = temp;
-						pkc.addImpulse(pkc.transform.forward * .5f,.1f,true);
-						return true;
+					Action endfunc = delegate {
+						vaulting = false;
+						pkc.controller.height = 2;
+					};
+					//pkc.addImpulse(pkc.transform.forward * .15f,-1f,endfunc:endfunc,checkfunc:checkfunc2);
+					pkc.addImpulse(pkc.transform.forward * .05f,1,true,endfunc:endfunc,checkfunc:checkfunc);
+				}
+				else{
+					if((pkc.legState & SurfaceType.top) != 0){
+						pkc.addImpulse(pkc.transform.up * .15f,0);
 					}
-					return false;
-				};
+				}
+			}
+		}
 
-				Action endfunc = delegate {
-					mantling = false;
-					pkc.apply_forces = true;
-				};
-
-
-				//pkc.controller.Move(-pkc.controller.velocity  * Time.deltaTime);
-				mantling = true;
-				pkc.apply_forces = false;
-				pkc.addImpulse(pkc.transform.up * 3,1f,checkfunc:checkfunc,endfunc:endfunc);
-
+		/*if(vaulting){
+			if(pkc.armState == 0){
+				print("kekking");
+				pkc.addImpulse(pkc.transform.forward * .5f,0);
 			}
 		}*/
 
