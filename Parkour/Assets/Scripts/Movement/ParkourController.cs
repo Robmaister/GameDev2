@@ -208,6 +208,7 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		anim = GetComponentInChildren<Animator>();
 		controller = GetComponent<CharacterController>();
 		photonView = GetComponent<PhotonView>();
 		Physics.IgnoreCollision(controller,arms.GetComponent<Collider>());
