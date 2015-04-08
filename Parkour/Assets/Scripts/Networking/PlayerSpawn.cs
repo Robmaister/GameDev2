@@ -1,25 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 using System.Linq;
 
 public class PlayerSpawn : MonoBehaviour {
 
-	public string attachName;
 	public GameObject cameraObject;
 	//public Vector3 cameraAttachPos;
 	//public Quaternion cameraAttachRot;
 
-	private int playerNum;
 
-	void OnJoinedRoom()
-	{
-		//Vector3 position = new Vector3(227.3f, 15.2f, 152.3f);
+	public GameObject chooseName;//UI element to handle name choosing
+	public GameObject chooseTeam;//UI element to handle team selection
+
+	private static int playercount;
+
+	private int playerNum;
+	private int teamNum; //RED = 0 BLUE = 1
+	private string playerName;
+
+	void OnJoinedRoom(){
+		chooseName.SetActive(true);
+	}
+
+
+	public void OnNameChosen(string pname){
+		playerName = pname;
+		chooseName.SetActive(false);
+		chooseTeam.SetActive(true);
+	}
+
+	public void OnTeamChosen(int tnum){
+		teamNum = tnum;
+		chooseTeam.SetActive(false);
+		spawnPlayer();
+	}
+
+
+	private void spawnPlayer(){
+		playerNum = playercount++;
+		
 		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", transform.position + Vector3.right * playerNum * 3f, Quaternion.identity, 0);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
-
-		Transform attachObj = newPlayerObject.FindInChildren(attachName).transform ?? newPlayerObject.transform;
-
+		
+		Transform attachObj = newPlayerObject.FindInChildren("Head").transform ?? newPlayerObject.transform;
+		
 		cameraObject.transform.parent = newPlayerObject.transform;
 		cameraObject.transform.rotation = Quaternion.identity;
 		//cameraObject.transform.localPosition = cameraAttachPos;
@@ -27,10 +53,17 @@ public class PlayerSpawn : MonoBehaviour {
 		//Debug.Log ("CONNECTED");
 
 
+		SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
+
+
+		GameObject CTFC = newPlayerObject.FindInChildren("CTF_comp");
+		CTFCarrier ctfc = CTFC.GetComponent<CTFCarrier>();
+		ctfc.name = playerName;
+		ctfc.team = teamNum;
+
 		softParent sp = cameraObject.AddComponent<softParent>();
 		sp.parent = attachObj;
-
-		//newPlayerObject.FindInChildren("GuyHead").layer = LayerMask.NameToLayer("head");
 
 	}
 }
