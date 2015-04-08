@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CTFCarrier : MonoBehaviour {
 
+	public int team = 0;
+	public string name = "DICKBUTT";
 	private bool hasFlag = false;
+
+	public Text nameTag;
 
 	public bool HasFlag { get { return hasFlag; } }
 
@@ -13,11 +18,7 @@ public class CTFCarrier : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tr = GetComponent<TrailRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		nameTag.text = name;
 	}
 
 	void OnFlagPickup(CTFFlag flag) {
