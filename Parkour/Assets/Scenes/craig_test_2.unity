@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564a25d25722ea5499de8d9ca0b326ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 1
   flag1slot: {fileID: 1746246927}
   flag2slot: {fileID: 144530105}
 --- !u!23 &110370812
@@ -3197,8 +3198,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214755655}
-  m_LocalRotation: {x: 0, y: .628806353, z: 0, w: .777562022}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: .105734207, y: .69915688, z: -.105734244, w: .699156761}
+  m_LocalPosition: {x: -103.5, y: 9.30000019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2010535681}
@@ -5911,19 +5912,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: viewIdField
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11427258, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+    - target: {fileID: 11426898, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
@@ -7972,6 +7973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564a25d25722ea5499de8d9ca0b326ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
   flag1slot: {fileID: 2034197609}
   flag2slot: {fileID: 1784788439}
 --- !u!23 &2041478844

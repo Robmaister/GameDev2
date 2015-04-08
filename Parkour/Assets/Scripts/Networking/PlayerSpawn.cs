@@ -59,12 +59,12 @@ public class PlayerSpawn : MonoBehaviour {
 
 
 		SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
-		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyHead").GetComponent<SkinnedMeshRenderer>();
 
 
 		GameObject CTFC = newPlayerObject.FindInChildren("CTF_comp");
 		CTFCarrier ctfc = CTFC.GetComponent<CTFCarrier>();
-		ctfc.name = playerName;
+		ctfc.pname = playerName;
 		ctfc.team = teamNum;
 
 		softParent sp = cameraObject.AddComponent<softParent>();

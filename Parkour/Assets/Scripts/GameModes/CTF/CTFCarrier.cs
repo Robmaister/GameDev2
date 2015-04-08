@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CTFCarrier : MonoBehaviour {
 
 	public int team = 0;
-	public string name = "DICKBUTT";
+	public string pname = "DICKBUTT";
 	private bool hasFlag = false;
 
 	public Text nameTag;
@@ -18,7 +18,7 @@ public class CTFCarrier : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tr = GetComponent<TrailRenderer>();
-		nameTag.text = name;
+		nameTag.text = pname;
 	}
 
 	void OnFlagPickup(CTFFlag flag) {

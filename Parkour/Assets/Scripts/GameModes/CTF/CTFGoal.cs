@@ -6,6 +6,8 @@ public class CTFGoal : MonoBehaviour {
 	bool collected1 = false;
 	bool collected2 = false;
 
+	public int team = 0;
+
 
 	public Transform flag1slot, flag2slot;
 
@@ -34,7 +36,7 @@ public class CTFGoal : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player") {
 			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
-			if (carrier != null && carrier.HasFlag) {
+			if (carrier != null && carrier.team == team && carrier.HasFlag) {
 
 				if(!collected1){
 					collected1 = true;
