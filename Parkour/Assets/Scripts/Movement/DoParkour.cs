@@ -243,4 +243,16 @@ public class DoParkour : MonoBehaviour {
 
 		//if arms and top --> apply upwards force
 	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.tag == "Player") {
+			if(pkc.controller.enabled && col.collider.enabled){
+				Physics.IgnoreCollision(pkc.controller, col.collider);
+			}
+			
+			if(tackling){
+				col.gameObject.BroadcastMessage("OnFlagDrop");
+			}
+		}
+	}
 }
