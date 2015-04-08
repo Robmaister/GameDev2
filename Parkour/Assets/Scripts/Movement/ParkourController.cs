@@ -364,7 +364,7 @@ public class ParkourController : MonoBehaviour {
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
 
 		if (controller.isGrounded){
-			anim.SetBool("jumping",false);
+			//anim.SetBool("jumping",false);
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		}
 			else {
@@ -381,14 +381,20 @@ public class ParkourController : MonoBehaviour {
 			}
 
 			velocity.y = controller.velocity.y - gravity * Time.deltaTime;
+			if (velocity.y<0){
+				anim.SetTrigger("falling");
+			}
 			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
 
 		}
 		if (inputJump.Pressed) {
+				anim.SetTrigger("jumping");
+			
 			if (controller.isGrounded) {//can jump off ground
-				anim.SetBool("jumping",true);
+				anim.SetTrigger("landing");
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;
+
 				lastInputMoveDirection = inputMoveDirection;
 			}
 			else if(can_jump){//if can jump off a jumpable surface
@@ -396,6 +402,7 @@ public class ParkourController : MonoBehaviour {
 				lastInputMoveDirection = inputMoveDirection;
 				can_jump = false;
 				inputJump.Pressed = false;
+				//anim.SetBool ("jumping",false);
 			}
 		}		
 		return velocity;
