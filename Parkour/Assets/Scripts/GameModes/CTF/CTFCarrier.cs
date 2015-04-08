@@ -15,9 +15,20 @@ public class CTFCarrier : MonoBehaviour {
 
 	private TrailRenderer tr;
 
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			stream.SendNext(team);
+			stream.SendNext(pname);
+		}
+		else {
+			team = (int)stream.ReceiveNext();
+			pname = (string)stream.ReceiveNext();
+			nameTag.text = pname;
+		}
+	}
+
 	void Start () {
 		tr = GetComponent<TrailRenderer>();
-		nameTag.text = pname;
 	}
 
 	void OnFlagPickup(CTFFlag flag) {
