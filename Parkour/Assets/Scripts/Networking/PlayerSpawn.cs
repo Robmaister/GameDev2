@@ -61,11 +61,16 @@ public class PlayerSpawn : MonoBehaviour {
 		SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
 		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyHead").GetComponent<SkinnedMeshRenderer>();
 
+		Transform headTarget = newPlayerObject.FindInChildren("HeadTarget").transform;
 
 		GameObject CTFC = newPlayerObject.FindInChildren("CTF_comp");
 		CTFCarrier ctfc = CTFC.GetComponent<CTFCarrier>();
 		ctfc.pname = playerName;
 		ctfc.team = teamNum;
+
+
+		headTarget.parent = cameraObject.transform;
+		headTarget.localPosition = newPlayerObject.transform.forward*10;
 
 		softParent sp = cameraObject.AddComponent<softParent>();
 		sp.parent = attachObj;
