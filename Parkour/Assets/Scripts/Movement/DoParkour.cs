@@ -78,7 +78,7 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 		//hang from ledge
-		if(pkc.inputHands.Pressed && !pkc.controller.isGrounded){
+		if(pkc.inputHands.Pressed){// && !pkc.controller.isGrounded){
 			//if(pkc.armState == (SurfaceType.side | SurfaceType.top)){
 			if(pkc.current_ledge_object != null){
 				//if player arms are on top and side, begin to hang
