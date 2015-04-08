@@ -1320,6 +1320,7 @@ GameObject:
   - 4: {fileID: 415004}
   - 96: {fileID: 9665316}
   - 114: {fileID: 11430870}
+  - 114: {fileID: 11489202}
   m_Layer: 0
   m_Name: CTF_comp
   m_TagString: Player
@@ -3779,18 +3780,6 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 0
-    Name: jumping
-  - Type: 9
-    SynchronizeType: 0
-    Name: grabbing
-  - Type: 9
-    SynchronizeType: 0
-    Name: onTop
-  - Type: 9
-    SynchronizeType: 0
-    Name: letGo
   - Type: 9
     SynchronizeType: 0
     Name: tackle
@@ -3960,6 +3949,31 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 123456789012
+--- !u!114 &11489202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 1
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 11430870}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11494774
 MonoBehaviour:
   m_ObjectHideFlags: 1
