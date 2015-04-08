@@ -442,15 +442,6 @@ public class ParkourController : MonoBehaviour {
 				}
 			}
 		}
-		else if (col.gameObject.tag == "Player") {
-			try{
-				Physics.IgnoreCollision(controller, col.collider);
-			}catch{
-			}
-			if(controller.velocity.sqrMagnitude > col.gameObject.GetComponent<ParkourController>().controller.velocity.sqrMagnitude){
-				col.gameObject.BroadcastMessage("OnFlagDrop");
-			}
-		}
 	}
 
 	void OnCollisionStay(Collision col){

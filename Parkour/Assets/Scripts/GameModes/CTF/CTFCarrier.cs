@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class CTFCarrier : MonoBehaviour {
-
 	public int team = 0;
 	public string pname = "DICKBUTT";
 	private bool hasFlag = false;
@@ -15,10 +14,25 @@ public class CTFCarrier : MonoBehaviour {
 	private GameObject flagobj;
 
 	private TrailRenderer tr;
-	// Use this for initialization
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			stream.SendNext(team);
+			stream.SendNext(pname);
+			stream.SendNext(hasFlag);
+		}
+		else {
+			team = (int)stream.ReceiveNext();
+			pname = (string)stream.ReceiveNext();
+			hasFlag = (bool)stream.ReceiveNext();
+
+			nameTag.text = pname;
+			tr.enabled = hasFlag;
+		}
+	}
+
 	void Start () {
 		tr = GetComponent<TrailRenderer>();
-		nameTag.text = pname;
 	}
 
 	void OnFlagPickup(CTFFlag flag) {

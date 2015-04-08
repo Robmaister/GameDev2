@@ -207,27 +207,19 @@ public class DoParkour : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.E)){
 			if(!tackling){
 				tackling = true;
-				print("tackling");
+				//print("tackling");
 				pkc.apply_forces = false;
 				//pkc.canControl = false;
 				anim.SetTrigger("tackle");
+				pkc.controller.height = .5f;
 
-
-
-				/*Func<bool> checkfunc = delegate {
-					if(pkc.controller.isGrounded){
-						return true;
-					}
-					return false;
-				};*/
-
-				Action endfunc = delegate {
+				pkc.addImpulse(transform.forward * 10,0.05f);
+			}else{
+				if(pkc.controller.isGrounded){
 					tackling = false;
 					pkc.apply_forces = true;
-					//pkc.canControl = true;
-				};
-
-				pkc.addImpulse(transform.forward * 10,0.05f,endfunc:endfunc);
+					pkc.controller.height = 1.5f;
+				}
 			}
 		}
 
@@ -242,5 +234,19 @@ public class DoParkour : MonoBehaviour {
 
 
 		//if arms and top --> apply upwards force
+	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.tag == "Player") {
+			print("COLLIDING WITH PLAYER");
+			if(pkc.controller.enabled && col.collider.enabled){
+				Physics.IgnoreCollision(pkc.controller, col.collider);
+			}
+			
+			if(tackling){
+				print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
+				col.gameObject.BroadcastMessage("OnFlagDrop");
+			}
+		}
 	}
 }
