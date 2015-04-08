@@ -19,11 +19,15 @@ public class CTFCarrier : MonoBehaviour {
 		if (stream.isWriting) {
 			stream.SendNext(team);
 			stream.SendNext(pname);
+			stream.SendNext(hasFlag);
 		}
 		else {
 			team = (int)stream.ReceiveNext();
 			pname = (string)stream.ReceiveNext();
+			hasFlag = (bool)stream.ReceiveNext();
+
 			nameTag.text = pname;
+			tr.enabled = hasFlag;
 		}
 	}
 
