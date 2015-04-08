@@ -14,6 +14,9 @@ public class PlayerSpawn : MonoBehaviour {
 	public GameObject chooseName;//UI element to handle name choosing
 	public GameObject chooseTeam;//UI element to handle team selection
 
+	public Transform redSpawn;
+	public Transform blueSpawn;
+
 	private static int playercount;
 
 	private int playerNum;
@@ -40,8 +43,10 @@ public class PlayerSpawn : MonoBehaviour {
 
 	private void spawnPlayer(){
 		playerNum = playercount++;
+
+		Vector3 spawnpoint = (teamNum == 0) ? redSpawn.position : blueSpawn.position;
 		
-		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", transform.position + Vector3.right * playerNum * 3f, Quaternion.identity, 0);
+		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", spawnpoint, Quaternion.identity, 0);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
 		
 		Transform attachObj = newPlayerObject.FindInChildren("Head").transform ?? newPlayerObject.transform;
