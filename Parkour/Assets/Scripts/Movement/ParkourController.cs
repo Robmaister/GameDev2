@@ -256,7 +256,7 @@ public class ParkourController : MonoBehaviour {
 		//have to do this every frame because unity 5
 		//Cursor.visible = false;
 
-		if(photonView.isMine()){
+		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
