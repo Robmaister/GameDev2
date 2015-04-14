@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+
 public class DoParkour : MonoBehaviour {
 	//actually do the parkour of the player
 
@@ -173,7 +174,7 @@ public class DoParkour : MonoBehaviour {
 				if(!vaulting){
 					vaulting = true;
 
-					pkc.controller.height = 0;
+					pkc.controller.height = .5f;
 
 					Func<bool> checkfunc = delegate {
 						if(pkc.controller.isGrounded){
@@ -204,8 +205,9 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.E)){
-			if(!tackling){
+
+		if(!tackling){
+			if(Input.GetKeyDown(KeyCode.E)){
 				tackling = true;
 				//print("tackling");
 				pkc.apply_forces = false;
@@ -214,13 +216,17 @@ public class DoParkour : MonoBehaviour {
 				pkc.controller.height = .5f;
 
 				pkc.addImpulse(transform.forward * 10,0.05f);
-			}else{
-				if(pkc.controller.isGrounded){
+			}
+		}else{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("GetUp") ){
+
+				pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+				if(pkc.controller.height == 1.5f){
 					tackling = false;
 					pkc.apply_forces = true;
-					pkc.controller.height = 1.5f;
 				}
 			}
+				
 		}
 
 		/*if(vaulting){
@@ -235,6 +241,7 @@ public class DoParkour : MonoBehaviour {
 
 		//if arms and top --> apply upwards force
 	}
+
 
 	void OnCollisionEnter(Collision col){
 		if (col.gameObject.tag == "Player") {
