@@ -136,7 +136,7 @@ MonoBehaviour:
   SecondsBeforeRespawn: -1
   PickupOnTrigger: 0
   PickupIsMine: 0
-  OnPickedUpCall: {fileID: 0}
+  OnPickedUpCall: {fileID: 11421070}
   SentPickup: 0
   TimeOfRespawn: 0
 --- !u!114 &11429792
@@ -165,7 +165,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
