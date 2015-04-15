@@ -8,6 +8,8 @@ public class CTFGoal : MonoBehaviour {
 
 	public int team = 0;
 
+	public int flagcount = 0;
+
 
 	public Transform flag1slot, flag2slot;
 	private PickupItem flagobj1, flagobj2;
@@ -20,9 +22,11 @@ public class CTFGoal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//if (collected1 || collected2) {
-		//	GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
-		//}
+
+		int t1 = collected1 ? 1 : 0;
+		int t2 = collected2 ? 1 : 0;
+		flagcount = t1 + t2;
+
 
 		if (collected1 && collected2){
 			//win condition

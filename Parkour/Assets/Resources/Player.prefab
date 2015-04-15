@@ -3867,6 +3867,7 @@ MonoBehaviour:
   team: 0
   pname: DICKBUTT
   nameTag: {fileID: 11485974}
+  flagobj: {fileID: 0}
 --- !u!114 &11431364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3895,6 +3896,10 @@ MonoBehaviour:
   currentEdge_right: {x: 0, y: 0, z: 0}
   current_hang_point: {x: 0, y: 0, z: 0}
   current_ledge_object: {fileID: 0}
+  sprinting: 0
+  stamina: 1
+  drainRate: .5
+  staminaBar: {fileID: 0}
   vtxt: {fileID: 0}
   otxt: {fileID: 0}
   ptxt: {fileID: 0}

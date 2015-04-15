@@ -19,8 +19,11 @@ public class ParkourController : MonoBehaviour {
 
 	public bool canControl = true;
 
+
 	public float maxSpeed = 10f;
+	private float origMaxSpeed = 10f;
 	public float maxAcceleration = 20f;
+	private float origMaxAcceleration = 20f;
 	public float gravity = 10f;
 	public float jumpHeight = 1f;
 
@@ -44,6 +47,16 @@ public class ParkourController : MonoBehaviour {
 
 	//------------------
 
+	//sprint system
+
+	public bool sprinting = false;
+
+	public float stamina = 1f; //this should always be in the range [0,1]
+
+	public float drainRate = 1f;//rate at which stamina is drained
+
+	public Image staminaBar;
+
 
 
 
@@ -64,6 +77,7 @@ public class ParkourController : MonoBehaviour {
 	public IInput inputJump;
 	public IInput inputHands;
 	public IInput inputFeet;
+	public IInput inputSprint;
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
@@ -208,6 +222,10 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
+		origMaxSpeed = maxSpeed; // for sprinting logic
+		origMaxAcceleration = maxAcceleration;
+
 		anim = GetComponentInChildren<Animator>();
 		controller = GetComponent<CharacterController>();
 		photonView = GetComponent<PhotonView>();
@@ -219,6 +237,7 @@ public class ParkourController : MonoBehaviour {
 			inputJump = new NetworkInput();
 			inputHands = new NetworkInput();
 			inputFeet = new NetworkInput();
+			inputSprint = new NetworkInput();
 			controller.enabled = false;
 			canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
@@ -230,12 +249,30 @@ public class ParkourController : MonoBehaviour {
 			inputJump = new LooseInput("Jump",.2f,true);
 			inputHands = new LooseInput("Fire1",.2f);
 			inputFeet = new LooseInput("Fire2",.2f);
+			inputSprint = new LooseInput("Sprint",.2f);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons 
+
+		//if(inputSprint.Pressed){ // doesn't work??
+		if(Input.GetKey(KeyCode.LeftShift)){
+			stamina -= drainRate * Time.deltaTime;
+			stamina = stamina < 0 ? 0 : stamina;
+			staminaBar.fillAmount = stamina;
+			maxSpeed = origMaxSpeed * 1.5f;
+			maxAcceleration = origMaxAcceleration * 2f;
+		
+		}else{
+			stamina += drainRate/5 * Time.deltaTime;
+			stamina = stamina > 1 ? 1 : stamina;
+			staminaBar.fillAmount = stamina;
+			maxSpeed = origMaxSpeed;
+			maxAcceleration = origMaxAcceleration;
+		}
+		//Debug.Log("stamina: " + stamina);
 
 		float inputH, inputV;
 		if (photonView != null && !photonView.isMine) {

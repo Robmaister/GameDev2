@@ -10,6 +10,7 @@ public class PlayerSpawn : MonoBehaviour {
 	//public Vector3 cameraAttachPos;
 	//public Quaternion cameraAttachRot;
 
+	public Image staminaBar;//UI element to display stamina
 
 	public GameObject chooseName;//UI element to handle name choosing
 	public GameObject chooseTeam;//UI element to handle team selection
@@ -74,6 +75,8 @@ public class PlayerSpawn : MonoBehaviour {
 
 		softParent sp = cameraObject.AddComponent<softParent>();
 		sp.parent = attachObj;
+
+		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
 
 	}
 }
