@@ -173,6 +173,7 @@ public class DoParkour : MonoBehaviour {
 			if((pkc.armState & SurfaceType.top) != 0){
 				if(!vaulting){
 					vaulting = true;
+					anim.SetTrigger("vaulting");
 
 					pkc.controller.height = .5f;
 
