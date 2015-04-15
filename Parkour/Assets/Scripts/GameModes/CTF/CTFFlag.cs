@@ -5,7 +5,7 @@ using System.Collections;
 public class CTFFlag : MonoBehaviour {
 
 	private CTFCarrier carrier = null;
-	private SphereCollider spc;
+	private Collider spc;
 	private Rigidbody rb;
 
 	void Awake(){
