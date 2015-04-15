@@ -9,10 +9,14 @@ ModelImporter:
     100002: Camera
     100004: Lamp
     100006: Sphere
+    100008: Camera.001
+    100010: Lamp.001
     400000: //RootNode
     400002: Camera
     400004: Lamp
     400006: Sphere
+    400008: Camera.001
+    400010: Lamp.001
     2300000: Sphere
     3300000: Sphere
     4300000: Sphere

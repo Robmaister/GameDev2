@@ -3,29 +3,55 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class CTFCarrier : MonoBehaviour {
-
 	public int team = 0;
-	public string name = "DICKBUTT";
+	public string pname = "DICKBUTT";
 	private bool hasFlag = false;
 
 	public Text nameTag;
 
 	public bool HasFlag { get { return hasFlag; } }
 
-	private GameObject flagobj;
+	public GameObject flagobj;
 
 	private TrailRenderer tr;
-	// Use this for initialization
-	void Start () {
-		tr = GetComponent<TrailRenderer>();
-		nameTag.text = name;
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			stream.SendNext(team);
+			stream.SendNext(pname);
+			stream.SendNext(hasFlag);
+		}
+		else {
+			team = (int)stream.ReceiveNext();
+			pname = (string)stream.ReceiveNext();
+			hasFlag = (bool)stream.ReceiveNext();
+
+			nameTag.text = pname;
+			tr.enabled = hasFlag;
+		}
 	}
 
-	void OnFlagPickup(CTFFlag flag) {
-		print("picked up flag");
-		hasFlag = true;
-		tr.enabled = true;
-		flagobj = flag.gameObject;
+	void Start () {
+		tr = GetComponent<TrailRenderer>();
+	}
+
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.R)){
+			OnFlagDrop();
+		}
+	}
+
+	public void OnPickedUp(PickupItem item){
+		Debug.Log("carrierscript: " + item.PickupIsMine);
+		if (item.PickupIsMine){
+			Debug.Log("Picked up flag");
+			hasFlag = true;
+			tr.enabled = true;
+			flagobj = item.gameObject;
+		}
+		else{
+			Debug.Log("Someone else picked the flag up");
+		}
 	}
 
 	void OnFlagDrop(){
@@ -33,10 +59,11 @@ public class CTFCarrier : MonoBehaviour {
 		hasFlag = false;
 		tr.enabled = false;
 		if(flagobj != null){
-			flagobj.transform.position = transform.position;
+			flagobj.GetComponent<PickupItem>().Drop(transform.position);
 			flagobj.SetActive(true);
 			print("dropping flag");
 			flagobj = null;
+
 		}
 
 	}
@@ -45,7 +72,7 @@ public class CTFCarrier : MonoBehaviour {
 		//store flag in base
 		hasFlag = false;
 		tr.enabled = false;
-		flagobj.transform.position = pos;
+		flagobj.GetComponent<PickupItem>().Drop(pos);
 		flagobj.SetActive(true);
 		flagobj.GetComponent<Collider>().enabled = false;
 		flagobj.GetComponent<Rigidbody>().isKinematic = true;

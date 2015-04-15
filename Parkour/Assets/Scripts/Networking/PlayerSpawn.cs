@@ -10,9 +10,13 @@ public class PlayerSpawn : MonoBehaviour {
 	//public Vector3 cameraAttachPos;
 	//public Quaternion cameraAttachRot;
 
+	public Image staminaBar;//UI element to display stamina
 
 	public GameObject chooseName;//UI element to handle name choosing
 	public GameObject chooseTeam;//UI element to handle team selection
+
+	public Transform redSpawn;
+	public Transform blueSpawn;
 
 	private static int playercount;
 
@@ -40,8 +44,10 @@ public class PlayerSpawn : MonoBehaviour {
 
 	private void spawnPlayer(){
 		playerNum = playercount++;
+
+		Vector3 spawnpoint = (teamNum == 0) ? redSpawn.position : blueSpawn.position;
 		
-		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", transform.position + Vector3.right * playerNum * 3f, Quaternion.identity, 0);
+		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", spawnpoint, Quaternion.identity, 0);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
 		
 		Transform attachObj = newPlayerObject.FindInChildren("Head").transform ?? newPlayerObject.transform;
@@ -54,16 +60,23 @@ public class PlayerSpawn : MonoBehaviour {
 
 
 		SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
-		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyHead").GetComponent<SkinnedMeshRenderer>();
 
+		Transform headTarget = newPlayerObject.FindInChildren("HeadTarget").transform;
 
 		GameObject CTFC = newPlayerObject.FindInChildren("CTF_comp");
 		CTFCarrier ctfc = CTFC.GetComponent<CTFCarrier>();
-		ctfc.name = playerName;
+		ctfc.pname = playerName;
 		ctfc.team = teamNum;
+
+
+		headTarget.parent = cameraObject.transform;
+		headTarget.localPosition = newPlayerObject.transform.forward*10;
 
 		softParent sp = cameraObject.AddComponent<softParent>();
 		sp.parent = attachObj;
+
+		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
 
 	}
 }

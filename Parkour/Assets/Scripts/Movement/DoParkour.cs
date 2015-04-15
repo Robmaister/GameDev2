@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+
 public class DoParkour : MonoBehaviour {
 	//actually do the parkour of the player
 
@@ -78,7 +79,7 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 		//hang from ledge
-		if(pkc.inputHands.Pressed && !pkc.controller.isGrounded){
+		if(pkc.inputHands.Pressed){// && !pkc.controller.isGrounded){
 			//if(pkc.armState == (SurfaceType.side | SurfaceType.top)){
 			if(pkc.current_ledge_object != null){
 				//if player arms are on top and side, begin to hang
@@ -172,8 +173,9 @@ public class DoParkour : MonoBehaviour {
 			if((pkc.armState & SurfaceType.top) != 0){
 				if(!vaulting){
 					vaulting = true;
+					anim.SetTrigger("vaulting");
 
-					pkc.controller.height = 0;
+					pkc.controller.height = .5f;
 
 					Func<bool> checkfunc = delegate {
 						if(pkc.controller.isGrounded){
@@ -204,31 +206,28 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.E)){
-			if(!tackling){
+
+		if(!tackling){
+			if(Input.GetKeyDown(KeyCode.E)){
 				tackling = true;
-				print("tackling");
+				//print("tackling");
 				pkc.apply_forces = false;
 				//pkc.canControl = false;
 				anim.SetTrigger("tackle");
+				pkc.controller.height = .5f;
 
+				pkc.addImpulse(transform.forward * 10,0.05f);
+			}
+		}else{
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("GetUp") ){
 
-
-				/*Func<bool> checkfunc = delegate {
-					if(pkc.controller.isGrounded){
-						return true;
-					}
-					return false;
-				};*/
-
-				Action endfunc = delegate {
+				pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+				if(pkc.controller.height == 1.5f){
 					tackling = false;
 					pkc.apply_forces = true;
-					//pkc.canControl = true;
-				};
-
-				pkc.addImpulse(transform.forward * 10,0.05f,endfunc:endfunc);
+				}
 			}
+				
 		}
 
 		/*if(vaulting){
@@ -242,5 +241,20 @@ public class DoParkour : MonoBehaviour {
 
 
 		//if arms and top --> apply upwards force
+	}
+
+
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.tag == "Player") {
+			print("COLLIDING WITH PLAYER");
+			if(pkc.controller.enabled && col.collider.enabled){
+				Physics.IgnoreCollision(pkc.controller, col.collider);
+			}
+			
+			if(tackling){
+				print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
+				col.gameObject.BroadcastMessage("OnFlagDrop");
+			}
+		}
 	}
 }

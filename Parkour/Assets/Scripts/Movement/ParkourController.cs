@@ -19,8 +19,11 @@ public class ParkourController : MonoBehaviour {
 
 	public bool canControl = true;
 
+
 	public float maxSpeed = 10f;
+	private float origMaxSpeed = 10f;
 	public float maxAcceleration = 20f;
+	private float origMaxAcceleration = 20f;
 	public float gravity = 10f;
 	public float jumpHeight = 1f;
 
@@ -44,6 +47,16 @@ public class ParkourController : MonoBehaviour {
 
 	//------------------
 
+	//sprint system
+
+	public bool sprinting = false;
+
+	public float stamina = 1f; //this should always be in the range [0,1]
+
+	public float drainRate = 1f;//rate at which stamina is drained
+
+	public Image staminaBar;
+
 
 
 
@@ -64,6 +77,7 @@ public class ParkourController : MonoBehaviour {
 	public IInput inputJump;
 	public IInput inputHands;
 	public IInput inputFeet;
+	public IInput inputSprint;
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
@@ -208,6 +222,10 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
+		origMaxSpeed = maxSpeed; // for sprinting logic
+		origMaxAcceleration = maxAcceleration;
+
 		anim = GetComponentInChildren<Animator>();
 		controller = GetComponent<CharacterController>();
 		photonView = GetComponent<PhotonView>();
@@ -219,6 +237,7 @@ public class ParkourController : MonoBehaviour {
 			inputJump = new NetworkInput();
 			inputHands = new NetworkInput();
 			inputFeet = new NetworkInput();
+			inputSprint = new NetworkInput();
 			controller.enabled = false;
 			canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
@@ -230,12 +249,30 @@ public class ParkourController : MonoBehaviour {
 			inputJump = new LooseInput("Jump",.2f,true);
 			inputHands = new LooseInput("Fire1",.2f);
 			inputFeet = new LooseInput("Fire2",.2f);
+			inputSprint = new LooseInput("Sprint",.2f);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons 
+
+		//if(inputSprint.Pressed){ // doesn't work??
+		if(Input.GetKey(KeyCode.LeftShift)){
+			stamina -= drainRate * Time.deltaTime;
+			stamina = stamina < 0 ? 0 : stamina;
+			staminaBar.fillAmount = stamina;
+			maxSpeed = origMaxSpeed * 1.5f;
+			maxAcceleration = origMaxAcceleration * 2f;
+		
+		}else{
+			stamina += drainRate/5 * Time.deltaTime;
+			stamina = stamina > 1 ? 1 : stamina;
+			staminaBar.fillAmount = stamina;
+			maxSpeed = origMaxSpeed;
+			maxAcceleration = origMaxAcceleration;
+		}
+		//Debug.Log("stamina: " + stamina);
 
 		float inputH, inputV;
 		if (photonView != null && !photonView.isMine) {
@@ -255,7 +292,10 @@ public class ParkourController : MonoBehaviour {
 
 		//have to do this every frame because unity 5
 		//Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+
+		if(photonView.isMine){
+			Cursor.lockState = CursorLockMode.Locked;
+		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			//Application.Quit();
@@ -378,14 +418,28 @@ public class ParkourController : MonoBehaviour {
 			}
 
 			velocity.y = controller.velocity.y - gravity * Time.deltaTime;
+			if (velocity.y<0 ){
+				anim.SetBool("falling",true);
+				anim.SetBool("jumping",false);
+			}
+			anim.SetFloat("fallingSpeed",-velocity.y);
 			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
 
 		}
 		if (inputJump.Pressed) {
+			anim.SetBool("jumping",true);
+			
+
+			
+			
 			if (controller.isGrounded) {//can jump off ground
-				anim.SetBool("jumping",true);
+				anim.SetBool("falling", false);
+				
+				anim.SetTrigger("landing");
+				//anim.Play("Landing");
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;
+
 				lastInputMoveDirection = inputMoveDirection;
 			}
 			else if(can_jump){//if can jump off a jumpable surface
@@ -393,8 +447,10 @@ public class ParkourController : MonoBehaviour {
 				lastInputMoveDirection = inputMoveDirection;
 				can_jump = false;
 				inputJump.Pressed = false;
+				//anim.SetBool ("jumping",false);
 			}
-		}		
+		}	
+
 		return velocity;
 	}
 
@@ -437,12 +493,6 @@ public class ParkourController : MonoBehaviour {
 						legState |= s;
 					}
 				}
-			}
-		}
-		else if (col.gameObject.tag == "Player") {
-			Physics.IgnoreCollision(controller, col.collider);
-			if(controller.velocity.sqrMagnitude > col.gameObject.GetComponent<ParkourController>().controller.velocity.sqrMagnitude){
-				col.gameObject.BroadcastMessage("OnFlagDrop");
 			}
 		}
 	}
