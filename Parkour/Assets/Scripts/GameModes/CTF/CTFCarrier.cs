@@ -11,7 +11,7 @@ public class CTFCarrier : MonoBehaviour {
 
 	public bool HasFlag { get { return hasFlag; } }
 
-	private GameObject flagobj;
+	public GameObject flagobj;
 
 	private TrailRenderer tr;
 

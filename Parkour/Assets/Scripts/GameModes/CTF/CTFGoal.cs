@@ -10,6 +10,7 @@ public class CTFGoal : MonoBehaviour {
 
 
 	public Transform flag1slot, flag2slot;
+	private PickupItem flagobj1, flagobj2;
 
 
 	// Use this for initialization
@@ -36,25 +37,45 @@ public class CTFGoal : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player") {
 			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
-			if (carrier != null && carrier.team == team && carrier.HasFlag) {
+			if (carrier != null && carrier.team == team && carrier.HasFlag) {//only friendlies can place it in the flag
 
 				if(!collected1){
 					collected1 = true;
 					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
+					flagobj1 = carrier.GetComponent<PickupItem>();
 					return;
 				}else{
 					if(!collected2){
 						collected2 = true;
 						carrier.SendMessage("OnFlagCapture",flag2slot.position); 
+						flagobj2 = carrier.GetComponent<PickupItem>();
 						return;
 					}
 				}
-
-
-
-
-
 			}
+
+			if (carrier != null && carrier.team != team && !carrier.HasFlag) {//only enemies can steal flag
+				
+				if(collected1){
+					collected1 = false;
+					flagobj1.Drop(transform.position);
+					carrier.SendMessage("OnPickedUp",flagobj1);
+					return;
+				}else{
+					if(collected2){
+						collected2 = false;
+						flagobj2.Drop(transform.position);
+						carrier.SendMessage("OnPickedUp",flagobj2);
+						return;
+					}
+				}
+			}
+
+
+
+
+
+
 		}
 	}
 }
