@@ -25,7 +25,7 @@ public class CTFFlag : MonoBehaviour {
 	}
 
 	public void OnPickedUp(PickupItem item){
-		Debug.Log("flagscript: " + item.PickupIsMine);
+		//Debug.Log("flagscript: " + item.PickupIsMine);
 		carrier.SendMessage("OnPickedUp", item); 
 	}
 
