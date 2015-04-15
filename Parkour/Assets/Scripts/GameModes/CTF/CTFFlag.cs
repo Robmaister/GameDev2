@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(PickupItem))]
 public class CTFFlag : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	private CTFCarrier carrier = null;
+
+	public void OnPickedUp(PickupItem item){
+		Debug.Log("flagscript: " + item.PickupIsMine);
+		carrier.SendMessage("OnPickedUp", item); 
 	}
 
-	void OnTriggerEnter(Collider col) {
-		print(col.name + " entered trigger");
+	void OnTriggerEnter(Collider col) {//check if a player picks up flag
 		if (col.gameObject.tag == "Player") {
-			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
+			carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
 			if (carrier != null && !carrier.HasFlag) {
-				carrier.SendMessage("OnFlagPickup", this); 
-				//Destroy(gameObject);
-				gameObject.SetActive(false);
+				PickupItem pi = GetComponent<PickupItem>();
+				pi.Pickup();
+				//gameObject.SetActive(false);
 			}
 		}
 	}

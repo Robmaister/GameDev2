@@ -36,10 +36,20 @@ public class CTFCarrier : MonoBehaviour {
 	}
 
 	void OnFlagPickup(CTFFlag flag) {
-		print("picked up flag");
-		hasFlag = true;
-		tr.enabled = true;
-		flagobj = flag.gameObject;
+
+	}
+
+	public void OnPickedUp(PickupItem item){
+		Debug.Log("carrierscript: " + item.PickupIsMine);
+		if (item.PickupIsMine){
+			Debug.Log("Picked up flag");
+			hasFlag = true;
+			tr.enabled = true;
+			flagobj = item.gameObject;
+		}
+		else{
+			Debug.Log("Someone else picked the flag up");
+		}
 	}
 
 	void OnFlagDrop(){
@@ -47,10 +57,11 @@ public class CTFCarrier : MonoBehaviour {
 		hasFlag = false;
 		tr.enabled = false;
 		if(flagobj != null){
-			flagobj.transform.position = transform.position;
+			flagobj.GetComponent<PickupItem>().Drop(transform.position);
 			flagobj.SetActive(true);
 			print("dropping flag");
 			flagobj = null;
+
 		}
 
 	}
@@ -59,7 +70,7 @@ public class CTFCarrier : MonoBehaviour {
 		//store flag in base
 		hasFlag = false;
 		tr.enabled = false;
-		flagobj.transform.position = pos;
+		flagobj.GetComponent<PickupItem>().Drop(pos);
 		flagobj.SetActive(true);
 		flagobj.GetComponent<Collider>().enabled = false;
 		flagobj.GetComponent<Rigidbody>().isKinematic = true;
