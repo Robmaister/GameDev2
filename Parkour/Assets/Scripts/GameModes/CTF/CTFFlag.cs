@@ -5,6 +5,20 @@ using System.Collections;
 public class CTFFlag : MonoBehaviour {
 
 	private CTFCarrier carrier = null;
+	private SphereCollider spc;
+
+	void Awake(){
+		spc = GetComponent<SphereCollider>();
+	}
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			stream.SendNext(spc.enabled);
+		}
+		else {
+			spc.enabled = (bool)stream.ReceiveNext();
+		}
+	}
 
 	public void OnPickedUp(PickupItem item){
 		Debug.Log("flagscript: " + item.PickupIsMine);

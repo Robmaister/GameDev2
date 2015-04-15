@@ -35,10 +35,6 @@ public class CTFCarrier : MonoBehaviour {
 		tr = GetComponent<TrailRenderer>();
 	}
 
-	void OnFlagPickup(CTFFlag flag) {
-
-	}
-
 	public void OnPickedUp(PickupItem item){
 		Debug.Log("carrierscript: " + item.PickupIsMine);
 		if (item.PickupIsMine){
