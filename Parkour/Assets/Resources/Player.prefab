@@ -3781,9 +3781,6 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters:
-  - Type: 9
-    SynchronizeType: 0
-    Name: tackle
   - Type: 1
     SynchronizeType: 0
     Name: speed
@@ -3799,6 +3796,18 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: letGo
+  - Type: 9
+    SynchronizeType: 0
+    Name: tackle
+  - Type: 9
+    SynchronizeType: 0
+    Name: landing
+  - Type: 4
+    SynchronizeType: 0
+    Name: falling
+  - Type: 1
+    SynchronizeType: 0
+    Name: fallingSpeed
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
