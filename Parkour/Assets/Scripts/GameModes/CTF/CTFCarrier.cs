@@ -35,6 +35,12 @@ public class CTFCarrier : MonoBehaviour {
 		tr = GetComponent<TrailRenderer>();
 	}
 
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.R)){
+			OnFlagDrop();
+		}
+	}
+
 	public void OnPickedUp(PickupItem item){
 		Debug.Log("carrierscript: " + item.PickupIsMine);
 		if (item.PickupIsMine){

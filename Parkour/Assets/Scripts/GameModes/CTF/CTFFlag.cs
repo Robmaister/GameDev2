@@ -6,17 +6,21 @@ public class CTFFlag : MonoBehaviour {
 
 	private CTFCarrier carrier = null;
 	private SphereCollider spc;
+	private Rigidbody rb;
 
 	void Awake(){
-		spc = GetComponent<SphereCollider>();
+		spc = GetComponent<Collider>();
+		rb = GetComponent<Rigidbody>();
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(spc.enabled);
+			stream.SendNext(rb.isKinematic);
 		}
 		else {
 			spc.enabled = (bool)stream.ReceiveNext();
+			rb.isKinematic = (bool)stream.ReceiveNext();
 		}
 	}
 
