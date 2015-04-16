@@ -20,11 +20,13 @@ public class CTFCarrier : MonoBehaviour {
 			stream.SendNext(team);
 			stream.SendNext(pname);
 			stream.SendNext(hasFlag);
+			stream.SendNext(flagobj);
 		}
 		else {
 			team = (int)stream.ReceiveNext();
 			pname = (string)stream.ReceiveNext();
 			hasFlag = (bool)stream.ReceiveNext();
+			flagobj = (GameObject)stream.ReceiveNext();
 
 			nameTag.text = pname;
 			tr.enabled = hasFlag;
