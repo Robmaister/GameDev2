@@ -401,6 +401,7 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
+		anim.SetBool("isGrounded",controller.isGrounded);
 
 		if (controller.isGrounded){
 			anim.SetBool("jumping",false);
@@ -437,7 +438,7 @@ public class ParkourController : MonoBehaviour {
 			if (controller.isGrounded) {//can jump off ground
 				anim.SetBool("falling", false);
 				
-				anim.SetTrigger("landing");
+				//anim.SetTrigger("landing");
 				//anim.Play("Landing");
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;
