@@ -14,11 +14,14 @@ public class CTFFlag : MonoBehaviour {
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		print("SERIALIZING FLAG");
 		if (stream.isWriting) {
+			print("WRITING FLAG");
 			stream.SendNext(spc.enabled);
 			stream.SendNext(rb.isKinematic);
 		}
 		else {
+			print("RECEIVING FLAG");
 			spc.enabled = (bool)stream.ReceiveNext();
 			rb.isKinematic = (bool)stream.ReceiveNext();
 		}

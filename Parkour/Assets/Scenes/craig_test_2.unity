@@ -1118,6 +1118,12 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300012, guid: d17dff8e2a39c1d46a2d1789d59ef2b2, type: 3}
+--- !u!114 &293607812 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11429792, guid: d2dc07ab3594b2e4a914af9df3db9230,
+    type: 2}
+  m_PrefabInternal: {fileID: 1970560860}
+  m_Script: {fileID: 11500000, guid: 0ea877d9b5541544d85b0739de7b35f8, type: 3}
 --- !u!1 &359483996
 GameObject:
   m_ObjectHideFlags: 0
@@ -6946,6 +6952,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11473764, guid: d2dc07ab3594b2e4a914af9df3db9230, type: 2}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 471570, guid: d2dc07ab3594b2e4a914af9df3db9230, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.36000013
@@ -6990,6 +7000,10 @@ Prefab:
       propertyPath: instantiationId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11473764, guid: d2dc07ab3594b2e4a914af9df3db9230, type: 2}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 293607812}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2dc07ab3594b2e4a914af9df3db9230, type: 2}
   m_IsPrefabParent: 0
@@ -7063,6 +7077,10 @@ Prefab:
     - target: {fileID: 162886, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415380, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_ScaleModel.SynchronizeEnabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
