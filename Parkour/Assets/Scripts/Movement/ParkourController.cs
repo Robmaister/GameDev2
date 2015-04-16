@@ -257,20 +257,22 @@ public class ParkourController : MonoBehaviour {
 	void Update () {
 		getInput();//get input state for buttons 
 
-		//if(inputSprint.Pressed){ // doesn't work??
-		if(Input.GetKey(KeyCode.LeftShift)){
+
+		if(inputSprint.Pressed){
 			stamina -= drainRate * Time.deltaTime;
 			stamina = stamina < 0 ? 0 : stamina;
-			staminaBar.fillAmount = stamina;
 			maxSpeed = origMaxSpeed * 1.5f;
 			maxAcceleration = origMaxAcceleration * 2f;
 		
 		}else{
 			stamina += drainRate/5 * Time.deltaTime;
 			stamina = stamina > 1 ? 1 : stamina;
-			staminaBar.fillAmount = stamina;
 			maxSpeed = origMaxSpeed;
 			maxAcceleration = origMaxAcceleration;
+		}
+
+		if(staminaBar != null){
+			staminaBar.fillAmount = stamina;
 		}
 		//Debug.Log("stamina: " + stamina);
 
