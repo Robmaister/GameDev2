@@ -7064,6 +7064,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11415380, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_ScaleModel.SynchronizeEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
   m_IsPrefabParent: 0

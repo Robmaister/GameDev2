@@ -257,20 +257,22 @@ public class ParkourController : MonoBehaviour {
 	void Update () {
 		getInput();//get input state for buttons 
 
-		//if(inputSprint.Pressed){ // doesn't work??
-		if(Input.GetKey(KeyCode.LeftShift)){
+
+		if(inputSprint.Pressed){
 			stamina -= drainRate * Time.deltaTime;
 			stamina = stamina < 0 ? 0 : stamina;
-			staminaBar.fillAmount = stamina;
 			maxSpeed = origMaxSpeed * 1.5f;
 			maxAcceleration = origMaxAcceleration * 2f;
 		
 		}else{
 			stamina += drainRate/5 * Time.deltaTime;
 			stamina = stamina > 1 ? 1 : stamina;
-			staminaBar.fillAmount = stamina;
 			maxSpeed = origMaxSpeed;
 			maxAcceleration = origMaxAcceleration;
+		}
+
+		if(staminaBar != null){
+			staminaBar.fillAmount = stamina;
 		}
 		//Debug.Log("stamina: " + stamina);
 
@@ -295,6 +297,7 @@ public class ParkourController : MonoBehaviour {
 
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
@@ -399,6 +402,7 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
+		anim.SetBool("isGrounded",controller.isGrounded);
 
 		if (controller.isGrounded){
 			anim.SetBool("jumping",false);
@@ -435,7 +439,7 @@ public class ParkourController : MonoBehaviour {
 			if (controller.isGrounded) {//can jump off ground
 				anim.SetBool("falling", false);
 				
-				anim.SetTrigger("landing");
+				//anim.SetTrigger("landing");
 				//anim.Play("Landing");
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;

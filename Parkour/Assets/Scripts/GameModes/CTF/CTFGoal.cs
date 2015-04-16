@@ -15,9 +15,19 @@ public class CTFGoal : MonoBehaviour {
 	private PickupItem flagobj1, flagobj2;
 
 
-	// Use this for initialization
-	void Start () {
-	
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			stream.SendNext(collected1);
+			stream.SendNext(collected2);
+			stream.SendNext(flagobj1);
+			stream.SendNext(flagobj2);
+		}
+		else {
+			collected1 = (bool)stream.ReceiveNext();
+			collected2 = (bool)stream.ReceiveNext();
+			flagobj1 = (PickupItem)stream.ReceiveNext();
+			flagobj2 = (PickupItem)stream.ReceiveNext();
+		}
 	}
 	
 	// Update is called once per frame
