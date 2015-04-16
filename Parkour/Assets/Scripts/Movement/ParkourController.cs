@@ -170,7 +170,7 @@ public class ParkourController : MonoBehaviour {
 
 		//ignore vertical momentum
 		float hmag = Mathf.Sqrt(controller.velocity.x * controller.velocity.x + controller.velocity.z * controller.velocity.z);
-		print("hmag: " + hmag);
+		//print("hmag: " + hmag);
 		force = (force.normalized) * (force.magnitude + hmag);
 
 		if(hmag > 1){
@@ -179,7 +179,7 @@ public class ParkourController : MonoBehaviour {
 
 		float endtime = Time.time + duration;
 
-		print("force" + force);
+		//print("force" + force);
 		
 		while(infinite || Time.time <= endtime){
 			if(checkfunc != null){
@@ -297,7 +297,7 @@ public class ParkourController : MonoBehaviour {
 
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+			//Cursor.visible = false;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){

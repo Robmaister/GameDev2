@@ -17,6 +17,9 @@ public class PlayerSpawn : MonoBehaviour {
 
 	public Transform redSpawn;
 	public Transform blueSpawn;
+	
+	public Transform flag1pos;
+	public Transform flag2pos;
 
 	private static int playercount;
 
@@ -26,6 +29,12 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnJoinedRoom(){
 		chooseName.SetActive(true);
+		if(PhotonNetwork.isMasterClient){
+			PhotonNetwork.Instantiate ("CTF Flag", flag1pos.position, transform.rotation,0);
+			PhotonNetwork.Instantiate ("CTF Flag", flag2pos.position, transform.rotation,0);
+		}
+
+
 	}
 
 

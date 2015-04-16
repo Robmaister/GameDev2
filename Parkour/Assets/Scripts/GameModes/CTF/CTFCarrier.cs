@@ -11,7 +11,7 @@ public class CTFCarrier : MonoBehaviour {
 
 	public bool HasFlag { get { return hasFlag; } }
 
-	public GameObject flagobj;
+	public PickupItem flagobj;
 
 	private TrailRenderer tr;
 
@@ -47,7 +47,7 @@ public class CTFCarrier : MonoBehaviour {
 			Debug.Log("Picked up flag");
 			hasFlag = true;
 			tr.enabled = true;
-			flagobj = item.gameObject;
+			flagobj = item;
 		}
 		else{
 			Debug.Log("Someone else picked the flag up");
@@ -59,8 +59,8 @@ public class CTFCarrier : MonoBehaviour {
 		hasFlag = false;
 		tr.enabled = false;
 		if(flagobj != null){
-			flagobj.GetComponent<PickupItem>().Drop(transform.position);
-			flagobj.SetActive(true);
+			flagobj.Drop(transform.position);
+			//flagobj.SetActive(true);
 			print("dropping flag");
 			flagobj = null;
 
@@ -72,8 +72,8 @@ public class CTFCarrier : MonoBehaviour {
 		//store flag in base
 		hasFlag = false;
 		tr.enabled = false;
-		flagobj.GetComponent<PickupItem>().Drop(pos);
-		flagobj.SetActive(true);
+		flagobj.Drop(pos);
+		//flagobj.SetActive(true);
 		flagobj.GetComponent<Collider>().enabled = false;
 		flagobj.GetComponent<Rigidbody>().isKinematic = true;
 		print("capturing flag");

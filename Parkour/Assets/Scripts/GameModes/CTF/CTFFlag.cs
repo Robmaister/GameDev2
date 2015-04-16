@@ -11,6 +11,7 @@ public class CTFFlag : MonoBehaviour {
 	void Awake(){
 		spc = GetComponent<Collider>();
 		rb = GetComponent<Rigidbody>();
+
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
