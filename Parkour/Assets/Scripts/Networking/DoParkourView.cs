@@ -15,8 +15,10 @@ public class DoParkourView : MonoBehaviour {
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
+			//stream.SendNext(controller.networkInputH);
 		}
 		else {
+			//controller.networkInputH = (float)stream.ReceiveNext();
 		}
 	}
 }

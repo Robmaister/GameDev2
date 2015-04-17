@@ -196,6 +196,7 @@ public class ParkourController : MonoBehaviour {
 		inputJump.Update();
 		inputHands.Update();
 		inputFeet.Update();
+		inputSprint.Update();
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
@@ -257,7 +258,6 @@ public class ParkourController : MonoBehaviour {
 	void Update () {
 		getInput();//get input state for buttons 
 
-
 		if(inputSprint.Pressed){
 			stamina -= drainRate * Time.deltaTime;
 			stamina = stamina < 0 ? 0 : stamina;
@@ -274,7 +274,6 @@ public class ParkourController : MonoBehaviour {
 		if(staminaBar != null){
 			staminaBar.fillAmount = stamina;
 		}
-		//Debug.Log("stamina: " + stamina);
 
 		float inputH, inputV;
 		if (photonView != null && !photonView.isMine) {
