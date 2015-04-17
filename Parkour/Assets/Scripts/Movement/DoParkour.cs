@@ -245,13 +245,13 @@ public class DoParkour : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		if (col.gameObject.tag == "Player") {
-			print("COLLIDING WITH PLAYER");
+			//print("COLLIDING WITH PLAYER");
 			if(pkc.controller.enabled && col.collider.enabled){
 				Physics.IgnoreCollision(pkc.controller, col.collider);
 			}
 			
 			if(tackling){
-				print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
+				//print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
 				col.gameObject.BroadcastMessage("OnFlagDrop");
 			}
 		}
