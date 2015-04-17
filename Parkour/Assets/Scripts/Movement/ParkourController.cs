@@ -196,6 +196,7 @@ public class ParkourController : MonoBehaviour {
 		inputJump.Update();
 		inputHands.Update();
 		inputFeet.Update();
+		inputSprint.Update();
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
