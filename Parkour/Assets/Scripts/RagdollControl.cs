@@ -16,7 +16,7 @@ public class RagdollControl : MonoBehaviour {
 	public DoParkour dpk;
 
 
-	/*void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			foreach(Rigidbody rb in jointlist){
 				stream.SendNext(rb.isKinematic);
@@ -51,7 +51,7 @@ public class RagdollControl : MonoBehaviour {
 			dpk.enabled = (bool)stream.ReceiveNext();
 			pkc.enabled = (bool)stream.ReceiveNext();
 		}
-	}*/
+	}
 
 	// Use this for initialization
 	void Start () {

@@ -20,14 +20,27 @@ public class CTFGoal : MonoBehaviour {
 		if (stream.isWriting) {
 			stream.SendNext(collected1);
 			stream.SendNext(collected2);
-			stream.SendNext(flagobj1.GetComponent<PhotonView>().viewID);
-			stream.SendNext(flagobj2.GetComponent<PhotonView>().viewID);
+			if(flagobj1 != null){
+				stream.SendNext(flagobj1.GetComponent<PhotonView>().viewID);
+			}
+			else{
+				stream.SendNext(-1);
+			}
+			if(flagobj1 != null){
+				stream.SendNext(flagobj2.GetComponent<PhotonView>().viewID);
+			}
+			else{
+				stream.SendNext(-1);
+			}
 		}
 		else {
 			collected1 = (bool)stream.ReceiveNext();
 			collected2 = (bool)stream.ReceiveNext();
-			flagobj1 = PhotonView.Find((int)stream.ReceiveNext()).gameObject.GetComponent<PickupItem>();
-			flagobj2 = PhotonView.Find((int)stream.ReceiveNext()).gameObject.GetComponent<PickupItem>();
+			int tmp = (int)stream.ReceiveNext();
+			flagobj1 = (tmp != -1) ? PhotonView.Find(tmp).gameObject.GetComponent<PickupItem>() : null;
+			tmp = (int)stream.ReceiveNext();
+			flagobj2 = (tmp != -1) ? PhotonView.Find(tmp).gameObject.GetComponent<PickupItem>() : null;
+		
 		}
 	}
 	
