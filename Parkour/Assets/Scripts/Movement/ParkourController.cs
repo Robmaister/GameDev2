@@ -258,7 +258,6 @@ public class ParkourController : MonoBehaviour {
 	void Update () {
 		getInput();//get input state for buttons 
 
-
 		if(inputSprint.Pressed){
 			stamina -= drainRate * Time.deltaTime;
 			stamina = stamina < 0 ? 0 : stamina;
@@ -275,7 +274,6 @@ public class ParkourController : MonoBehaviour {
 		if(staminaBar != null){
 			staminaBar.fillAmount = stamina;
 		}
-		//Debug.Log("stamina: " + stamina);
 
 		float inputH, inputV;
 		if (photonView != null && !photonView.isMine) {
