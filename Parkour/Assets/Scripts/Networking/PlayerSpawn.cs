@@ -52,6 +52,7 @@ public class PlayerSpawn : MonoBehaviour {
 
 
 	private void spawnPlayer(){
+		print("SPAWNING PLAYER");
 		playerNum = playercount++;
 
 		Vector3 spawnpoint = (teamNum == 0) ? redSpawn.position : blueSpawn.position;
