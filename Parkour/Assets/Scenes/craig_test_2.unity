@@ -2448,6 +2448,41 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300014, guid: d17dff8e2a39c1d46a2d1789d59ef2b2, type: 3}
+--- !u!1 &798036774 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 152778, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+  m_PrefabInternal: {fileID: 1980426932}
+--- !u!114 &798036775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798036774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 798036776}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 6
+  instantiationId: 6
+  isRuntimeInstantiated: 0
+--- !u!114 &798036776 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11494774, guid: 79dbec4901998ab4da8ec37b61af500b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1980426932}
+  m_Script: {fileID: 11500000, guid: fa11617d328e40444a8269b5c0b273d6, type: 3}
 --- !u!1 &811684953 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100018, guid: d17dff8e2a39c1d46a2d1789d59ef2b2, type: 3}
@@ -7012,6 +7047,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 467016, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.5999999
@@ -7078,6 +7117,62 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415380, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
       propertyPath: m_ScaleModel.SynchronizeEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[0].Type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[0].Name
+      value: jumping
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[1].Type
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[1].Name
+      value: grabbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[2].Name
+      value: onTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[3].Name
+      value: letGo
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[4].Name
+      value: tackle
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[5].Name
+      value: landing
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[6].Name
+      value: falling
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[7].Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: m_SynchronizeParameters.Array.data[7].Name
+      value: fallingSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: ShowLayerWeightsInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419488, guid: 79dbec4901998ab4da8ec37b61af500b, type: 2}
+      propertyPath: ShowParameterInspector
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

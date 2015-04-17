@@ -15,6 +15,44 @@ public class RagdollControl : MonoBehaviour {
 	public ParkourController pkc;
 	public DoParkour dpk;
 
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if (stream.isWriting) {
+			foreach(Rigidbody rb in jointlist){
+				stream.SendNext(rb.isKinematic);
+			}
+			stream.SendNext(ctrl.enabled);
+			stream.SendNext(anim.enabled);
+			stream.SendNext(player_body.isKinematic);
+			if(headctrl != null){
+				stream.SendNext(headctrl.enable_rotation);
+			}
+			stream.SendNext(mlk.enabled);
+			if(mlk2!=null){
+				stream.SendNext(mlk2.enabled);
+			}
+			stream.SendNext(dpk.enabled);
+			stream.SendNext(pkc.enabled);
+		}
+		else {
+			foreach(Rigidbody rb in jointlist){
+				rb.isKinematic = (bool)stream.ReceiveNext();
+			}
+			ctrl.enabled = (bool)stream.ReceiveNext();
+			anim.enabled = (bool)stream.ReceiveNext();
+			player_body.isKinematic = (bool)stream.ReceiveNext();
+			if(headctrl != null){
+				headctrl.enable_rotation = (bool)stream.ReceiveNext();
+			}
+			mlk.enabled = (bool)stream.ReceiveNext();
+			if(mlk2!=null){
+				mlk2.enabled = (bool)stream.ReceiveNext();
+			}
+			dpk.enabled = (bool)stream.ReceiveNext();
+			pkc.enabled = (bool)stream.ReceiveNext();
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		jointlist = new List<Rigidbody>();
