@@ -1145,7 +1145,7 @@ GameObject:
   - 114: {fileID: 11431364}
   - 114: {fileID: 11499216}
   m_Layer: 0
-  m_Name: Player
+  m_Name: NON_NETWORKED_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3567,6 +3567,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arms: {fileID: 116080}
   legs: {fileID: 105698}
+  anim: {fileID: 0}
+  networkInputH: 0
+  networkInputV: 0
   canControl: 1
   maxSpeed: 10
   maxAcceleration: 20
@@ -3579,6 +3582,10 @@ MonoBehaviour:
   currentEdge_right: {x: 0, y: 0, z: 0}
   current_hang_point: {x: 0, y: 0, z: 0}
   current_ledge_object: {fileID: 0}
+  sprinting: 0
+  stamina: 1
+  drainRate: 1
+  staminaBar: {fileID: 0}
   vtxt: {fileID: 0}
   otxt: {fileID: 0}
   ptxt: {fileID: 0}
@@ -3586,6 +3593,7 @@ MonoBehaviour:
   itxt: {fileID: 0}
   legState: 0
   currentMovementOffset: {x: 0, y: 0, z: 0}
+  netImpulse: {x: 0, y: 0, z: 0}
 --- !u!114 &11439230
 MonoBehaviour:
   m_ObjectHideFlags: 1
