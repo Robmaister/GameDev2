@@ -15,6 +15,10 @@ public class CTFCarrier : MonoBehaviour {
 
 	private TrailRenderer tr;
 
+	public SkinnedMeshRenderer skm;
+	public Texture bluetex;
+	public Texture redtex;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
@@ -22,12 +26,22 @@ public class CTFCarrier : MonoBehaviour {
 			stream.SendNext(hasFlag);
 		}
 		else {
-			team = (int)stream.ReceiveNext();
+			setTeam((int)stream.ReceiveNext());
 			pname = (string)stream.ReceiveNext();
 			hasFlag = (bool)stream.ReceiveNext();
 
 			nameTag.text = pname;
 			tr.enabled = hasFlag;
+		}
+	}
+
+	public void setTeam(int t){
+		team = t;
+		if(team == 0){
+			skm.material.mainTexture = redtex;
+		}
+		else if(team == 1){
+			skm.material.mainTexture = bluetex;
 		}
 	}
 
