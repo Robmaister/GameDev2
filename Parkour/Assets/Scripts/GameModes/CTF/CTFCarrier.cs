@@ -26,7 +26,7 @@ public class CTFCarrier : MonoBehaviour {
 			stream.SendNext(hasFlag);
 		}
 		else {
-			team = (int)stream.ReceiveNext();
+			setTeam((int)stream.ReceiveNext());
 			pname = (string)stream.ReceiveNext();
 			hasFlag = (bool)stream.ReceiveNext();
 
@@ -38,10 +38,10 @@ public class CTFCarrier : MonoBehaviour {
 	public void setTeam(int t){
 		team = t;
 		if(team == 0){
-			skm.sharedMaterial.mainTexture = redtex;
+			skm.material.mainTexture = redtex;
 		}
 		else if(team == 1){
-			skm.sharedMaterial.mainTexture = bluetex;
+			skm.material.mainTexture = bluetex;
 		}
 	}
 
