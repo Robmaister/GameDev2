@@ -869,7 +869,7 @@ ModelImporter:
       lastFrame: 41
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: -.200000003
       cycleOffset: 0
       loop: 0
       loopTime: 0
@@ -1151,7 +1151,7 @@ ModelImporter:
       lastFrame: 128
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: .660000026
       cycleOffset: 0
       loop: 0
       loopTime: 0
@@ -1433,7 +1433,7 @@ ModelImporter:
       lastFrame: 145
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: .699999988
       cycleOffset: 0
       loop: 0
       loopTime: 0
