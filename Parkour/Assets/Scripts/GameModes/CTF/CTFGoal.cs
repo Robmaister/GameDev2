@@ -42,7 +42,11 @@ public class CTFGoal : MonoBehaviour {
 		if (collected1 && collected2){
 			//win condition
 			print("YOU WIN");
+#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPaused = true;
+#else
+			Application.Quit();
+#endif
 
 
 
