@@ -77,7 +77,7 @@ public class PlayerSpawn : MonoBehaviour {
 		GameObject CTFC = newPlayerObject.FindInChildren("CTF_comp");
 		CTFCarrier ctfc = CTFC.GetComponent<CTFCarrier>();
 		ctfc.pname = playerName;
-		ctfc.team = teamNum;
+		ctfc.setTeam(teamNum);
 
 
 		headTarget.parent = cameraObject.transform;

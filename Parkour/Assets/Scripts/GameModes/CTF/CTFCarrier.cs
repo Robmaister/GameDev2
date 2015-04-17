@@ -15,6 +15,10 @@ public class CTFCarrier : MonoBehaviour {
 
 	private TrailRenderer tr;
 
+	public SkinnedMeshRenderer skm;
+	public Texture bluetex;
+	public Texture redtex;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
@@ -28,6 +32,16 @@ public class CTFCarrier : MonoBehaviour {
 
 			nameTag.text = pname;
 			tr.enabled = hasFlag;
+		}
+	}
+
+	public void setTeam(int t){
+		team = t;
+		if(team == 0){
+			skm.sharedMaterial.mainTexture = redtex;
+		}
+		else if(team == 1){
+			skm.sharedMaterial.mainTexture = bluetex;
 		}
 	}
 
