@@ -20,8 +20,8 @@ public class ParkourController : MonoBehaviour {
 	public bool canControl = true;
 
 
-	public float maxSpeed = 10f;
-	private float origMaxSpeed = 10f;
+	public float maxSpeed = 2f;
+	private float origMaxSpeed = 2f;
 	public float maxAcceleration = 20f;
 	private float origMaxAcceleration = 20f;
 	public float gravity = 10f;
@@ -426,7 +426,7 @@ public class ParkourController : MonoBehaviour {
 				anim.SetBool("jumping",false);
 			}
 			anim.SetFloat("fallingSpeed",-velocity.y);
-			velocity.y = Mathf.Max (velocity.y, -maxSpeed);
+			velocity.y = Mathf.Max (velocity.y, -150); //150 is terminal velocity
 
 		}
 		if (inputJump.Pressed) {

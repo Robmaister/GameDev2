@@ -3958,6 +3958,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arms: {fileID: 110130}
   legs: {fileID: 124810}
+  anim: {fileID: 0}
+  networkInputH: 0
+  networkInputV: 0
   canControl: 1
   maxSpeed: 10
   maxAcceleration: 20
@@ -3970,6 +3973,10 @@ MonoBehaviour:
   currentEdge_right: {x: 0, y: 0, z: 0}
   current_hang_point: {x: 0, y: 0, z: 0}
   current_ledge_object: {fileID: 0}
+  sprinting: 0
+  stamina: 1
+  drainRate: 1
+  staminaBar: {fileID: 0}
   vtxt: {fileID: 0}
   otxt: {fileID: 0}
   ptxt: {fileID: 0}
@@ -3977,6 +3984,7 @@ MonoBehaviour:
   itxt: {fileID: 0}
   legState: 0
   currentMovementOffset: {x: 0, y: 0, z: 0}
+  netImpulse: {x: 0, y: 0, z: 0}
 --- !u!114 &11457632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4044,7 +4052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 411628}
-  localPosition: {x: 0, y: 0, z: 0}
+  enable_rotation: 0
 --- !u!124 &12448442
 Behaviour:
   m_ObjectHideFlags: 1
