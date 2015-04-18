@@ -174,8 +174,8 @@ public class DoParkour : MonoBehaviour {
 		//input feet mapped to mouse 2
 		if(pkc.inputFeet.Pressed){
 			//if(pkc.legState == (SurfaceType.top | SurfaceType.side)){
-			if((pkc.armState & SurfaceType.top) != 0){
-				if(!vaulting && anim.GetBool("jumping")){
+			if(((pkc.armState & SurfaceType.side) != 0) && anim.GetBool("jumping")){
+				if(!vaulting ){
 					print ("I AM VAULTING");
 					vaulting = true;
 					anim.SetTrigger("vaulting");
@@ -194,12 +194,13 @@ public class DoParkour : MonoBehaviour {
 						vaulting = false;
 						pkc.controller.height = 1.5f;
 					};
-					pkc.addImpulse(pkc.transform.forward * .07f+pkc.transform.up*.05f,1,true,endfunc:endfunc,checkfunc:checkfunc);
+				
+					pkc.addImpulse(pkc.transform.forward * .03f+pkc.transform.up*.03f,.5f,true,endfunc:endfunc,checkfunc:checkfunc);
 				}
 				else{
 					print("AM I VAULTING?");
 					if((pkc.legState & SurfaceType.top) != 0){
-						pkc.addImpulse(pkc.transform.up * .15f+ pkc.transform.forward*.05f,0);
+						pkc.addImpulse(pkc.transform.up * .03f+ pkc.transform.forward*.03f,0);
 					}
 				}
 			}
