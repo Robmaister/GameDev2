@@ -30,6 +30,7 @@ public class PlayerSpawn : MonoBehaviour {
 	void OnJoinedRoom(){
 		chooseName.SetActive(true);
 		if(PhotonNetwork.isMasterClient){
+			print("I AM MASTER CLIENT");
 			PhotonNetwork.Instantiate ("CTF Flag", flag1pos.position, transform.rotation,0);
 			PhotonNetwork.Instantiate ("CTF Flag", flag2pos.position, transform.rotation,0);
 		}

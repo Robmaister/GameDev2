@@ -18,17 +18,14 @@ Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Deve
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.072 seconds
+- Completed reload, in  0.052 seconds
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\System.dll (this message is harmless)
-The referenced script on this Behaviour is missing!
- 
-(Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1713)
-
+Shader 'Nature/Terrain/Standard': dependency 'BaseMapShader' shader 'Hidden/TerrainEngine/Splatmap/Standard-Base' not found
 Update() was called by Unity. Scene is loaded. Let's connect to the Photon Master Server. Calling: PhotonNetwork.ConnectUsingSettings();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -37,7 +34,7 @@ ConnectAndJoinRandom:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs Line: 28)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 5610 -> priority: 1 
+  Thread -> id: cf7c -> priority: 1 
 OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -65,4 +62,93 @@ ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
  
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs Line: 59)
+
+InvalidCastException: Cannot cast from source type to destination type.
+  at CTFGoal.OnPhotonSerializeView (.PhotonStream stream, .PhotonMessageInfo info) [0x000ac] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFGoal.cs:37 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000c0] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000e3] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:232 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115 
+  at PhotonView.ExecuteComponentOnSerialize (UnityEngine.Component component, .PhotonStream stream, .PhotonMessageInfo info) [0x00079] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:527 
+  at PhotonView.DeserializeComponent (UnityEngine.Component component, .PhotonStream stream, .PhotonMessageInfo info) [0x00018] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:358 
+  at PhotonView.DeserializeView (.PhotonStream stream, .PhotonMessageInfo info) [0x00015] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:344 
+  at NetworkingPeer.OnSerializeRead (ExitGames.Client.Photon.Hashtable data, .PhotonPlayer sender, Int32 networkTime, Int16 correctPrefix) [0x001f1] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3393 
+  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x0072e] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1840 
+  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at PhotonHandler.Update () [0x00053] in C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83 
+ 
+(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
+
+Received OnSerialization for view ID 6. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+NetworkingPeer:OnSerializeRead(Hashtable, PhotonPlayer, Int32, Int16) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3348)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1840)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ 
+(Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs Line: 3348)
+
+Received OnSerialization for view ID 8. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+NetworkingPeer:OnSerializeRead(Hashtable, PhotonPlayer, Int32, Int16) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3348)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1840)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ 
+(Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs Line: 3348)
+
+Received OnSerialization for view ID 6. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+NetworkingPeer:OnSerializeRead(Hashtable, PhotonPlayer, Int32, Int16) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3348)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1840)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ 
+(Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs Line: 3348)
+
+Received OnSerialization for view ID 8. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+NetworkingPeer:OnSerializeRead(Hashtable, PhotonPlayer, Int32, Int16) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3348)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1840)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ 
+(Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs Line: 3348)
+
+SPAWNING PLAYER
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+PlayerSpawn:spawnPlayer() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Networking\PlayerSpawn.cs:55)
+PlayerSpawn:OnTeamChosen(Int32) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Networking\PlayerSpawn.cs:50)
+UnityEngine.Events.InvokableCall`1:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:141)
+UnityEngine.Events.CachedInvokableCall`1:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:259)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:574)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:716)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:53)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:358)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:249)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:160)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:272)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
 
