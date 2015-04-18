@@ -59,6 +59,7 @@ public class PlayerSpawn : MonoBehaviour {
 		Vector3 spawnpoint = (teamNum == 0) ? redSpawn.position : blueSpawn.position;
 		
 		GameObject newPlayerObject = PhotonNetwork.Instantiate("Player", spawnpoint, Quaternion.identity, 0);
+		newPlayerObject.SetActive(true);
 		//newPlayerObject.GetComponent<CharacterController> ().enabled = false;
 		
 		Transform attachObj = newPlayerObject.FindInChildren("Head").transform ?? newPlayerObject.transform;

@@ -401,7 +401,7 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
-		print(controller.isGrounded);
+		//print(controller.isGrounded);
 		anim.SetBool("isGrounded",controller.isGrounded);
 
 		if (controller.isGrounded){
