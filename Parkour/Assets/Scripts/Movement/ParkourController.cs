@@ -401,13 +401,15 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	Vector3 ApplyGravityAndJumping (Vector3 velocity) {
+		print(controller.isGrounded);
 		anim.SetBool("isGrounded",controller.isGrounded);
 
 		if (controller.isGrounded){
 			anim.SetBool("jumping",false);
+			anim.SetBool("falling",false);
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		}
-			else {
+		else {
 			if((controller.velocity.y > 0) && (Mathf.Abs (controller.velocity.x) < .1f || Mathf.Abs(controller.velocity.z) < .1f)){
 				Vector3 desiredVelocity = GetDesiredHorizontalVelocity();
 
@@ -421,7 +423,7 @@ public class ParkourController : MonoBehaviour {
 			}
 
 			velocity.y = controller.velocity.y - gravity * Time.deltaTime;
-			if (velocity.y<0 ){
+			if (velocity.y<0){
 				anim.SetBool("falling",true);
 				anim.SetBool("jumping",false);
 			}
