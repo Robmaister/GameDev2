@@ -19,6 +19,8 @@ public class CTFCarrier : MonoBehaviour {
 	public Texture bluetex;
 	public Texture redtex;
 
+	public GameObject dummyflag;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
@@ -62,6 +64,7 @@ public class CTFCarrier : MonoBehaviour {
 			hasFlag = true;
 			tr.enabled = true;
 			flagobj = item;
+			dummyflag.SetActive(true);
 		}
 		else{
 			Debug.Log("Someone else picked the flag up");
@@ -71,6 +74,7 @@ public class CTFCarrier : MonoBehaviour {
 	void OnFlagDrop(){
 		//drop the flag (if get tackled or something)
 		hasFlag = false;
+		dummyflag.SetActive(false);
 		tr.enabled = false;
 		if(flagobj != null){
 			flagobj.Drop(transform.position);
@@ -86,6 +90,7 @@ public class CTFCarrier : MonoBehaviour {
 		//store flag in base
 		hasFlag = false;
 		tr.enabled = false;
+		dummyflag.SetActive(false);
 		flagobj.Drop(pos);
 		//flagobj.SetActive(true);
 		flagobj.GetComponent<Collider>().enabled = false;
