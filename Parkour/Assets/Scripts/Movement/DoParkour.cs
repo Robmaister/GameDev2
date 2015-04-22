@@ -16,7 +16,7 @@ public class DoParkour : MonoBehaviour {
 	
 	public IK_Script iks;
 
-	private bool tackling = false;
+	public bool tackling = false;
 
 	
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
@@ -53,9 +53,10 @@ public class DoParkour : MonoBehaviour {
 				iks.arm_ik_active = false;
 			}
 		}
-
+		pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+		
 		Vector3 localVel = transform.InverseTransformDirection(pkc.controller.velocity);
-		bool isbkwd = (localVel.z < 0);
+		bool isbkwd = (localVel.z < 0.5f);
 
 		float horizspeed = Mathf.Sqrt(pkc.controller.velocity.x*pkc.controller.velocity.x + pkc.controller.velocity.z*pkc.controller.velocity.z);
 
@@ -137,7 +138,7 @@ public class DoParkour : MonoBehaviour {
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
 							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.2f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.3f);
 
 							pkc.apply_forces = true;
 							return true;
@@ -179,7 +180,7 @@ public class DoParkour : MonoBehaviour {
 		//input feet mapped to mouse 2
 		if(pkc.inputFeet.Pressed){
 			//if(pkc.legState == (SurfaceType.top | SurfaceType.side)){
-			if(((pkc.armState & SurfaceType.side) != 0) && anim.GetBool("jumping")){
+			if(((pkc.armState & SurfaceType.side) != 0) && anim.GetBool("jumping")&& ((pkc.armState & SurfaceType.top) != 0)){
 				if(!vaulting ){
 					print ("I AM VAULTING");
 					vaulting = true;
@@ -197,15 +198,19 @@ public class DoParkour : MonoBehaviour {
 
 					Action endfunc = delegate {
 						vaulting = false;
-						pkc.controller.height = 1.5f;
+
 					};
 				
-					pkc.addImpulse(pkc.transform.forward * .03f+pkc.transform.up*.03f,.5f,true,endfunc:endfunc,checkfunc:checkfunc);
+
+					pkc.addImpulse(pkc.transform.forward * .03f+pkc.transform.up*.03f,.25f,true,endfunc:endfunc,checkfunc:checkfunc);
 				}
 				else{
 					print("AM I VAULTING?");
 					if((pkc.legState & SurfaceType.top) != 0){
-						pkc.addImpulse(pkc.transform.up * .03f+ pkc.transform.forward*.03f,0);
+						pkc.addImpulse(pkc.transform.up * .03f+ pkc.transform.forward*.03f,.01f,true);
+					}
+					if (vaulting==false){
+						
 					}
 				}
 			}
@@ -213,7 +218,7 @@ public class DoParkour : MonoBehaviour {
 
 
 		if(!tackling){
-			if(Input.GetKeyDown(KeyCode.E)){
+			if(pkc.inputUse.Pressed){
 				tackling = true;
 				//print("tackling");
 				pkc.apply_forces = false;
@@ -226,7 +231,7 @@ public class DoParkour : MonoBehaviour {
 		}else{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Get_up") ){
 
-				pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+				//pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
 				if(pkc.controller.height == 1.5f){
 					tackling = false;
 					pkc.apply_forces = true;

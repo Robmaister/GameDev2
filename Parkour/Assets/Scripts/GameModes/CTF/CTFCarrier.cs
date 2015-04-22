@@ -26,6 +26,7 @@ public class CTFCarrier : MonoBehaviour {
 			stream.SendNext(team);
 			stream.SendNext(pname);
 			stream.SendNext(hasFlag);
+			nameTag.text = pname;
 		}
 		else {
 			setTeam((int)stream.ReceiveNext());
@@ -47,7 +48,7 @@ public class CTFCarrier : MonoBehaviour {
 		}
 	}
 
-	void Start () {
+	void Awake () {
 		tr = GetComponent<TrailRenderer>();
 	}
 
@@ -73,10 +74,10 @@ public class CTFCarrier : MonoBehaviour {
 
 	void OnFlagDrop(){
 		//drop the flag (if get tackled or something)
-		hasFlag = false;
-		dummyflag.SetActive(false);
-		tr.enabled = false;
 		if(flagobj != null){
+			hasFlag = false;
+			dummyflag.SetActive(false);
+			tr.enabled = false;
 			flagobj.Drop(transform.position);
 			//flagobj.SetActive(true);
 			print("dropping flag");
@@ -88,15 +89,17 @@ public class CTFCarrier : MonoBehaviour {
 
 	void OnFlagCapture(Vector3 pos){
 		//store flag in base
-		hasFlag = false;
-		tr.enabled = false;
-		dummyflag.SetActive(false);
-		flagobj.Drop(pos);
-		//flagobj.SetActive(true);
-		flagobj.GetComponent<Collider>().enabled = false;
-		flagobj.GetComponent<Rigidbody>().isKinematic = true;
-		print("capturing flag");
-		flagobj = null;
+		if(flagobj != null){
+			hasFlag = false;
+			tr.enabled = false;
+			dummyflag.SetActive(false);
+			flagobj.Drop(pos);
+			//flagobj.SetActive(true);
+			flagobj.GetComponent<Collider>().enabled = false;
+			flagobj.GetComponent<Rigidbody>().isKinematic = true;
+			print("capturing flag");
+			flagobj = null;
+		}
 	}
 
 }

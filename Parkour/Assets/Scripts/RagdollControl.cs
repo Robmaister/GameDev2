@@ -16,6 +16,7 @@ public class RagdollControl : MonoBehaviour {
 	public DoParkour dpk;
 	public SphereCollider arms,legs;
 
+	public bool is_ragdoll = false;
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
@@ -58,6 +59,10 @@ public class RagdollControl : MonoBehaviour {
 		}
 	}
 
+	void Awake(){
+		jointlist = new List<Rigidbody>();
+	}
+
 	// Use this for initialization
 	void Start () {
 		jointlist = new List<Rigidbody>();
@@ -65,13 +70,16 @@ public class RagdollControl : MonoBehaviour {
 		foreach(Rigidbody rb in GetComponentsInChildren<Rigidbody>()){
 			jointlist.Add(rb);
 		}
-
+		if(pkc.gameObject.GetComponent<PhotonView>().isMine){
+			mlk2 = Camera.main.GetComponent<MouseLook>();
+		}
 		disableRagdoll();
 	}
 	
 	public void enableRagdoll(){
 		foreach(Rigidbody rb in jointlist){
 			rb.isKinematic = false;
+			rb.velocity = pkc.controller.velocity;
 		}
 		ctrl.enabled = false;
 		anim.enabled = false;
@@ -81,19 +89,20 @@ public class RagdollControl : MonoBehaviour {
 		}
 		mlk.enabled = false;
 		if(mlk2!=null){
-			mlk2.enabled = true;
+			mlk2.enabled = false;
 		}
 		dpk.enabled = false;
 		pkc.enabled = false;
 		arms.enabled = false;
 		legs.enabled = false;
 		player_body.freezeRotation = false;
+		is_ragdoll = true;
 	}
 
 	private IEnumerator restoreDoll(){
 		pkc.controller.height = 0;
 		while(pkc.controller.height < 1.5f){
-			pkc.controller.height += .1f;
+			pkc.controller.height += .05f;
 			yield return null;
 		}
 		pkc.controller.height = 1.5f;
@@ -104,9 +113,19 @@ public class RagdollControl : MonoBehaviour {
 		foreach(Rigidbody rb in jointlist){
 			rb.isKinematic = true;
 		}
-		pkc.transform.rotation = Quaternion.identity;
+
+		Vector3 opos = pkc.transform.position;
+		opos.y += 2;
+		Ray ray = new Ray(opos,-Vector3.up);
+		RaycastHit hit;
+		Physics.Raycast(ray,out hit);
+		pkc.transform.position = new Vector3(hit.point.x,hit.point.y+0.75f,hit.point.z);
+
+		Vector3 vv = pkc.transform.rotation.eulerAngles;
+		pkc.transform.rotation = Quaternion.Euler(new Vector3(0,vv.y,0));
 		ctrl.enabled = true;
 		anim.enabled = true;
+		anim.SetTrigger("getUp");
 		//player_body.isKinematic = false;
 		if(headctrl != null){
 			headctrl.enable_rotation = true;
@@ -123,7 +142,8 @@ public class RagdollControl : MonoBehaviour {
 		arms.enabled = true;
 		legs.enabled = true;
 		player_body.freezeRotation = true;
-		StartCoroutine(restoreDoll());
+		//StartCoroutine(restoreDoll());
+		is_ragdoll = false;
 	}
 
 	void Update(){
