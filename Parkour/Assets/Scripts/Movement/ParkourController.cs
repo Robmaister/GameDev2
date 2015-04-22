@@ -14,6 +14,7 @@ public class ParkourController : MonoBehaviour {
 
 
 	private PhotonView photonView;
+	private PhotonTransformView ptv;
 	public float networkInputH;
 	public float networkInputV;
 
@@ -223,6 +224,7 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		ptv = GetComponent<PhotonTransformView>();
 
 		origMaxSpeed = maxSpeed; // for sprinting logic
 		origMaxAcceleration = maxAcceleration;
@@ -364,6 +366,9 @@ public class ParkourController : MonoBehaviour {
 		}else{
 			controller.Move (netImpulse);
 		}
+
+		//possible sync fix?
+		ptv.SetSynchronizedValues(controller.velocity,15);
 
 	}
 

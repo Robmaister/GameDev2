@@ -6,19 +6,19 @@ using System.Collections;
 [AddComponentMenu("Photon Networking/Do Parkour View")]
 public class DoParkourView : MonoBehaviour {
 
-	DoParkour script;
+	DoParkour dps;
 
 	// Use this for initialization
 	void Awake() {
-		script = GetComponent<DoParkour>();
+		dps = GetComponent<DoParkour>();
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
-			//stream.SendNext(controller.networkInputH);
+			stream.SendNext(dps.tackling);
 		}
 		else {
-			//controller.networkInputH = (float)stream.ReceiveNext();
+			dps.tackling = (bool)stream.ReceiveNext();
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class DoParkour : MonoBehaviour {
 	
 	public IK_Script iks;
 
-	private bool tackling = false;
+	public bool tackling = false;
 
 	
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
