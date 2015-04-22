@@ -4,7 +4,7 @@ using System.Collections;
 public class softParent : MonoBehaviour {
 	//simple script to parent an object by proxy
 	public Transform parent;
-	//private Vector3 localPosition = Vector3.zero;
+	public Vector3 localPosition = Vector3.zero;
 	//private Quaternion localRotation = Quaternion.identity;
 
 	public bool enable_rotation = false; //allow object to rotate with parent
@@ -15,15 +15,15 @@ public class softParent : MonoBehaviour {
 		//localRotation = transform.localRotation;
 	}
 	void Start(){
-		transform.position = parent.position;
+		transform.position = parent.position +  parent.rotation*localPosition;
 		if(enable_rotation){
 			transform.rotation = parent.rotation;
 		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		transform.position = parent.position;
+	void LateUpdate () {
+		transform.position = parent.position + parent.rotation*localPosition;
 		if(enable_rotation){
 			transform.rotation = parent.rotation;
 		}
