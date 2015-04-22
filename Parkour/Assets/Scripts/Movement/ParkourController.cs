@@ -270,8 +270,6 @@ public class ParkourController : MonoBehaviour {
 			//GetComponent<Rigidbody>().useGravity = false;
 			//gravity = 0;
 
-			arms.GetComponent<SphereCollider>().enabled = false;
-			legs.GetComponent<SphereCollider>().enabled = false;
 
 
 			Update ();

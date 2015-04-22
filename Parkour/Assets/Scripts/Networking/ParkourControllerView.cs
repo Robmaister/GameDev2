@@ -28,7 +28,7 @@ public class ParkourControllerView : MonoBehaviour {
 			stream.SendNext(controller.inputFeet.Pressed);
 			stream.SendNext(controller.inputSprint.Pressed);
 			stream.SendNext(controller.inputUse.Pressed);
-			stream.SendNext(controller.netImpulse);
+			//stream.SendNext(controller.netImpulse);
 			stream.SendNext(controller.can_jump);
 			stream.SendNext(controller.apply_forces);
 		}
@@ -40,7 +40,7 @@ public class ParkourControllerView : MonoBehaviour {
 			controller.inputFeet.Pressed = (bool)stream.ReceiveNext();
 			controller.inputSprint.Pressed = (bool)stream.ReceiveNext();
 			controller.inputUse.Pressed = (bool)stream.ReceiveNext();
-			controller.netImpulse = (Vector3)stream.ReceiveNext();
+			//controller.netImpulse = (Vector3)stream.ReceiveNext();
 			controller.can_jump = (bool)stream.ReceiveNext();
 			controller.apply_forces = (bool)stream.ReceiveNext();
 		}
