@@ -57,6 +57,10 @@ public class RagdollControl : MonoBehaviour {
 		}
 	}
 
+	void Awake(){
+		jointlist = new List<Rigidbody>();
+	}
+
 	// Use this for initialization
 	void Start () {
 		jointlist = new List<Rigidbody>();
