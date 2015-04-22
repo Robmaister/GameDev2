@@ -218,7 +218,7 @@ public class DoParkour : MonoBehaviour {
 
 
 		if(!tackling){
-			if(Input.GetKeyDown(KeyCode.E)){
+			if(pkc.inputUse.Pressed){
 				tackling = true;
 				//print("tackling");
 				pkc.apply_forces = false;
