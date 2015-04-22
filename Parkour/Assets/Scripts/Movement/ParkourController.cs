@@ -368,7 +368,7 @@ public class ParkourController : MonoBehaviour {
 		}
 
 		//possible sync fix?
-		ptv.SetSynchronizedValues(controller.velocity,15);
+		//ptv.SetSynchronizedValues(controller.velocity,15);
 
 	}
 
