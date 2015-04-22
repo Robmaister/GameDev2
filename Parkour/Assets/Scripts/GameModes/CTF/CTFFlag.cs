@@ -7,6 +7,7 @@ public class CTFFlag : MonoBehaviour {
 	private CTFCarrier carrier = null;
 	private Collider spc;
 	private Rigidbody rb;
+	private PickupItem waititem = null;
 
 	void Awake(){
 		spc = GetComponent<Collider>();
@@ -35,9 +36,26 @@ public class CTFFlag : MonoBehaviour {
 		}
 	}
 
+	public IEnumerator fmsgwait(){
+		float starttime = Time.time;
+		while(carrier = null){
+			if(Time.time > starttime + 10){
+				print("flag wait duration expired");
+				break;
+			}
+		}
+		carrier.SendMessage("OnPickedUp", waititem); 
+		waititem = null;
+	}
+
 	public void OnPickedUp(PickupItem item){
 		//Debug.Log("flagscript: " + item.PickupIsMine);
-		carrier.SendMessage("OnPickedUp", item); 
+		if(carrier != null){
+			carrier.SendMessage("OnPickedUp", item); 
+		}else{
+			waititem = item;
+			StartCoroutine(fmsgwait());
+		}
 	}
 
 	void OnTriggerEnter(Collider col) {//check if a player picks up flag
