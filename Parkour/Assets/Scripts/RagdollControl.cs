@@ -95,7 +95,7 @@ public class RagdollControl : MonoBehaviour {
 	private IEnumerator restoreDoll(){
 		pkc.controller.height = 0;
 		while(pkc.controller.height < 1.5f){
-			pkc.controller.height += .1f;
+			pkc.controller.height += .05f;
 			yield return null;
 		}
 		pkc.controller.height = 1.5f;
@@ -106,9 +106,19 @@ public class RagdollControl : MonoBehaviour {
 		foreach(Rigidbody rb in jointlist){
 			rb.isKinematic = true;
 		}
-		pkc.transform.rotation = Quaternion.identity;
+
+		Vector3 opos = pkc.transform.position;
+		opos.y += 2;
+		Ray ray = new Ray(opos,-Vector3.up);
+		RaycastHit hit;
+		Physics.Raycast(ray,out hit);
+		pkc.transform.position = new Vector3(hit.point.x,hit.point.y+0.75f,hit.point.z);
+
+		Vector3 vv = pkc.transform.rotation.eulerAngles;
+		pkc.transform.rotation = Quaternion.Euler(new Vector3(0,vv.y,0));
 		ctrl.enabled = true;
 		anim.enabled = true;
+		anim.SetTrigger("getUp");
 		//player_body.isKinematic = false;
 		if(headctrl != null){
 			headctrl.enable_rotation = true;
@@ -125,7 +135,7 @@ public class RagdollControl : MonoBehaviour {
 		arms.enabled = true;
 		legs.enabled = true;
 		player_body.freezeRotation = true;
-		StartCoroutine(restoreDoll());
+		//StartCoroutine(restoreDoll());
 	}
 
 	void Update(){
