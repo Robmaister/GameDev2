@@ -16,7 +16,6 @@ public class RagdollControl : MonoBehaviour {
 	public DoParkour dpk;
 	public SphereCollider arms,legs;
 
-
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			foreach(Rigidbody rb in jointlist){
@@ -65,8 +64,9 @@ public class RagdollControl : MonoBehaviour {
 		foreach(Rigidbody rb in GetComponentsInChildren<Rigidbody>()){
 			jointlist.Add(rb);
 		}
-
-		mlk2 = Camera.main.GetComponent<MouseLook>();
+		if(pkc.gameObject.GetComponent<PhotonView>().isMine){
+			mlk2 = Camera.main.GetComponent<MouseLook>();
+		}
 		disableRagdoll();
 	}
 	
