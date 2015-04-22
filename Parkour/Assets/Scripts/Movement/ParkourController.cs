@@ -266,7 +266,7 @@ public class ParkourController : MonoBehaviour {
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
 			//controller.enabled = false;
-			canControl = false;
+			//canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
 			//gravity = 0;
 
