@@ -86,6 +86,7 @@ public class PlayerSpawn : MonoBehaviour {
 		headTarget.localPosition = newPlayerObject.transform.forward*10;
 
 		softParent sp = cameraObject.AddComponent<softParent>();
+		sp.localPosition = new Vector3(0,0,0.06f);
 		sp.parent = attachObj;
 
 		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
