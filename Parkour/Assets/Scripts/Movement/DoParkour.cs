@@ -257,6 +257,7 @@ public class DoParkour : MonoBehaviour {
 			}
 			
 			if(tackling){
+				anim.SetTrigger("hitPlayer");
 				//print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
 				col.gameObject.BroadcastMessage("OnFlagDrop");
 			}
