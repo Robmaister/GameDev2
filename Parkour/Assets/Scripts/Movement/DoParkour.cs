@@ -53,7 +53,8 @@ public class DoParkour : MonoBehaviour {
 				iks.arm_ik_active = false;
 			}
 		}
-
+		pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+		
 		Vector3 localVel = transform.InverseTransformDirection(pkc.controller.velocity);
 		bool isbkwd = (localVel.z < 0.5f);
 
@@ -137,7 +138,7 @@ public class DoParkour : MonoBehaviour {
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
 							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.2f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.3f);
 
 							pkc.apply_forces = true;
 							return true;
@@ -209,7 +210,6 @@ public class DoParkour : MonoBehaviour {
 						pkc.addImpulse(pkc.transform.up * .03f+ pkc.transform.forward*.03f,.01f,true);
 					}
 					if (vaulting==false){
-						pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
 						
 					}
 				}
@@ -231,7 +231,7 @@ public class DoParkour : MonoBehaviour {
 		}else{
 			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Get_up") ){
 
-				pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
+				//pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
 				if(pkc.controller.height == 1.5f){
 					tackling = false;
 					pkc.apply_forces = true;
