@@ -3895,7 +3895,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 11447944}
   - {fileID: 11415380}
   - {fileID: 11434604}
   ObservedComponentsFoldoutOpen: 1
@@ -3986,6 +3986,7 @@ MonoBehaviour:
   ptxt: {fileID: 0}
   ltxt: {fileID: 0}
   itxt: {fileID: 0}
+  armState: 0
   legState: 0
   currentMovementOffset: {x: 0, y: 0, z: 0}
   netImpulse: {x: 0, y: 0, z: 0}
