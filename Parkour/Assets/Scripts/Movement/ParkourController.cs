@@ -350,6 +350,8 @@ public class ParkourController : MonoBehaviour {
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
 			//Cursor.visible = false;
+		}else{
+			return;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
