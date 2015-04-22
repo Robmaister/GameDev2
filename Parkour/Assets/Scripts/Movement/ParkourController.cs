@@ -79,6 +79,7 @@ public class ParkourController : MonoBehaviour {
 	public IInput inputHands;
 	public IInput inputFeet;
 	public IInput inputSprint;
+	public IInput inputUse;
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
@@ -198,6 +199,7 @@ public class ParkourController : MonoBehaviour {
 		inputHands.Update();
 		inputFeet.Update();
 		inputSprint.Update();
+		inputUse.Update();
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
@@ -241,6 +243,7 @@ public class ParkourController : MonoBehaviour {
 			inputHands = new NetworkInput();
 			inputFeet = new NetworkInput();
 			inputSprint = new NetworkInput();
+			inputUse = new NetworkInput();
 			controller.enabled = false;
 			canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
@@ -253,6 +256,7 @@ public class ParkourController : MonoBehaviour {
 			inputHands = new LooseInput("Fire1",.2f);
 			inputFeet = new LooseInput("Fire2",.2f);
 			inputSprint = new LooseInput("Sprint",.2f);
+			inputUse = new LooseInput("Use",.2f,true);
 		}
 	}
 	
