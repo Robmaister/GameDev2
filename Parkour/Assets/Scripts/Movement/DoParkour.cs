@@ -54,7 +54,12 @@ public class DoParkour : MonoBehaviour {
 			}
 		}
 
+		float dot = Vector3.Dot(transform.forward, Vector3.forward);
+		bool isbkwd = (dot < - 0.9);
+
 		float horizspeed = Mathf.Sqrt(pkc.controller.velocity.x*pkc.controller.velocity.x + pkc.controller.velocity.z*pkc.controller.velocity.z);
+
+		horizspeed = isbkwd ? -horizspeed : horizspeed;
 		
 		if (anim != null)
 			anim.SetFloat("speed", horizspeed);
