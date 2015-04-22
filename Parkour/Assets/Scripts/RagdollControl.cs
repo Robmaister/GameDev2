@@ -143,14 +143,14 @@ public class RagdollControl : MonoBehaviour {
 		is_ragdoll = false;
 	}
 
-	void Update(){
+	/*void Update(){
 		if(Input.GetKeyDown(KeyCode.Y)){
 			enableRagdoll();
 		}
 		if(Input.GetKeyDown(KeyCode.U)){
 			disableRagdoll();
 		}
-	}
+	}*/
 
 	void OnFlagDrop(){
 		enableRagdoll();

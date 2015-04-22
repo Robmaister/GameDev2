@@ -28,6 +28,9 @@ public class ParkourController : MonoBehaviour {
 	public float gravity = 10f;
 	public float jumpHeight = 1f;
 
+	public float lastHeadTurn;
+	public float headTurn;
+
 	public CharacterController controller;
 	private Vector3 inputMoveDirection = Vector3.zero;
 
@@ -394,8 +397,8 @@ public class ParkourController : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		//if (photonView != null && !photonView.isMine)
-			//return;
+		if (photonView != null && !photonView.isMine)
+			return;
 
 		netImpulse *= Time.deltaTime;
 
@@ -407,6 +410,16 @@ public class ParkourController : MonoBehaviour {
 		if (itxt != null) itxt.text = "HangPoint: " + current_hang_point;
 		//--------------------------
 
+		//estimate turn speed for extrapolation
+		lastHeadTurn = headTurn;
+		headTurn = transform.localEulerAngles.y;
+		float turnSpeed = (headTurn - lastHeadTurn) * Time.deltaTime * (1.0f / 1000.0f);
+
+		if (ptv != null) {
+			//possible sync fix?
+			ptv.SetSynchronizedValues (controller.velocity + netImpulse, turnSpeed);
+		}
+
 		//moved to lateupdate to allow coroutines to execute
 		if(apply_forces){//if regular forces should be applied
 			//print("NetImpulse: " + netImpulse + " combined: " + (currentMovementOffset + netImpulse));
@@ -414,10 +427,6 @@ public class ParkourController : MonoBehaviour {
 		}else{
 			controller.Move (netImpulse);
 		}
-
-		//possible sync fix?
-		//ptv.SetSynchronizedValues(controller.velocity,15);
-
 	}
 
 
