@@ -1262,6 +1262,7 @@ GameObject:
   - 114: {fileID: 11413576}
   - 114: {fileID: 11434604}
   - 138: {fileID: 13882340}
+  - 114: {fileID: 11487392}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3898,6 +3899,7 @@ MonoBehaviour:
   - {fileID: 11447944}
   - {fileID: 11415380}
   - {fileID: 11434604}
+  - {fileID: 11487392}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -4089,6 +4091,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 123456789012
+--- !u!114 &11487392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
 --- !u!114 &11489202
 MonoBehaviour:
   m_ObjectHideFlags: 1
