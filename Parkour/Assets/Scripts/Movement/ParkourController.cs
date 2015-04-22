@@ -265,16 +265,17 @@ public class ParkourController : MonoBehaviour {
 			inputFeet = new NetworkInput();
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
-			controller.enabled = false;
+			//controller.enabled = false;
 			canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
 			//gravity = 0;
-			Update ();
-			Update ();
 
-			//fix??
-			arms.SetActive(false);
-			legs.SetActive(false);
+			arms.GetComponent<SphereCollider>().enabled = false;
+			legs.GetComponent<SphereCollider>().enabled = false;
+
+
+			Update ();
+			Update ();
 		}
 		else {
 			inputJump = new LooseInput("Jump",.2f,true);
@@ -353,8 +354,6 @@ public class ParkourController : MonoBehaviour {
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
 			//Cursor.visible = false;
-		}else{
-			return;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
@@ -419,11 +418,6 @@ public class ParkourController : MonoBehaviour {
 		lastHeadTurn = headTurn;
 		headTurn = transform.localEulerAngles.y;
 		float turnSpeed = (headTurn - lastHeadTurn) * Time.deltaTime * (1.0f / 1000.0f);
-
-		if (ptv != null) {
-			//possible sync fix?
-			ptv.SetSynchronizedValues (controller.velocity + netImpulse, turnSpeed);
-		}
 
 		//moved to lateupdate to allow coroutines to execute
 		if(apply_forces){//if regular forces should be applied
