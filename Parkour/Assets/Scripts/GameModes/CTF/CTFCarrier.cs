@@ -89,15 +89,17 @@ public class CTFCarrier : MonoBehaviour {
 
 	void OnFlagCapture(Vector3 pos){
 		//store flag in base
-		hasFlag = false;
-		tr.enabled = false;
-		dummyflag.SetActive(false);
-		flagobj.Drop(pos);
-		//flagobj.SetActive(true);
-		flagobj.GetComponent<Collider>().enabled = false;
-		flagobj.GetComponent<Rigidbody>().isKinematic = true;
-		print("capturing flag");
-		flagobj = null;
+		if(flagobj != null){
+			hasFlag = false;
+			tr.enabled = false;
+			dummyflag.SetActive(false);
+			flagobj.Drop(pos);
+			//flagobj.SetActive(true);
+			flagobj.GetComponent<Collider>().enabled = false;
+			flagobj.GetComponent<Rigidbody>().isKinematic = true;
+			print("capturing flag");
+			flagobj = null;
+		}
 	}
 
 }

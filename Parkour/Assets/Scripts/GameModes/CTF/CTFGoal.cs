@@ -88,7 +88,7 @@ public class CTFGoal : MonoBehaviour {
 				print("STEALING FLAG");
 				if(collected2){
 					collected2 = false;
-					//flagobj2.Drop(transform.position);
+					flagobj2.Drop(transform.position);
 					flagobj2.gameObject.SetActive(true);
 					flagobj2.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj2);
@@ -97,7 +97,7 @@ public class CTFGoal : MonoBehaviour {
 				}
 				else if(collected1){
 					collected1 = false;
-					//flagobj1.Drop(transform.position);
+					flagobj1.Drop(transform.position);
 					flagobj1.gameObject.SetActive(true);
 					flagobj1.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj1);
