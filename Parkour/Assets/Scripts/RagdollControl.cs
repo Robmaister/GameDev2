@@ -16,6 +16,8 @@ public class RagdollControl : MonoBehaviour {
 	public DoParkour dpk;
 	public SphereCollider arms,legs;
 
+	public bool is_ragdoll = false;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			foreach(Rigidbody rb in jointlist){
@@ -94,6 +96,7 @@ public class RagdollControl : MonoBehaviour {
 		arms.enabled = false;
 		legs.enabled = false;
 		player_body.freezeRotation = false;
+		is_ragdoll = true;
 	}
 
 	private IEnumerator restoreDoll(){
@@ -140,6 +143,7 @@ public class RagdollControl : MonoBehaviour {
 		legs.enabled = true;
 		player_body.freezeRotation = true;
 		//StartCoroutine(restoreDoll());
+		is_ragdoll = false;
 	}
 
 	void Update(){

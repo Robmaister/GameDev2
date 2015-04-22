@@ -42,11 +42,14 @@ public class CTFFlag : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {//check if a player picks up flag
 		if (col.gameObject.tag == "Player") {
-			carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
-			if (carrier != null && !carrier.HasFlag) {
-				PickupItem pi = GetComponent<PickupItem>();
-				pi.Pickup();
-				//gameObject.SetActive(false);
+			RagdollControl rdc = col.gameObject.GetComponentInChildren<RagdollControl>();
+			if(!rdc.is_ragdoll){
+				carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
+				if (carrier != null && !carrier.HasFlag) {
+					PickupItem pi = GetComponent<PickupItem>();
+					pi.Pickup();
+					//gameObject.SetActive(false);
+				}
 			}
 		}
 	}
