@@ -224,7 +224,7 @@ public class DoParkour : MonoBehaviour {
 				pkc.addImpulse(transform.forward * 10,0.05f);
 			}
 		}else{
-			if(anim.GetCurrentAnimatorStateInfo(0).IsName("GetUp") ){
+			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Get_up") ){
 
 				pkc.controller.height = (pkc.controller.height < 1.5f) ? pkc.controller.height +.1f : 1.5f;
 				if(pkc.controller.height == 1.5f){
