@@ -1194,7 +1194,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 2cbe19fefe033624db9efec5716d8629, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 373918681}
-  m_LocalRotation: {x: .613418698, y: -.351735234, z: .351735204, w: .613418579}
+  m_LocalRotation: {x: .613418639, y: -.351735204, z: .351735175, w: .613418519}
   m_LocalPosition: {x: -3.03663015, y: -3.78958654, z: -35.1651726}
   m_LocalScale: {x: 1, y: 9.76076508, z: .159313306}
   m_Children: []
@@ -4940,7 +4940,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461888, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11484574, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: viewIdField
@@ -4972,19 +4972,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413796, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.302967429
+      value: -.302967399
       objectReference: {fileID: 0}
     - target: {fileID: 413796, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.63891381
+      value: -.638913751
       objectReference: {fileID: 0}
     - target: {fileID: 413796, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.63891381
+      value: -.638913751
       objectReference: {fileID: 0}
     - target: {fileID: 413796, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .30296737
+      value: .30296734
       objectReference: {fileID: 0}
     - target: {fileID: 429224, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5189,6 +5189,18 @@ Prefab:
     - target: {fileID: 11484574, guid: 1893e7321702b2941917b397796dd22f, type: 2}
       propertyPath: synchronization
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028718, guid: 1893e7321702b2941917b397796dd22f, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: .192156866
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028718, guid: 1893e7321702b2941917b397796dd22f, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: .301960796
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028718, guid: 1893e7321702b2941917b397796dd22f, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: .474509805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1893e7321702b2941917b397796dd22f, type: 2}
