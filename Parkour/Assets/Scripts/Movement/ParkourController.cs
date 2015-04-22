@@ -270,7 +270,7 @@ public class ParkourController : MonoBehaviour {
 			//GetComponent<Rigidbody>().useGravity = false;
 			//gravity = 0;
 
-
+			gameObject.GetComponent<MouseLook>().enabled = false;
 
 			Update ();
 			Update ();
@@ -283,7 +283,7 @@ public class ParkourController : MonoBehaviour {
 			inputUse = new LooseInput("Use",.2f,true);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons 

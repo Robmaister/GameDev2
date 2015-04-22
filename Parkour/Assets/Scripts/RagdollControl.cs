@@ -29,10 +29,10 @@ public class RagdollControl : MonoBehaviour {
 			if(headctrl != null){
 				stream.SendNext(headctrl.enable_rotation);
 			}
-			stream.SendNext(mlk.enabled);
-			if(mlk2!=null){
-				stream.SendNext(mlk2.enabled);
-			}
+			//stream.SendNext(mlk.enabled);
+			//if(mlk2!=null){
+				//stream.SendNext(mlk2.enabled);
+			//}
 			stream.SendNext(dpk.enabled);
 			stream.SendNext(pkc.enabled);
 			stream.SendNext(arms.enabled);
@@ -48,10 +48,10 @@ public class RagdollControl : MonoBehaviour {
 			if(headctrl != null){
 				headctrl.enable_rotation = (bool)stream.ReceiveNext();
 			}
-			mlk.enabled = (bool)stream.ReceiveNext();
-			if(mlk2!=null){
-				mlk2.enabled = (bool)stream.ReceiveNext();
-			}
+			//mlk.enabled = (bool)stream.ReceiveNext();
+			//if(mlk2!=null){
+				//mlk2.enabled = (bool)stream.ReceiveNext();
+			//}
 			dpk.enabled = (bool)stream.ReceiveNext();
 			pkc.enabled = (bool)stream.ReceiveNext();
 			arms.enabled = (bool)stream.ReceiveNext();
@@ -87,9 +87,11 @@ public class RagdollControl : MonoBehaviour {
 		if(headctrl != null){
 			headctrl.enable_rotation = true;
 		}
-		mlk.enabled = false;
-		if(mlk2!=null){
-			mlk2.enabled = false;
+		if(transform.root.gameObject.GetComponent<PhotonView>().isMine){
+			mlk.enabled = false;
+			if(mlk2!=null){
+				mlk2.enabled = false;
+			}
 		}
 		dpk.enabled = false;
 		pkc.enabled = false;
@@ -127,9 +129,11 @@ public class RagdollControl : MonoBehaviour {
 		if(headctrl != null){
 			headctrl.enable_rotation = true;
 		}
-		mlk.enabled = true;
-		if(mlk2!=null){
-			mlk2.enabled = true;
+		if(transform.root.gameObject.GetComponent<PhotonView>().isMine){
+			mlk.enabled = true;
+			if(mlk2!=null){
+				mlk2.enabled = true;
+			}
 		}
 		dpk.enabled = true;
 		pkc.enabled = true;

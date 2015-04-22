@@ -90,7 +90,6 @@ public class PlayerSpawn : MonoBehaviour {
 		sp.parent = attachObj;
 
 		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
-
 	}
 }
 
