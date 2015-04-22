@@ -76,8 +76,7 @@ public class ParkourController : MonoBehaviour {
 	//----------------------
 
 	private Vector3 lastInputMoveDirection = Vector3.zero;
-
-	[System.NonSerializedAttribute]
+	
 	public SurfaceType armState = 0;
 	public SurfaceType legState = 0;
 	public IInput inputJump;
@@ -272,6 +271,10 @@ public class ParkourController : MonoBehaviour {
 			//gravity = 0;
 			Update ();
 			Update ();
+
+			//fix??
+			arms.SetActive(false);
+			legs.SetActive(false);
 		}
 		else {
 			inputJump = new LooseInput("Jump",.2f,true);
