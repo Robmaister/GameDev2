@@ -44,8 +44,10 @@ public class DoParkour : MonoBehaviour {
 				
 				iks.arm_ik_active = true;
 				//print(pkc.current_hang_point);
-				l_hand_target.position = pkc.current_hang_point + lhandoffset;
-				r_hand_target.position = pkc.current_hang_point + rhandoffset;
+				//l_hand_target.position = pkc.current_hang_point + lhandoffset;
+				//r_hand_target.position = pkc.current_hang_point + rhandoffset;
+				l_hand_target.position = pkc.current_hang_point - pkc.current_hang_point_direction_vector_right;
+				r_hand_target.position = pkc.current_hang_point + pkc.current_hang_point_direction_vector_right;
 				//print(lhandoffset);
 				//print (l_hand_target.transform.localPosition);
 			}
@@ -106,9 +108,15 @@ public class DoParkour : MonoBehaviour {
 						if(pkc.networkInputH != 0){
 							//4564356456460000000000000333333333333333333000000000000222222222222222200000000000000000000000000000000000000000000000000000001110
 							//this needs to be changed so it retargets based on interpolation on edge
+							//pkc.addImpulse(pkc.transform.right * Input.GetAxis("Horizontal"), .05f);		
 
-							//pkc.addImpulse(pkc.transform.right * Input.GetAxis("Horizontal"), .05f);
-							pkc.addImpulse(pkc.transform.right * pkc.networkInputH, .05f);
+							//the following forces the lateral movement while on a ledge to be constrained to
+							//the plane of the ledge
+							pkc.addImpulse(
+								((Vector3.Dot( pkc.transform.right, pkc.current_hang_point_direction_vector_right.normalized)) 
+								* pkc.current_hang_point_direction_vector_right.normalized)
+							               * pkc.networkInputH, .05f);
+
 						}
 
 						if(pkc.transform.position.y > pkc.current_hang_point.y - .75f){//-1 because arm length
@@ -134,11 +142,11 @@ public class DoParkour : MonoBehaviour {
 						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
 							hanging = false;
-
+							print ("Topping out");
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.3f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .9f,.1f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .9f,.2f);
 
 							pkc.apply_forces = true;
 							return true;
@@ -150,6 +158,7 @@ public class DoParkour : MonoBehaviour {
 							//if(Input.GetAxis("Vertical") > 0){
 								return false;
 							}else{
+
 								pkc.addImpulse(-pkc.transform.up * pkc.gravity/3,-1,checkfunc:checkfunc2,endfunc:endfunc2);
 								return true;
 							}
