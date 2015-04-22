@@ -7,7 +7,8 @@ public class IK_Script : MonoBehaviour {
 	public float IKWeight;
 	public bool arm_ik_active = false;
 	public bool head_ik_active = true;
-	public Transform RHandObj,LHandObj,lookAt = null,RElbowObj,LElbowObj;
+	public Transform RHandObj,LHandObj,RElbowObj,LElbowObj;
+	public Transform lookAt = null;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();

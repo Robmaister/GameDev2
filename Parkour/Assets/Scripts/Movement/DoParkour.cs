@@ -44,8 +44,10 @@ public class DoParkour : MonoBehaviour {
 				
 				iks.arm_ik_active = true;
 				//print(pkc.current_hang_point);
-				l_hand_target.position = pkc.current_hang_point + lhandoffset;
-				r_hand_target.position = pkc.current_hang_point + rhandoffset;
+				//l_hand_target.position = pkc.current_hang_point + lhandoffset;
+				//r_hand_target.position = pkc.current_hang_point + rhandoffset;
+				l_hand_target.position = pkc.current_hang_point - pkc.current_hang_point_direction_vector_right;
+				r_hand_target.position = pkc.current_hang_point + pkc.current_hang_point_direction_vector_right;
 				//print(lhandoffset);
 				//print (l_hand_target.transform.localPosition);
 			}

@@ -43,6 +43,7 @@ public class ParkourController : MonoBehaviour {
 
 	//this allows hanging on a sloped edge
 	public Vector3 current_hang_point = Vector3.zero;//current point on the current edge to target hanging
+	public Vector3 current_hang_point_direction_vector_right = Vector3.right;
 
 	public GameObject current_ledge_object = null;
 
@@ -221,6 +222,23 @@ public class ParkourController : MonoBehaviour {
 		Vector3 vClosestPoint = vA + vVector3;
 		
 		return vClosestPoint;
+	}
+
+	Vector3 EdgeOrientaion(Vector3 leftVert, Vector3 rightVert, Vector3 playerPos)
+	{ //gets a 0.1 unit vector displaying the direction to shift player hands along the held ledge, points to their right
+		Vector3 leftToRightVec = rightVert - leftVert;
+		//need to calculate what side the vector is compared to the player
+		//I think a cross product, then look at y value for pos or neg
+		Vector3 leftToPlayerVec = playerPos - leftVert;
+		Vector3 crossResult = Vector3.Cross(leftToRightVec, leftToPlayerVec);
+		//if value is positive, player is to the right, no change needed
+		if(crossResult.y <= 0){// value is negative or zero(weird) and the player is on the left side
+			leftToRightVec = leftVert - rightVert; //invert/flip vec
+		}
+
+		leftToRightVec = leftToRightVec.normalized * 0.25f; //create vector of magnitude 0.25  
+		//THIS is the width of hand spacing for climbups
+		return leftToRightVec;
 	}
 
 
@@ -546,6 +564,7 @@ public class ParkourController : MonoBehaviour {
 							}
 
 							current_hang_point = ClosestPointOnLine(currentEdge_left,currentEdge_right,transform.position);
+							current_hang_point_direction_vector_right = EdgeOrientaion(currentEdge_left,currentEdge_right,transform.position);
 							//print(current_hang_point);
 
 
