@@ -43,6 +43,7 @@ public class CTFFlag : MonoBehaviour {
 				print("flag wait duration expired");
 				break;
 			}
+			yield return null;
 		}
 		carrier.SendMessage("OnPickedUp", waititem); 
 		waititem = null;
