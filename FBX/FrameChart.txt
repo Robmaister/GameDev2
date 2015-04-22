@@ -13,3 +13,6 @@ Frame 275: Get up - Frame 310: end
 Frame 315: Vault - Frame 336: end
 Frame 340: Roll - Frame 362: end
 Frame 370: Backpedal - Frame 390: end
+Frame 395: Kick off - Frame: 398
+Frame 400: Hard Fall - Frame: 420
+Frame 425: Get up Back - Frame: 460

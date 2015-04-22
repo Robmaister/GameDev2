@@ -71,8 +71,8 @@ public class PlayerSpawn : MonoBehaviour {
 		//Debug.Log ("CONNECTED");
 
 
-		SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
-		SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyHead").GetComponent<SkinnedMeshRenderer>();
+		//SkinnedMeshRenderer guyBody = newPlayerObject.FindInChildren("GuyBody").GetComponent<SkinnedMeshRenderer>();
+		//SkinnedMeshRenderer guyHead = newPlayerObject.FindInChildren("GuyHead").GetComponent<SkinnedMeshRenderer>();
 
 		Transform headTarget = newPlayerObject.FindInChildren("HeadTarget").transform;
 

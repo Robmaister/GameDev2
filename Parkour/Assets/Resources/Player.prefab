@@ -1268,7 +1268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &164210
 GameObject:
   m_ObjectHideFlags: 1
@@ -4058,12 +4058,6 @@ MonoBehaviour:
   m_SynchronizeParameters:
   - Type: 9
     SynchronizeType: 1
-    Name: onTop
-  - Type: 9
-    SynchronizeType: 1
-    Name: letGo
-  - Type: 9
-    SynchronizeType: 1
     Name: tackle
   - Type: 4
     SynchronizeType: 1
@@ -4080,6 +4074,27 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isGrounded
+  - Type: 1
+    SynchronizeType: 2
+    Name: speed
+  - Type: 9
+    SynchronizeType: 1
+    Name: grabbing
+  - Type: 9
+    SynchronizeType: 1
+    Name: onTop
+  - Type: 9
+    SynchronizeType: 1
+    Name: letGo
+  - Type: 9
+    SynchronizeType: 1
+    Name: hitPlayer
+  - Type: 1
+    SynchronizeType: 1
+    Name: randVault
+  - Type: 9
+    SynchronizeType: 1
+    Name: getUp
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
