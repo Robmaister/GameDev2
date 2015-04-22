@@ -265,10 +265,15 @@ public class ParkourController : MonoBehaviour {
 			inputFeet = new NetworkInput();
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
-			controller.enabled = false;
+			//controller.enabled = false;
 			canControl = false;
 			//GetComponent<Rigidbody>().useGravity = false;
 			//gravity = 0;
+
+			arms.GetComponent<SphereCollider>().enabled = false;
+			legs.GetComponent<SphereCollider>().enabled = false;
+
+
 			Update ();
 			Update ();
 		}
@@ -413,11 +418,6 @@ public class ParkourController : MonoBehaviour {
 		lastHeadTurn = headTurn;
 		headTurn = transform.localEulerAngles.y;
 		float turnSpeed = (headTurn - lastHeadTurn) * Time.deltaTime * (1.0f / 1000.0f);
-
-		if (ptv != null) {
-			//possible sync fix?
-			ptv.SetSynchronizedValues (controller.velocity + netImpulse, turnSpeed);
-		}
 
 		//moved to lateupdate to allow coroutines to execute
 		if(apply_forces){//if regular forces should be applied
