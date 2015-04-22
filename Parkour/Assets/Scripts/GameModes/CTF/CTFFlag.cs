@@ -35,9 +35,14 @@ public class CTFFlag : MonoBehaviour {
 		}
 	}
 
+
 	public void OnPickedUp(PickupItem item){
 		//Debug.Log("flagscript: " + item.PickupIsMine);
-		carrier.SendMessage("OnPickedUp", item); 
+		if(carrier != null){
+			carrier.SendMessage("OnPickedUp", item); 
+		}else{
+			print("No carrier to pick up!");
+		}
 	}
 
 	void OnTriggerEnter(Collider col) {//check if a player picks up flag
