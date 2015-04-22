@@ -74,10 +74,10 @@ public class CTFCarrier : MonoBehaviour {
 
 	void OnFlagDrop(){
 		//drop the flag (if get tackled or something)
-		hasFlag = false;
-		dummyflag.SetActive(false);
-		tr.enabled = false;
 		if(flagobj != null){
+			hasFlag = false;
+			dummyflag.SetActive(false);
+			tr.enabled = false;
 			flagobj.Drop(transform.position);
 			//flagobj.SetActive(true);
 			print("dropping flag");
