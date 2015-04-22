@@ -66,12 +66,14 @@ public class RagdollControl : MonoBehaviour {
 			jointlist.Add(rb);
 		}
 
+		mlk2 = Camera.main.GetComponent<MouseLook>();
 		disableRagdoll();
 	}
 	
 	public void enableRagdoll(){
 		foreach(Rigidbody rb in jointlist){
 			rb.isKinematic = false;
+			rb.velocity = pkc.controller.velocity;
 		}
 		ctrl.enabled = false;
 		anim.enabled = false;
@@ -81,7 +83,7 @@ public class RagdollControl : MonoBehaviour {
 		}
 		mlk.enabled = false;
 		if(mlk2!=null){
-			mlk2.enabled = true;
+			mlk2.enabled = false;
 		}
 		dpk.enabled = false;
 		pkc.enabled = false;
