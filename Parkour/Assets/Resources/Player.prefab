@@ -1261,6 +1261,7 @@ GameObject:
   - 114: {fileID: 11447944}
   - 114: {fileID: 11413576}
   - 114: {fileID: 11434604}
+  - 138: {fileID: 13882340}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3447,7 +3448,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!54 &5434320
 Rigidbody:
@@ -4054,8 +4055,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: onTop
+  - Type: 9
+    SynchronizeType: 1
+    Name: letGo
+  - Type: 9
+    SynchronizeType: 1
+    Name: tackle
+  - Type: 4
+    SynchronizeType: 1
+    Name: falling
+  - Type: 4
+    SynchronizeType: 1
+    Name: jumping
+  - Type: 1
+    SynchronizeType: 0
+    Name: fallingSpeed
+  - Type: 9
+    SynchronizeType: 1
+    Name: vaulting
+  - Type: 4
+    SynchronizeType: 1
+    Name: isGrounded
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!114 &11485974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4126,6 +4153,8 @@ MonoBehaviour:
   mlk2: {fileID: 0}
   pkc: {fileID: 11431364}
   dpk: {fileID: 11499216}
+  arms: {fileID: 13511512}
+  legs: {fileID: 13548666}
 --- !u!114 &11499216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4422,6 +4451,17 @@ SkinnedMeshRenderer:
     m_Center: {x: 4.42517853, y: -.259529114, z: 17.7487679}
     m_Extent: {x: 40.0062523, y: 62.2144852, z: 50.2848167}
   m_DirtyAABB: 0
+--- !u!138 &13882340
+FixedJoint:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_ConnectedBody: {fileID: 5465388}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
 --- !u!143 &14350596
 CharacterController:
   m_ObjectHideFlags: 1
