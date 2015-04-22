@@ -3719,9 +3719,9 @@ MonoBehaviour:
   head_ik_active: 1
   RHandObj: {fileID: 424054}
   LHandObj: {fileID: 473992}
-  lookAt: {fileID: 462068}
   RElbowObj: {fileID: 469300}
   LElbowObj: {fileID: 431944}
+  lookAt: {fileID: 462068}
 --- !u!114 &11408264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3812,7 +3812,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 3
+    InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     InterpolateMoveTowardsAcceleration: 2
@@ -3890,7 +3890,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 1
+  synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -3973,6 +3973,7 @@ MonoBehaviour:
   currentEdge_left: {x: 0, y: 0, z: 0}
   currentEdge_right: {x: 0, y: 0, z: 0}
   current_hang_point: {x: 0, y: 0, z: 0}
+  current_hang_point_direction_vector_right: {x: 1, y: 0, z: 0}
   current_ledge_object: {fileID: 0}
   sprinting: 0
   stamina: 1
