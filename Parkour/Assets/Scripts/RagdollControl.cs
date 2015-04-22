@@ -97,16 +97,13 @@ public class RagdollControl : MonoBehaviour {
 		legs.enabled = false;
 		player_body.freezeRotation = false;
 		is_ragdoll = true;
+
+		StartCoroutine(restoreDoll());
 	}
 
 	private IEnumerator restoreDoll(){
-		pkc.controller.height = 0;
-		while(pkc.controller.height < 1.5f){
-			pkc.controller.height += .05f;
-			yield return null;
-		}
-		pkc.controller.height = 1.5f;
-		yield return null;
+		yield return new WaitForSeconds(3);
+		disableRagdoll();
 	}
 
 	public void disableRagdoll(){
@@ -146,14 +143,14 @@ public class RagdollControl : MonoBehaviour {
 		is_ragdoll = false;
 	}
 
-	void Update(){
+	/*void Update(){
 		if(Input.GetKeyDown(KeyCode.Y)){
 			enableRagdoll();
 		}
 		if(Input.GetKeyDown(KeyCode.U)){
 			disableRagdoll();
 		}
-	}
+	}*/
 
 	void OnFlagDrop(){
 		enableRagdoll();

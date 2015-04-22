@@ -21,13 +21,13 @@ public class CTFGoal : MonoBehaviour {
 			stream.SendNext(collected1);
 			stream.SendNext(collected2);
 			if(flagobj1 != null){
-				stream.SendNext(flagobj1.GetComponent<PhotonView>().viewID);
+				stream.SendNext(flagobj1.gameObject.GetComponent<PhotonView>().viewID);
 			}
 			else{
 				stream.SendNext(-1);
 			}
 			if(flagobj1 != null){
-				stream.SendNext(flagobj2.GetComponent<PhotonView>().viewID);
+				stream.SendNext(flagobj2.gameObject.GetComponent<PhotonView>().viewID);
 			}
 			else{
 				stream.SendNext(-1);
