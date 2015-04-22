@@ -271,10 +271,6 @@ public class ParkourController : MonoBehaviour {
 			//gravity = 0;
 			Update ();
 			Update ();
-
-			//fix??
-			arms.SetActive(false);
-			legs.SetActive(false);
 		}
 		else {
 			inputJump = new LooseInput("Jump",.2f,true);
@@ -353,8 +349,6 @@ public class ParkourController : MonoBehaviour {
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
 			//Cursor.visible = false;
-		}else{
-			return;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){
