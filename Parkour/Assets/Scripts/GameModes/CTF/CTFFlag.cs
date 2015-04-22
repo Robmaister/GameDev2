@@ -18,7 +18,7 @@ public class CTFFlag : MonoBehaviour {
 		if (stream.isWriting) {
 			stream.SendNext(spc.enabled);
 			stream.SendNext(rb.isKinematic);
-			stream.SendNext(gameObject.GetActive())
+			stream.SendNext(gameObject.GetActive());
 		}
 		else {
 			spc.enabled = (bool)stream.ReceiveNext();
