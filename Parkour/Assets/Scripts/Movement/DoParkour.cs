@@ -133,11 +133,11 @@ public class DoParkour : MonoBehaviour {
 						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
 							hanging = false;
-
+							print ("Topping out");
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
-							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .5f,.2f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .9f,.1f);
+							pkc.addImpulse(pkc.networkInputV  * pkc.transform.up * .9f,.2f);
 
 							pkc.apply_forces = true;
 							return true;
@@ -149,6 +149,7 @@ public class DoParkour : MonoBehaviour {
 							//if(Input.GetAxis("Vertical") > 0){
 								return false;
 							}else{
+
 								pkc.addImpulse(-pkc.transform.up * pkc.gravity/3,-1,checkfunc:checkfunc2,endfunc:endfunc2);
 								return true;
 							}
