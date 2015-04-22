@@ -48,7 +48,7 @@ public class CTFCarrier : MonoBehaviour {
 		}
 	}
 
-	void Start () {
+	void Awake () {
 		tr = GetComponent<TrailRenderer>();
 	}
 
