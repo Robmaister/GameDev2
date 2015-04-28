@@ -73,13 +73,15 @@ public class CTFGoal : MonoBehaviour {
 
 				if(!collected1){
 					collected1 = true;
-					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
 					flagobj1 = carrier.GetComponent<CTFCarrier>().flagobj;
+					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
+
 					return;
 				}else if(!collected2){
 						collected2 = true;
-						carrier.SendMessage("OnFlagCapture",flag2slot.position); 
 						flagobj2 = carrier.GetComponent<CTFCarrier>().flagobj;
+						carrier.SendMessage("OnFlagCapture",flag2slot.position); 
+						
 						return;
 				}
 			}
