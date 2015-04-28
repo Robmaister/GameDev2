@@ -26,13 +26,14 @@ public class CTFCarrier : MonoBehaviour {
 			stream.SendNext(team);
 			stream.SendNext(pname);
 			stream.SendNext(hasFlag);
+			stream.SendNext(dummyflag.GetActive());
 			nameTag.text = pname;
 		}
 		else {
 			setTeam((int)stream.ReceiveNext());
 			pname = (string)stream.ReceiveNext();
 			hasFlag = (bool)stream.ReceiveNext();
-
+			dummyflag.SetActive((bool)stream.ReceiveNext());
 			nameTag.text = pname;
 			tr.enabled = hasFlag;
 		}
@@ -79,7 +80,6 @@ public class CTFCarrier : MonoBehaviour {
 			dummyflag.SetActive(false);
 			tr.enabled = false;
 			flagobj.Drop(transform.position);
-			//flagobj.SetActive(true);
 			print("dropping flag");
 			flagobj = null;
 

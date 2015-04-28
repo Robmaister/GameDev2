@@ -38,6 +38,7 @@ public class CTFFlag : MonoBehaviour {
 		//Debug.Log("flagscript: " + item.PickupIsMine);
 		if(carrier != null){
 			carrier.SendMessage("OnPickedUp", item); 
+			carrier = null;
 		}else{
 			print("No carrier to pick up!");
 		}
@@ -51,7 +52,6 @@ public class CTFFlag : MonoBehaviour {
 				if (carrier != null && !carrier.HasFlag) {
 					PickupItem pi = GetComponent<PickupItem>();
 					pi.Pickup();
-					//gameObject.SetActive(false);
 				}
 			}
 		}
