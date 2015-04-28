@@ -18,7 +18,7 @@ public class CTFFlag : MonoBehaviour {
 		if (stream.isWriting) {
 			stream.SendNext(spc.enabled);
 			stream.SendNext(rb.isKinematic);
-			//stream.SendNext(gameObject.GetActive());
+			stream.SendNext(gameObject.GetActive());
 			if(carrier != null){
 				stream.SendNext(carrier.GetComponent<PhotonView>().viewID);
 			}
@@ -29,7 +29,7 @@ public class CTFFlag : MonoBehaviour {
 		else {
 			spc.enabled = (bool)stream.ReceiveNext();
 			rb.isKinematic = (bool)stream.ReceiveNext();
-			//gameObject.SetActive((bool)stream.ReceiveNext());
+			gameObject.SetActive((bool)stream.ReceiveNext());
 			int tmp = (int)stream.ReceiveNext();
 			carrier = (tmp != -1) ? PhotonView.Find(tmp).gameObject.GetComponent<CTFCarrier>() : null;
 		}
