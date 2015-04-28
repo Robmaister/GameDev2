@@ -26,7 +26,7 @@ public class CTFGoal : MonoBehaviour {
 			else{
 				stream.SendNext(-1);
 			}
-			if(flagobj1 != null){
+			if(flagobj2 != null){
 				stream.SendNext(flagobj2.gameObject.GetComponent<PhotonView>().viewID);
 			}
 			else{
