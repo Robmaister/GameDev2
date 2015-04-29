@@ -18,6 +18,9 @@ public class RagdollControl : MonoBehaviour {
 
 	public bool is_ragdoll = false;
 
+	public AudioClip ragdollsound;
+	public AudioClip mylegsound;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			foreach(Rigidbody rb in jointlist){
@@ -99,6 +102,12 @@ public class RagdollControl : MonoBehaviour {
 		legs.enabled = false;
 		player_body.freezeRotation = false;
 		is_ragdoll = true;
+
+		if(Random.Range(0f,1f) > .25f){
+			AudioSource.PlayClipAtPoint(ragdollsound,transform.position);
+		}else{
+			AudioSource.PlayClipAtPoint(mylegsound,transform.position);
+		}
 
 		StartCoroutine(restoreDoll());
 	}

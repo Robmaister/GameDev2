@@ -205,6 +205,14 @@ MonoBehaviour:
   flagcount: 0
   flag1slot: {fileID: 416144}
   flag2slot: {fileID: 430492}
+  flagobj1: {fileID: 0}
+  flagobj2: {fileID: 0}
+  bluecapture: {fileID: 8300000, guid: 90017098a6e449f4c9af398a92a73a29, type: 3}
+  redcapture: {fileID: 8300000, guid: 1bf9f6cbe74977940b1c5f6b8728102f, type: 3}
+  bluesteal: {fileID: 8300000, guid: 68b57f90e76097946b4b52d6e3415ba4, type: 3}
+  redsteal: {fileID: 8300000, guid: b53e8293473c6734fa44fdbe303e1670, type: 3}
+  bluewin: {fileID: 8300000, guid: ad68022f0938f6a4eac0c196be965a11, type: 3}
+  redwin: {fileID: 8300000, guid: cd6cad4057c0fc1499d78eddcb27c8a4, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

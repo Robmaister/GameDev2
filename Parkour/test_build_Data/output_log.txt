@@ -18,7 +18,7 @@ Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Deve
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.087 seconds
+- Completed reload, in  0.067 seconds
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -33,7 +33,7 @@ ConnectAndJoinRandom:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs Line: 28)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: cb34 -> priority: 1 
+  Thread -> id: f4dc -> priority: 1 
 OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)

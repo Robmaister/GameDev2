@@ -13,6 +13,13 @@ public class CTFGoal : MonoBehaviour {
 
 	public Transform flag1slot, flag2slot;
 	public PickupItem flagobj1, flagobj2;
+
+	public AudioClip bluecapture;
+	public AudioClip redcapture;
+	public AudioClip bluesteal;
+	public AudioClip redsteal;
+	public AudioClip bluewin;
+	public AudioClip redwin;
 	
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
@@ -53,10 +60,16 @@ public class CTFGoal : MonoBehaviour {
 		if (collected1 && collected2){
 			//win condition
 			print("WINNER: Team " + team);
+			if(team == 0){
+				AudioSource.PlayClipAtPoint(redwin,transform.position);
+			}
+			else if(team == 1){
+				AudioSource.PlayClipAtPoint(bluewin,transform.position);
+			}
 #if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPaused = true;
+			//UnityEditor.EditorApplication.isPaused = true;
 #else
-			Application.Quit();
+			//Application.Quit();
 #endif
 		}
 	}
@@ -69,11 +82,27 @@ public class CTFGoal : MonoBehaviour {
 					flagobj1 = carrier.flagobj;
 					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
 					collected1 = true;
+
+					if(carrier.team == 0){
+						AudioSource.PlayClipAtPoint(redcapture,transform.position);
+					}
+					else if(carrier.team == 1){
+						AudioSource.PlayClipAtPoint(bluecapture,transform.position);
+					}
+
 					return;
 				}else if(!collected2){
 						flagobj2 = carrier.flagobj;
 						carrier.SendMessage("OnFlagCapture",flag2slot.position);
 						collected2 = true;
+
+						if(carrier.team == 0){
+							AudioSource.PlayClipAtPoint(redcapture,transform.position);
+						}
+						else if(carrier.team == 1){
+							AudioSource.PlayClipAtPoint(bluecapture,transform.position);
+						}
+
 						return;
 				}
 			}
@@ -85,6 +114,13 @@ public class CTFGoal : MonoBehaviour {
 					flagobj2.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj2);
 					flagobj2 = null;
+
+					if(carrier.team == 0){
+						AudioSource.PlayClipAtPoint(redsteal,transform.position);
+					}
+					else if(carrier.team == 1){
+						AudioSource.PlayClipAtPoint(bluesteal,transform.position);
+					}
 					return;
 				}
 				else if(collected1){
@@ -93,6 +129,13 @@ public class CTFGoal : MonoBehaviour {
 					flagobj1.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj1);
 					flagobj1 = null;
+
+					if(carrier.team == 0){
+						AudioSource.PlayClipAtPoint(redsteal,transform.position);
+					}
+					else if(carrier.team == 1){
+						AudioSource.PlayClipAtPoint(bluesteal,transform.position);
+					}
 					return;
 				}
 			}

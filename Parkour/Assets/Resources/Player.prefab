@@ -3888,6 +3888,8 @@ MonoBehaviour:
   bluetex: {fileID: 2800000, guid: bfb93994e4e0e174eb4e617583d27fcc, type: 3}
   redtex: {fileID: 2800000, guid: 8f0b05cf7821055478d45f46b407ccf2, type: 3}
   dummyflag: {fileID: 199366}
+  bluepickup: {fileID: 8300000, guid: ea4c889183c2b06479c23b1ca2674640, type: 3}
+  redpickup: {fileID: 8300000, guid: c0a856434a57e1642a3cccd900393e2f, type: 3}
 --- !u!114 &11431364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4146,6 +4148,8 @@ MonoBehaviour:
   arms: {fileID: 13511512}
   legs: {fileID: 13548666}
   is_ragdoll: 0
+  ragdollsound: {fileID: 8300000, guid: 5187629f7a1dda24ab11a4d95d672dee, type: 3}
+  mylegsound: {fileID: 8300000, guid: a5cd212c39201fb43b01e1b714afe334, type: 3}
 --- !u!114 &11499216
 MonoBehaviour:
   m_ObjectHideFlags: 1

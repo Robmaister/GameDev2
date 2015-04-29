@@ -1,10 +1,18 @@
 fileFormatVersion: 2
 guid: 0eaaf86da60066c46acaf6c32ab3f971
-timeCreated: 1426091327
+timeCreated: 1430291141
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nameTag: {instanceID: 0}
+  - flagobj: {instanceID: 0}
+  - skm: {instanceID: 0}
+  - bluetex: {instanceID: 0}
+  - redtex: {instanceID: 0}
+  - dummyflag: {instanceID: 0}
+  - bluepickup: {fileID: 8300000, guid: 90017098a6e449f4c9af398a92a73a29, type: 3}
+  - redpickup: {fileID: 8300000, guid: 1bf9f6cbe74977940b1c5f6b8728102f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

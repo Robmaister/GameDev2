@@ -21,6 +21,9 @@ public class CTFCarrier : MonoBehaviour {
 
 	public GameObject dummyflag;
 
+	public AudioClip bluepickup;
+	public AudioClip redpickup;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
@@ -67,6 +70,13 @@ public class CTFCarrier : MonoBehaviour {
 			tr.enabled = true;
 			flagobj = item;
 			dummyflag.SetActive(true);
+
+			if(team == 0){
+				AudioSource.PlayClipAtPoint(redpickup,transform.position);
+			}
+			if(team == 1){
+				AudioSource.PlayClipAtPoint(bluepickup,transform.position);
+			}
 		}
 		else{
 			Debug.Log("Someone else picked the flag up");
