@@ -55,6 +55,10 @@ public class Tracer : MonoBehaviour {
 			Vector3 geoTrans = cube.transform.position;///cube.transform.localPosition;
 			Quaternion geoQuat = cube.transform.rotation;//cube.transform.localRotation;
 			Vector3 geoScale = cube.transform.lossyScale;//cube.transform.localScale;//ector3 geoScale = cube.transform.lossyScale;
+
+			geoScale = new Vector3(Mathf.Abs(geoScale.x),Mathf.Abs(geoScale.y),Mathf.Abs(geoScale.z));
+
+
 			Matrix4x4 matrixAreForKids = Matrix4x4.identity;
 			matrixAreForKids.SetTRS(geoTrans, geoQuat, geoScale);
 			for (int v=0; v<verts.Length; v++){
