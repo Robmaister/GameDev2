@@ -12,10 +12,8 @@ public class CTFGoal : MonoBehaviour {
 
 
 	public Transform flag1slot, flag2slot;
-	private PickupItem flagobj1, flagobj2;
-
-
-
+	public PickupItem flagobj1, flagobj2;
+	
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(collected1);
@@ -54,15 +52,12 @@ public class CTFGoal : MonoBehaviour {
 
 		if (collected1 && collected2){
 			//win condition
-			print("YOU WIN");
+			print("WINNER: Team " + team);
 #if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPaused = true;
 #else
 			Application.Quit();
 #endif
-
-
-
 		}
 	}
 
@@ -70,26 +65,23 @@ public class CTFGoal : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
 			if (carrier != null && carrier.team == team && carrier.HasFlag) {//only friendlies can place it in the flag
-
 				if(!collected1){
 					collected1 = true;
+					flagobj1 = carrier.GetComponent<CTFCarrier>().flagobj;
 					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
-					flagobj1 = carrier.GetComponent<PickupItem>();
 					return;
 				}else if(!collected2){
 						collected2 = true;
+						flagobj2 = carrier.GetComponent<CTFCarrier>().flagobj;
 						carrier.SendMessage("OnFlagCapture",flag2slot.position); 
-						flagobj2 = carrier.GetComponent<PickupItem>();
 						return;
 				}
 			}
-
 			if (carrier != null && carrier.team != team && !carrier.HasFlag) {//only enemies can steal flag
 				print("STEALING FLAG");
 				if(collected2){
 					collected2 = false;
-					flagobj2.Drop(transform.position);
-					flagobj2.gameObject.SetActive(true);
+					flagobj2.Drop(carrier.transform.position);
 					flagobj2.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj2);
 					flagobj2 = null;
@@ -97,8 +89,7 @@ public class CTFGoal : MonoBehaviour {
 				}
 				else if(collected1){
 					collected1 = false;
-					flagobj1.Drop(transform.position);
-					flagobj1.gameObject.SetActive(true);
+					flagobj1.Drop(carrier.transform.position);
 					flagobj1.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj1);
 					flagobj1 = null;
