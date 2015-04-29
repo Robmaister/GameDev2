@@ -14,8 +14,11 @@ public class ParkourControllerView : MonoBehaviour {
 
 	public bool canJump, applyForces;*/
 
+	private Rigidbody rb;
+
 	// Use this for initialization
 	void Awake() {
+		rb = GetComponent<Rigidbody>();
 		controller = GetComponent<ParkourController>();
 	}
 
@@ -28,9 +31,12 @@ public class ParkourControllerView : MonoBehaviour {
 			stream.SendNext(controller.inputFeet.Pressed);
 			stream.SendNext(controller.inputSprint.Pressed);
 			stream.SendNext(controller.inputUse.Pressed);
-			//stream.SendNext(controller.netImpulse);
+
 			stream.SendNext(controller.can_jump);
 			stream.SendNext(controller.apply_forces);
+
+			stream.SendNext(transform.position);
+			stream.SendNext(transform.rotation);
 		}
 		else {
 			controller.networkInputH = (float)stream.ReceiveNext();
@@ -40,9 +46,17 @@ public class ParkourControllerView : MonoBehaviour {
 			controller.inputFeet.Pressed = (bool)stream.ReceiveNext();
 			controller.inputSprint.Pressed = (bool)stream.ReceiveNext();
 			controller.inputUse.Pressed = (bool)stream.ReceiveNext();
-			//controller.netImpulse = (Vector3)stream.ReceiveNext();
+
 			controller.can_jump = (bool)stream.ReceiveNext();
 			controller.apply_forces = (bool)stream.ReceiveNext();
+
+			Vector3 tmp = (Vector3)stream.ReceiveNext();
+			transform.rotation = (Quaternion)stream.ReceiveNext();
+
+			if(Vector3.Distance(transform.position,tmp) >= 1f){
+				transform.position = tmp + rb.velocity;
+			}
+
 		}
 	}
 }

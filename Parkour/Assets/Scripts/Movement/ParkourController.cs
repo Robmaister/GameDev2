@@ -37,7 +37,6 @@ public class ParkourController : MonoBehaviour {
 	public bool can_jump = false;
 	public bool apply_forces = true;
 
-
 	// stuff for handling edge data
 
 
@@ -63,22 +62,12 @@ public class ParkourController : MonoBehaviour {
 
 	public Image staminaBar;
 
-
-
-
-
-	//for debugging purposes
-	public Text vtxt;
-	public Text otxt;
-	public Text ptxt;
-	public Text ltxt;
-	public Text itxt;
-	//----------------------
-
 	private Vector3 lastInputMoveDirection = Vector3.zero;
 	
 	public SurfaceType armState = 0;
 	public SurfaceType legState = 0;
+
+
 	public IInput inputJump;
 	public IInput inputHands;
 	public IInput inputFeet;
@@ -265,15 +254,8 @@ public class ParkourController : MonoBehaviour {
 			inputFeet = new NetworkInput();
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
-			//controller.enabled = false;
-			//canControl = false;
-			//GetComponent<Rigidbody>().useGravity = false;
-			//gravity = 0;
 
 			gameObject.GetComponent<MouseLook>().enabled = false;
-
-			Update ();
-			Update ();
 		}
 		else {
 			inputJump = new LooseInput("Jump",.2f,true);
@@ -287,6 +269,9 @@ public class ParkourController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons 
+		ptv.SetSynchronizedValues(controller.velocity,1);
+
+
 		if(sprintready){
 			if(inputSprint.Pressed){
 				stamina -= drainRate * Time.deltaTime;
@@ -329,6 +314,8 @@ public class ParkourController : MonoBehaviour {
 			}
 			staminaBar.fillAmount = stamina;
 		}
+
+
 
 		float inputH, inputV;
 		if (photonView != null && !photonView.isMine) {
@@ -393,29 +380,22 @@ public class ParkourController : MonoBehaviour {
 			currentMovementOffset = Vector3.zero;
 		}
 
-
 		netImpulse = Vector3.zero;
+
+
+
+
 
 	}
 
 	void LateUpdate(){
-		//if (photonView != null && !photonView.isMine)
-			//return;
 
 		netImpulse *= Time.deltaTime;
 
-		//debug stuff
-		if (vtxt != null) vtxt.text = "Velocity: " + controller.velocity;
-		if (ptxt != null) ptxt.text = "Position: " + transform.position;
-		if (otxt != null) otxt.text = "Rotation: " + transform.rotation.eulerAngles;
-		if (ltxt != null) ltxt.text = "Arms: " + armState + "\nLegs: " + legState;
-		if (itxt != null) itxt.text = "HangPoint: " + current_hang_point;
-		//--------------------------
-
 		//estimate turn speed for extrapolation
-		lastHeadTurn = headTurn;
-		headTurn = transform.localEulerAngles.y;
-		float turnSpeed = (headTurn - lastHeadTurn) * Time.deltaTime * (1.0f / 1000.0f);
+		//lastHeadTurn = headTurn;
+		//headTurn = transform.localEulerAngles.y;
+		//float turnSpeed = (headTurn - lastHeadTurn) * Time.deltaTime * (1.0f / 1000.0f);
 
 		//moved to lateupdate to allow coroutines to execute
 		if(apply_forces){//if regular forces should be applied
