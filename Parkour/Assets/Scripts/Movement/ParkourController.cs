@@ -73,6 +73,7 @@ public class ParkourController : MonoBehaviour {
 	public IInput inputFeet;
 	public IInput inputSprint;
 	public IInput inputUse;
+	public IInput inputRoll;
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
@@ -193,6 +194,7 @@ public class ParkourController : MonoBehaviour {
 		inputFeet.Update();
 		inputSprint.Update();
 		inputUse.Update();
+		inputRoll.Update();
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
@@ -254,6 +256,8 @@ public class ParkourController : MonoBehaviour {
 			inputFeet = new NetworkInput();
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
+			inputRoll = new NetworkInput();
+
 
 			gameObject.GetComponent<MouseLook>().enabled = false;
 		}
@@ -263,6 +267,7 @@ public class ParkourController : MonoBehaviour {
 			inputFeet = new LooseInput("Fire2",.2f);
 			inputSprint = new LooseInput("Sprint",.2f);
 			inputUse = new LooseInput("Use",.2f,true);
+			inputRoll = new LooseInput("Roll",.2f,true);
 		}
 	}
 
@@ -271,6 +276,11 @@ public class ParkourController : MonoBehaviour {
 		getInput();//get input state for buttons 
 		ptv.SetSynchronizedValues(controller.velocity,1);
 
+		if ( inputRoll.Pressed){
+			//if(anim.GetBool("falling")){
+			anim.SetBool("rollCheck",true);
+			//}
+		}
 
 		if(sprintready){
 			if(inputSprint.Pressed){
@@ -446,6 +456,9 @@ public class ParkourController : MonoBehaviour {
 		if (controller.isGrounded){
 			anim.SetBool("jumping",false);
 			anim.SetBool("falling",false);
+			anim.SetBool("rollCheck",false);
+				
+			
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		}
 		else {
