@@ -252,7 +252,7 @@ ModelImporter:
     motionNodeName: 
     animationCompression: 3
     animationRotationError: .5
-    animationPositionError: .5
+    animationPositionError: 0
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []

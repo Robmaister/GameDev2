@@ -93,6 +93,7 @@ public class CTFCarrier : MonoBehaviour {
 			hasFlag = false;
 			tr.enabled = false;
 			dummyflag.SetActive(false);
+			flagobj.transform.rotation = Quaternion.identity;
 			flagobj.GetComponent<Collider>().enabled = false;
 			flagobj.GetComponent<Rigidbody>().isKinematic = true;
 			flagobj.Drop(pos);
