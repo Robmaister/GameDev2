@@ -18,7 +18,7 @@ Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Deve
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.055 seconds
+- Completed reload, in  0.075 seconds
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -33,7 +33,7 @@ ConnectAndJoinRandom:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs Line: 28)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 5f58 -> priority: 1 
+  Thread -> id: 7f40 -> priority: 1 
 OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -113,49 +113,13 @@ UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Exte
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
 
-carrierscript: True
+STEALING FLAG
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-CTFCarrier:OnPickedUp(PickupItem) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFCarrier.cs:63)
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-UnityEngine.Component:SendMessage(String, Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineComponent.gen.cs:204)
-CTFFlag:OnPickedUp(PickupItem) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFFlag.cs:40)
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-UnityEngine.Component:SendMessage(String, Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineComponent.gen.cs:204)
-PickupItem:PunPickup(PhotonMessageInfo) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\UtilityScripts\PickupItem.cs:147)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2141)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1821)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+CTFGoal:OnTriggerEnter(Collider) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFGoal.cs:81)
  
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-Picked up flag
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-CTFCarrier:OnPickedUp(PickupItem) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFCarrier.cs:65)
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-UnityEngine.Component:SendMessage(String, Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineComponent.gen.cs:204)
-CTFFlag:OnPickedUp(PickupItem) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFFlag.cs:40)
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-UnityEngine.Component:SendMessage(String, Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineComponent.gen.cs:204)
-PickupItem:PunPickup(PhotonMessageInfo) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\UtilityScripts\PickupItem.cs:147)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2141)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1821)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
 
 [Singleton] Using instance already created: Geometry Manager
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -164,65 +128,4 @@ Singleton`1:get_Instance() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 20
 ParkourController:OnCollisionEnter(Collision) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:549)
  
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Scripts/Singleton.cs Line: 53)
-
-walljump
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
-DoParkour:LateUpdate() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\DoParkour.cs:79)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
-
-Topping out
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
-<LateUpdate>c__AnonStoreyC:<>m__8() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\DoParkour.cs:145)
-<_addImpulse>c__Iterator3:MoveNext() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:163)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
-
-walljump
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
-DoParkour:LateUpdate() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\DoParkour.cs:79)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
-
-Topping out
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
-<LateUpdate>c__AnonStoreyC:<>m__8() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\DoParkour.cs:145)
-<_addImpulse>c__Iterator3:MoveNext() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:163)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
-
-capturing flag
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
-CTFCarrier:OnFlagCapture(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFCarrier.cs:99)
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-UnityEngine.Component:SendMessage(String, Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineComponent.gen.cs:204)
-CTFGoal:OnTriggerEnter(Collider) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\GameModes\CTF\CTFGoal.cs:71)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
-
-PunRespawn with Position.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-PickupItem:PunRespawn(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\UtilityScripts\PickupItem.cs:189)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2120)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1821)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
 

@@ -66,14 +66,14 @@ public class CTFGoal : MonoBehaviour {
 			CTFCarrier carrier = col.gameObject.GetComponentInChildren<CTFCarrier>();
 			if (carrier != null && carrier.team == team && carrier.HasFlag) {//only friendlies can place it in the flag
 				if(!collected1){
-					collected1 = true;
-					flagobj1 = carrier.GetComponent<CTFCarrier>().flagobj;
+					flagobj1 = carrier.flagobj;
 					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
+					collected1 = true;
 					return;
 				}else if(!collected2){
+						flagobj2 = carrier.flagobj;
+						carrier.SendMessage("OnFlagCapture",flag2slot.position);
 						collected2 = true;
-						flagobj2 = carrier.GetComponent<CTFCarrier>().flagobj;
-						carrier.SendMessage("OnFlagCapture",flag2slot.position); 
 						return;
 				}
 			}
