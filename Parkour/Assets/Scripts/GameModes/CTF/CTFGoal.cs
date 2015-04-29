@@ -20,6 +20,8 @@ public class CTFGoal : MonoBehaviour {
 	public AudioClip redsteal;
 	public AudioClip bluewin;
 	public AudioClip redwin;
+
+	bool gameOver = false;
 	
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
@@ -48,29 +50,26 @@ public class CTFGoal : MonoBehaviour {
 		
 		}
 	}
+
+	void endGame(){
+		print("WINNER: Team " + team);
+		if(team == 0){
+			AudioSource.PlayClipAtPoint(redwin,transform.position);
+		}
+		else if(team == 1){
+			AudioSource.PlayClipAtPoint(bluewin,transform.position);
+		}
+		gameOver = true;
+	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		int t1 = collected1 ? 1 : 0;
 		int t2 = collected2 ? 1 : 0;
 		flagcount = t1 + t2;
 
-
-		if (collected1 && collected2){
-			//win condition
-			print("WINNER: Team " + team);
-			if(team == 0){
-				AudioSource.PlayClipAtPoint(redwin,transform.position);
-			}
-			else if(team == 1){
-				AudioSource.PlayClipAtPoint(bluewin,transform.position);
-			}
-#if UNITY_EDITOR
-			//UnityEditor.EditorApplication.isPaused = true;
-#else
-			//Application.Quit();
-#endif
+		if (!gameOver && collected1 && collected2){
+			endGame();
 		}
 	}
 
@@ -95,6 +94,11 @@ public class CTFGoal : MonoBehaviour {
 						flagobj2 = carrier.flagobj;
 						carrier.SendMessage("OnFlagCapture",flag2slot.position);
 						collected2 = true;
+
+						if(collected1 && collected2){
+							endGame();
+							return;
+						}
 
 						if(carrier.team == 0){
 							AudioSource.PlayClipAtPoint(redcapture,transform.position);
