@@ -344,11 +344,13 @@ public class ParkourController : MonoBehaviour {
 		Vector3 directionVector = new Vector3(inputH, 0, inputV);
 
 		//have to do this every frame because unity 5
-		//Cursor.visible = false;
 
 		if(photonView.isMine){
 			Cursor.lockState = CursorLockMode.Locked;
-			//Cursor.visible = false;
+			#if UNITY_EDITOR
+			#else
+			Cursor.visible = false;
+			#endif
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)){

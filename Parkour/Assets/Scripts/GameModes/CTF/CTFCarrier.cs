@@ -46,9 +46,11 @@ public class CTFCarrier : MonoBehaviour {
 		team = t;
 		if(team == 0){
 			skm.material.mainTexture = redtex;
+			tr.material.SetColor("_TintColor", Color.red);
 		}
 		else if(team == 1){
 			skm.material.mainTexture = bluetex;
+			tr.material.SetColor("_TintColor", Color.blue);
 		}
 	}
 
