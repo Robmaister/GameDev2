@@ -1146,6 +1146,7 @@ GameObject:
   - 4: {fileID: 480272}
   - 114: {fileID: 11494774}
   - 114: {fileID: 11408264}
+  - 82: {fileID: 8298676}
   m_Layer: 0
   m_Name: SKELEG
   m_TagString: Untagged
@@ -1326,6 +1327,7 @@ GameObject:
   - 96: {fileID: 9665316}
   - 114: {fileID: 11430870}
   - 114: {fileID: 11489202}
+  - 82: {fileID: 8296054}
   m_Layer: 0
   m_Name: CTF_comp
   m_TagString: Player
@@ -3625,6 +3627,144 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 35.0979156, y: 25.184021, z: 22.463768}
   m_Center: {x: -7.62939453e-06, y: 12.5920143, z: .700023651}
+--- !u!82 &8296054
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165380}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8298676
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152778}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9558036
 Animator:
   serializedVersion: 3
@@ -3667,7 +3807,7 @@ TrailRenderer:
   m_GameObject: {fileID: 165380}
   m_Enabled: 0
   m_CastShadows: 0
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 40fc9018a6f3af14ca615421f09bf833, type: 2}
   m_SubsetIndices: 
@@ -3692,16 +3832,16 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 2030043135
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 1023410175
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 520093695
     m_Color[4]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 16777215
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
 --- !u!114 &11401922
@@ -3890,6 +4030,7 @@ MonoBehaviour:
   dummyflag: {fileID: 199366}
   bluepickup: {fileID: 8300000, guid: ea4c889183c2b06479c23b1ca2674640, type: 3}
   redpickup: {fileID: 8300000, guid: c0a856434a57e1642a3cccd900393e2f, type: 3}
+  ads: {fileID: 0}
 --- !u!114 &11431364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4148,6 +4289,7 @@ MonoBehaviour:
   arms: {fileID: 13511512}
   legs: {fileID: 13548666}
   is_ragdoll: 0
+  ads: {fileID: 0}
   ragdollsound: {fileID: 8300000, guid: 5187629f7a1dda24ab11a4d95d672dee, type: 3}
   mylegsound: {fileID: 8300000, guid: a5cd212c39201fb43b01e1b714afe334, type: 3}
 --- !u!114 &11499216

@@ -27,6 +27,8 @@ public class PlayerSpawn : MonoBehaviour {
 	private int teamNum; //RED = 0 BLUE = 1
 	private string playerName;
 
+	public PauseMenuScript pausemenu;
+
 	void OnJoinedRoom(){
 		chooseName.SetActive(true);
 		if(PhotonNetwork.isMasterClient){
@@ -66,6 +68,9 @@ public class PlayerSpawn : MonoBehaviour {
 		
 		cameraObject.transform.parent = newPlayerObject.transform;
 		cameraObject.transform.rotation = Quaternion.identity;
+
+		cameraObject.GetComponent<MouseLook>().axes = MouseLook.RotationAxes.MouseY;
+
 		//cameraObject.transform.localPosition = cameraAttachPos;
 		//cameraObject.transform.localRotation = cameraAttachRot;
 		//Debug.Log ("CONNECTED");
@@ -90,6 +95,8 @@ public class PlayerSpawn : MonoBehaviour {
 		sp.parent = attachObj;
 
 		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
+
+		pausemenu.player = newPlayerObject.GetComponent<ParkourController>();
 	}
 }
 

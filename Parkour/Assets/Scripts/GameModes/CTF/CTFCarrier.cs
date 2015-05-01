@@ -24,6 +24,8 @@ public class CTFCarrier : MonoBehaviour {
 	public AudioClip bluepickup;
 	public AudioClip redpickup;
 
+	public AudioSource ads;
+
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
@@ -56,6 +58,7 @@ public class CTFCarrier : MonoBehaviour {
 
 	void Awake () {
 		tr = GetComponent<TrailRenderer>();
+		ads = GetComponent<AudioSource>();
 	}
 
 	void Update(){
@@ -74,10 +77,10 @@ public class CTFCarrier : MonoBehaviour {
 			dummyflag.SetActive(true);
 
 			if(team == 0){
-				AudioSource.PlayClipAtPoint(redpickup,transform.position);
+				ads.PlayOneShot(redpickup);
 			}
 			if(team == 1){
-				AudioSource.PlayClipAtPoint(bluepickup,transform.position);
+				ads.PlayOneShot(bluepickup);
 			}
 		}
 		else{
