@@ -76,7 +76,6 @@ public class DoParkour : MonoBehaviour {
 		//wall jump
 		if(pkc.inputJump.Pressed && (pkc.legState & SurfaceType.side) != 0){//if player presses jump and has legs touching side
 			if(!jumpedOnce){
-				print("walljump");
 				pkc.can_jump = true;
 				jumpedOnce = true;
 			}

@@ -96,7 +96,9 @@ public class ParkourController : MonoBehaviour {
 			if(holdFlag){//discrete press
 				inputCheck = Input.GetButtonDown;
 			}else{//continuous press
-				inputCheck = Input.GetButton;
+				inputCheck = delegate (string axis){
+					return Convert.ToBoolean(Input.GetAxis(axis));
+				};
 			}
 		}
 
