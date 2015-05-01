@@ -1,7 +1,12 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: b4730ee115ef55d4db0d53aceddc1d0a
 timeCreated: 1430445941
+=======
+guid: 03e43944153872845b075cf75ca7822c
+timeCreated: 1430449252
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
 =======
 guid: 03e43944153872845b075cf75ca7822c
 timeCreated: 1430449252
@@ -13,7 +18,11 @@ AudioImporter:
     loadType: 0
     sampleRateSetting: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     sampleRateOverride: 44100
+=======
+    sampleRateOverride: 0
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
 =======
     sampleRateOverride: 0
 >>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
