@@ -12,6 +12,8 @@ public class DoParkour : MonoBehaviour {
 	public Transform r_hand_target;
 	public Transform l_hand_target;
 
+	public AudioSource ads;
+
 
 	
 	public IK_Script iks;
@@ -32,6 +34,7 @@ public class DoParkour : MonoBehaviour {
 
 	void Start(){
 		pkc = GetComponent<ParkourController>();
+		ads = GetComponent<AudioSource>();
 
 		lhandoffset = l_hand_target.localPosition;
 		rhandoffset = r_hand_target.localPosition;
@@ -63,8 +66,23 @@ public class DoParkour : MonoBehaviour {
 
 		horizspeed = isbkwd ? -horizspeed : horizspeed;
 		
-		if (anim != null)
-			anim.SetFloat("speed", horizspeed);
+
+		anim.SetFloat("speed", horizspeed);
+		
+
+		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Base Movement") ){
+			if(Mathf.Abs(horizspeed) > 0.1f){
+				if(!ads.isPlaying){
+					ads.Play();
+				}
+			}else{
+				if(ads.isPlaying){
+					ads.Stop();
+				}
+			}
+		}else{
+			ads.Stop();
+		}
 
 
 		if(pkc.controller.isGrounded){//reset double jump flag
