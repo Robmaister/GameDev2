@@ -227,8 +227,9 @@ public class DoParkour : MonoBehaviour {
 
 
 		if(!tackling){
-			if(pkc.inputUse.Pressed){
+			if(pkc.inputUse.Pressed && pkc.stamina >= .3f){
 				tackling = true;
+				pkc.stamina -= .3f;
 				//print("tackling");
 				pkc.apply_forces = false;
 				//pkc.canControl = false;
