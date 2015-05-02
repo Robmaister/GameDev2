@@ -55,10 +55,12 @@ public class ParkourController : MonoBehaviour {
 
 	public bool sprinting = false;
 	private bool sprintready = true;
-
+	private bool Speed = false;
 	public float stamina = 1f; //this should always be in the range [0,1]
+	private bool cacheSpeed = false;
 
 	public float drainRate = 1f;//rate at which stamina is drained
+	private float fallSpeed=0.0f;
 
 	public Image staminaBar;
 
@@ -278,10 +280,11 @@ public class ParkourController : MonoBehaviour {
 		getInput();//get input state for buttons 
 		ptv.SetSynchronizedValues(controller.velocity,1);
 
-		if ( inputRoll.Pressed){
-			//if(anim.GetBool("falling")){
+		if (anim.GetBool("falling") ){
+			if(inputRoll.Pressed){
+			cacheSpeed = false;
 			anim.SetBool("rollCheck",true);
-			//}
+			}
 		}
 
 		if(sprintready){
@@ -454,7 +457,8 @@ public class ParkourController : MonoBehaviour {
 			anim.SetBool("jumping",false);
 			anim.SetBool("falling",false);
 			anim.SetBool("rollCheck",false);
-				
+			cacheSpeed = false;
+
 			
 			velocity.y = Mathf.Min(0, velocity.y) - gravity * Time.deltaTime;
 		}
@@ -476,7 +480,8 @@ public class ParkourController : MonoBehaviour {
 				anim.SetBool("falling",true);
 				anim.SetBool("jumping",false);
 			}
-			anim.SetFloat("fallingSpeed",-velocity.y);
+
+
 			velocity.y = Mathf.Max (velocity.y, -150); //150 is terminal velocity
 
 		}
@@ -504,6 +509,21 @@ public class ParkourController : MonoBehaviour {
 				//anim.SetBool ("jumping",false);
 			}
 		}	
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Falling")){
+			fallSpeed = -velocity.y;
+			print(-velocity.y);
+			
+			
+			if (cacheSpeed ){
+				anim.SetFloat("fallingSpeed",fallSpeed);
+				
+				
+			}
+			else{
+				anim.SetFloat("fallingSpeed",-velocity.y);
+				
+			}
+		}
 
 		return velocity;
 	}
