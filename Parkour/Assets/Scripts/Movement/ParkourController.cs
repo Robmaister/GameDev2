@@ -278,7 +278,7 @@ public class ParkourController : MonoBehaviour {
 
 		if (anim.GetBool("falling") ){
 			if(inputRoll.Pressed){
-			cacheSpeed = false;
+			cacheSpeed = true;
 			anim.SetBool("rollCheck",true);
 			}
 		}
@@ -505,7 +505,7 @@ public class ParkourController : MonoBehaviour {
 				//anim.SetBool ("jumping",false);
 			}
 		}	
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Falling")){
+		if (anim.GetNextAnimatorStateInfo(0).IsName("Landing")){
 			fallSpeed = -velocity.y;
 			print(-velocity.y);
 			
@@ -519,8 +519,10 @@ public class ParkourController : MonoBehaviour {
 				anim.SetFloat("fallingSpeed",-velocity.y);
 				
 			}
+
 		}
 
+		
 		return velocity;
 	}
 
