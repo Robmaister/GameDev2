@@ -496,7 +496,7 @@ public class ParkourController : MonoBehaviour {
 				inputJump.Pressed = false;
 				lastInputMoveDirection = inputMoveDirection;
 				//ads.PlayOneShot(jumpsound,1f);
-				AudioSource.PlayClipAtPoint(jumpsound,transform.position);
+				AudioSource.PlayClipAtPoint(jumpsound,transform.position,.25f);
 
 			}
 			else if(can_jump){//if can jump off a jumpable surface
@@ -505,7 +505,7 @@ public class ParkourController : MonoBehaviour {
 				can_jump = false;
 				inputJump.Pressed = false;
 				//ads.PlayOneShot(jumpsound,1f);
-				AudioSource.PlayClipAtPoint(jumpsound,transform.position);
+				AudioSource.PlayClipAtPoint(jumpsound,transform.position,.25f);
 
 			}
 		}	
