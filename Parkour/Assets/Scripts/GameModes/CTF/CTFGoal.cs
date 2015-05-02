@@ -14,6 +14,8 @@ public class CTFGoal : MonoBehaviour {
 	public Transform flag1slot, flag2slot;
 	public PickupItem flagobj1, flagobj2;
 
+	AudioSource ads;
+
 	public AudioClip bluecapture;
 	public AudioClip redcapture;
 	public AudioClip bluesteal;
@@ -22,6 +24,10 @@ public class CTFGoal : MonoBehaviour {
 	public AudioClip redwin;
 
 	bool gameOver = false;
+
+	void Awake(){
+		ads = GetComponent<AudioSource>();
+	}
 	
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
@@ -54,10 +60,10 @@ public class CTFGoal : MonoBehaviour {
 	void endGame(){
 		print("WINNER: Team " + team);
 		if(team == 0){
-			AudioSource.PlayClipAtPoint(redwin,transform.position);
+			ads.PlayOneShot(redwin);
 		}
 		else if(team == 1){
-			AudioSource.PlayClipAtPoint(bluewin,transform.position);
+			ads.PlayOneShot(bluewin);
 		}
 		gameOver = true;
 	}
@@ -83,10 +89,10 @@ public class CTFGoal : MonoBehaviour {
 					collected1 = true;
 
 					if(carrier.team == 0){
-						AudioSource.PlayClipAtPoint(redcapture,transform.position);
+						ads.PlayOneShot(redcapture);
 					}
 					else if(carrier.team == 1){
-						AudioSource.PlayClipAtPoint(bluecapture,transform.position);
+						ads.PlayOneShot(bluecapture);
 					}
 
 					return;
@@ -101,10 +107,10 @@ public class CTFGoal : MonoBehaviour {
 						}
 
 						if(carrier.team == 0){
-							AudioSource.PlayClipAtPoint(redcapture,transform.position);
+							ads.PlayOneShot(redcapture);
 						}
 						else if(carrier.team == 1){
-							AudioSource.PlayClipAtPoint(bluecapture,transform.position);
+							ads.PlayOneShot(bluecapture);
 						}
 
 						return;
@@ -120,10 +126,10 @@ public class CTFGoal : MonoBehaviour {
 					flagobj2 = null;
 
 					if(carrier.team == 0){
-						AudioSource.PlayClipAtPoint(redsteal,transform.position);
+						ads.PlayOneShot(redsteal);
 					}
 					else if(carrier.team == 1){
-						AudioSource.PlayClipAtPoint(bluesteal,transform.position);
+						ads.PlayOneShot(bluesteal);
 					}
 					return;
 				}
@@ -135,10 +141,10 @@ public class CTFGoal : MonoBehaviour {
 					flagobj1 = null;
 
 					if(carrier.team == 0){
-						AudioSource.PlayClipAtPoint(redsteal,transform.position);
+						ads.PlayOneShot(redsteal);
 					}
 					else if(carrier.team == 1){
-						AudioSource.PlayClipAtPoint(bluesteal,transform.position);
+						ads.PlayOneShot(bluesteal);
 					}
 					return;
 				}

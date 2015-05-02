@@ -18,6 +18,7 @@ public class RagdollControl : MonoBehaviour {
 
 	public bool is_ragdoll = false;
 
+	public AudioSource ads;
 	public AudioClip ragdollsound;
 	public AudioClip mylegsound;
 
@@ -64,6 +65,7 @@ public class RagdollControl : MonoBehaviour {
 
 	void Awake(){
 		jointlist = new List<Rigidbody>();
+		ads = GetComponent<AudioSource>();
 	}
 
 	// Use this for initialization
@@ -104,9 +106,9 @@ public class RagdollControl : MonoBehaviour {
 		is_ragdoll = true;
 
 		if(Random.Range(0f,1f) > .25f){
-			AudioSource.PlayClipAtPoint(ragdollsound,transform.position);
+			ads.PlayOneShot(ragdollsound);
 		}else{
-			AudioSource.PlayClipAtPoint(mylegsound,transform.position);
+			ads.PlayOneShot(mylegsound);
 		}
 
 		StartCoroutine(restoreDoll());

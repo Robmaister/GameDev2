@@ -1,13 +1,31 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD
+guid: f9c17504581c26a44ab35c71fb4a0434
+timeCreated: 1430445944
+=======
 guid: 6ad52e7a992cfb346be7846e791fff04
 timeCreated: 1430449255
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
+=======
+guid: 6ad52e7a992cfb346be7846e791fff04
+timeCreated: 1430449255
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
 licenseType: Free
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
     loadType: 0
     sampleRateSetting: 0
+<<<<<<< HEAD
+<<<<<<< HEAD
+    sampleRateOverride: 44100
+=======
     sampleRateOverride: 0
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
+=======
+    sampleRateOverride: 0
+>>>>>>> 74088491f852be02cbf94c061b60b5b6e83336ce
     compressionFormat: 1
     quality: 1
     conversionMode: 0

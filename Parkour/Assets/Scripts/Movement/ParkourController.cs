@@ -96,7 +96,9 @@ public class ParkourController : MonoBehaviour {
 			if(holdFlag){//discrete press
 				inputCheck = Input.GetButtonDown;
 			}else{//continuous press
-				inputCheck = Input.GetButton;
+				inputCheck = delegate (string axis){
+					return Convert.ToBoolean(Input.GetAxis(axis));
+				};
 			}
 		}
 
@@ -344,20 +346,15 @@ public class ParkourController : MonoBehaviour {
 		Vector3 directionVector = new Vector3(inputH, 0, inputV);
 
 		//have to do this every frame because unity 5
-		//Cursor.visible = false;
 
 		if(photonView.isMine){
-			Cursor.lockState = CursorLockMode.Locked;
-			//Cursor.visible = false;
-		}
-
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			//Application.Quit();
-			#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPaused = true;
-			#else
-			Application.Quit();
-			#endif
+			if(canControl){
+				Cursor.lockState = CursorLockMode.Locked;
+				#if UNITY_EDITOR
+				#else
+				Cursor.visible = false;
+				#endif
+			}
 		}
 
 		if (directionVector != Vector3.zero) {
