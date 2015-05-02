@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3322410}
   - 23: {fileID: 2356322}
   - 54: {fileID: 5490270}
-  - 64: {fileID: 6445360}
+  - 64: {fileID: 6414308}
   m_Layer: 0
   m_Name: rock2
   m_TagString: Untagged
@@ -41,7 +41,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b6bea625417d8a74387b7a0bbb26b3b4, type: 2}
+  - {fileID: 2100000, guid: 0803976ce71f3db4683316bf99604356, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -61,7 +61,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181522}
-  m_Mesh: {fileID: 4300000, guid: ccf8eaf2d9148904cb5fa5644334b882, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b4667b62632ee1c48bb565eb7aa51456, type: 3}
 --- !u!54 &5490270
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -77,7 +77,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6445360
+--- !u!64 &6414308
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,7 +88,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: ccf8eaf2d9148904cb5fa5644334b882, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b4667b62632ee1c48bb565eb7aa51456, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
