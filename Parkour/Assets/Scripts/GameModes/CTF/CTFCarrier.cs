@@ -26,26 +26,12 @@ public class CTFCarrier : MonoBehaviour {
 
 	public AudioSource ads;
 
-	public void OnPhotonPlayerDisconnected(PhotonPlayer player){
-		print("player disconnected");
-		if(flagobj != null){
-			flagobj.Drop(transform.position);
-			this.enabled = false;
-		}
-	}
-
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(team);
 			stream.SendNext(pname);
 			stream.SendNext(hasFlag);
 			stream.SendNext(dummyflag.GetActive());
-			if(flagobj != null){
-				stream.SendNext(flagobj.gameObject.GetComponent<PhotonView>().viewID);
-			}
-			else{
-				stream.SendNext(-1);
-			}
 			nameTag.text = pname;
 		}
 		else {
@@ -53,8 +39,6 @@ public class CTFCarrier : MonoBehaviour {
 			pname = (string)stream.ReceiveNext();
 			hasFlag = (bool)stream.ReceiveNext();
 			dummyflag.SetActive((bool)stream.ReceiveNext());
-			int tmp = (int)stream.ReceiveNext();
-			flagobj = (tmp != -1) ? PhotonView.Find(tmp).gameObject.GetComponent<PickupItem>() : null;
 			nameTag.text = pname;
 			tr.enabled = hasFlag;
 		}
