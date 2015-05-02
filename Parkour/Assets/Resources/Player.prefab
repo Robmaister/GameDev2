@@ -4158,6 +4158,7 @@ MonoBehaviour:
   arms: {fileID: 116080}
   legs: {fileID: 105698}
   anim: {fileID: 0}
+  jumpsound: {fileID: 8300000, guid: a85d9aaf7e4d239409417f330c250cf5, type: 3}
   networkInputH: 0
   networkInputV: 0
   canControl: 1
@@ -4398,6 +4399,7 @@ MonoBehaviour:
   ads: {fileID: 0}
   ragdollsound: {fileID: 8300000, guid: 5187629f7a1dda24ab11a4d95d672dee, type: 3}
   mylegsound: {fileID: 8300000, guid: a5cd212c39201fb43b01e1b714afe334, type: 3}
+  wilhelm: {fileID: 8300000, guid: 9ba1aa5858bc21147a75cbbecdda4ff7, type: 3}
 --- !u!114 &11499216
 MonoBehaviour:
   m_ObjectHideFlags: 1

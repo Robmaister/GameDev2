@@ -14,8 +14,6 @@ public class DoParkour : MonoBehaviour {
 
 	public AudioSource ads;
 
-
-	
 	public IK_Script iks;
 
 	public bool tackling = false;
@@ -71,6 +69,8 @@ public class DoParkour : MonoBehaviour {
 		
 
 		if(anim.GetCurrentAnimatorStateInfo(0).IsName("Base Movement") ){
+			ads.pitch = 0.6f;
+			ads.volume = 0.15f;
 			if(Mathf.Abs(horizspeed) > 0.1f){
 				if(!ads.isPlaying){
 					ads.Play();
@@ -83,7 +83,6 @@ public class DoParkour : MonoBehaviour {
 		}else{
 			ads.Stop();
 		}
-
 
 		if(pkc.controller.isGrounded){//reset double jump flag
 			jumpedOnce = false;

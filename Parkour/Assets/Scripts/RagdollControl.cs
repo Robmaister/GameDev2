@@ -21,6 +21,7 @@ public class RagdollControl : MonoBehaviour {
 	public AudioSource ads;
 	public AudioClip ragdollsound;
 	public AudioClip mylegsound;
+	public AudioClip wilhelm;
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
@@ -105,8 +106,12 @@ public class RagdollControl : MonoBehaviour {
 		player_body.freezeRotation = false;
 		is_ragdoll = true;
 
-		if(Random.Range(0f,1f) > .25f){
-			ads.PlayOneShot(ragdollsound);
+		if(Random.Range(0f,1f) > .5f){
+			if(Random.Range(0f,1f) > .25f){
+				ads.PlayOneShot(ragdollsound);
+			}else{
+				ads.PlayOneShot(wilhelm);
+			}
 		}else{
 			ads.PlayOneShot(mylegsound);
 		}

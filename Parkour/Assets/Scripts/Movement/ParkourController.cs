@@ -11,6 +11,9 @@ public class ParkourController : MonoBehaviour {
 
 	public Animator anim;
 
+	public AudioClip jumpsound;
+
+	private AudioSource ads;
 
 
 	private PhotonView photonView;
@@ -241,6 +244,7 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		ads = GetComponent<AudioSource>();
 		origMaxSpeed = maxSpeed; // for sprinting logic
 		origMaxAcceleration = maxAcceleration;
 
@@ -482,11 +486,7 @@ public class ParkourController : MonoBehaviour {
 
 		}
 		if (inputJump.Pressed) {
-			anim.SetBool("jumping",true);
-			
-
-			
-			
+			anim.SetBool("jumping",true);			
 			if (controller.isGrounded) {//can jump off ground
 				anim.SetBool("falling", false);
 				
@@ -494,15 +494,19 @@ public class ParkourController : MonoBehaviour {
 				//anim.Play("Landing");
 				velocity += transform.up * CalculateJumpVerticalSpeed (jumpHeight);
 				inputJump.Pressed = false;
-
 				lastInputMoveDirection = inputMoveDirection;
+				//ads.PlayOneShot(jumpsound,1f);
+				AudioSource.PlayClipAtPoint(jumpsound,transform.position);
+
 			}
 			else if(can_jump){//if can jump off a jumpable surface
 				velocity += transform.up *  CalculateJumpVerticalSpeed((GetDesiredHorizontalVelocity().magnitude/maxSpeed) * jumpHeight);
 				lastInputMoveDirection = inputMoveDirection;
 				can_jump = false;
 				inputJump.Pressed = false;
-				//anim.SetBool ("jumping",false);
+				//ads.PlayOneShot(jumpsound,1f);
+				AudioSource.PlayClipAtPoint(jumpsound,transform.position);
+
 			}
 		}	
 		if (anim.GetNextAnimatorStateInfo(0).IsName("Landing")){
