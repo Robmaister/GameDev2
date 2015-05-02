@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3322410}
   - 23: {fileID: 2356322}
   - 54: {fileID: 5490270}
+  - 64: {fileID: 6445360}
   m_Layer: 0
   m_Name: rock2
   m_TagString: Untagged
@@ -72,10 +73,22 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &6445360
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181522}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: ccf8eaf2d9148904cb5fa5644334b882, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
