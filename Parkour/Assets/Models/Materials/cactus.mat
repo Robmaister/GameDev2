@@ -7,8 +7,18 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: cactus
+<<<<<<< HEAD
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
+=======
+<<<<<<< HEAD
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+=======
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _SPECGLOSSMAP
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,7 +28,15 @@ Material:
         first:
           name: _MainTex
         second:
+<<<<<<< HEAD
           m_Texture: {fileID: 0}
+=======
+<<<<<<< HEAD
+          m_Texture: {fileID: 0}
+=======
+          m_Texture: {fileID: 2800000, guid: 83ebb94231f9510498369b5b96657e89, type: 3}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -77,6 +95,19 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 733a5fb5d4ba95649a42a1f9a4678b1a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
     m_Floats:
       data:
         first:
@@ -134,12 +165,30 @@ Material:
       data:
         first:
           name: _EmissionColor
+<<<<<<< HEAD
         second: {r: 0, g: 0, b: 0, a: 1}
+=======
+<<<<<<< HEAD
+        second: {r: 0, g: 0, b: 0, a: 1}
+=======
+        second: {r: 0, g: 0, b: 0, a: 0}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
       data:
         first:
           name: _Color
         second: {r: .800000012, g: .800000012, b: .800000012, a: 1}
       data:
         first:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+          name: _SpecColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+      data:
+        first:
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
           name: _EmissionColorUI
         second: {r: 1, g: 1, b: 1, a: 1}

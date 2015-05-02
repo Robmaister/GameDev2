@@ -7,8 +7,18 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: rock
+<<<<<<< HEAD
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
+=======
+<<<<<<< HEAD
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+=======
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _NORMALMAP
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,14 +28,30 @@ Material:
         first:
           name: _MainTex
         second:
+<<<<<<< HEAD
           m_Texture: {fileID: 0}
+=======
+<<<<<<< HEAD
+          m_Texture: {fileID: 0}
+=======
+          m_Texture: {fileID: 2800000, guid: 0a8dbb99712fda149bfeaa534a997b02, type: 3}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
+<<<<<<< HEAD
           m_Texture: {fileID: 0}
+=======
+<<<<<<< HEAD
+          m_Texture: {fileID: 0}
+=======
+          m_Texture: {fileID: 2800000, guid: 7a9dee87cee0e4a498af97d678009fa9, type: 3}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -77,6 +103,19 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
     m_Floats:
       data:
         first:
@@ -101,7 +140,15 @@ Material:
       data:
         first:
           name: _Glossiness
+<<<<<<< HEAD
         second: .5
+=======
+<<<<<<< HEAD
+        second: .5
+=======
+        second: 0
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
       data:
         first:
           name: _BumpScale
@@ -134,12 +181,30 @@ Material:
       data:
         first:
           name: _EmissionColor
+<<<<<<< HEAD
         second: {r: 0, g: 0, b: 0, a: 1}
+=======
+<<<<<<< HEAD
+        second: {r: 0, g: 0, b: 0, a: 1}
+=======
+        second: {r: 0, g: 0, b: 0, a: 0}
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
       data:
         first:
           name: _Color
         second: {r: .800000012, g: .800000012, b: .800000012, a: 1}
       data:
         first:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+          name: _SpecColor
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+      data:
+        first:
+>>>>>>> d0a2c027ef1c36ab29f2875457d283b9e77a3ebf
+>>>>>>> 1531f61ab292e85331fc88c718a573a5e060ac45
           name: _EmissionColorUI
         second: {r: 1, g: 1, b: 1, a: 1}
