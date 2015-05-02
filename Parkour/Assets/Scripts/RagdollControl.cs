@@ -126,10 +126,21 @@ public class RagdollControl : MonoBehaviour {
 
 		Vector3 opos = pkc.transform.position;
 		opos.y += 2;
+
+
+		RaycastHit[] allHits;
+
 		Ray ray = new Ray(opos,-Vector3.up);
-		RaycastHit hit;
-		Physics.Raycast(ray,out hit);
-		pkc.transform.position = new Vector3(hit.point.x,hit.point.y+0.75f,hit.point.z);
+		allHits = Physics.RaycastAll(ray);
+
+		foreach (var hit in allHits){
+			// now filter by tag or name
+			if (hit.transform.root.tag != "Player") {
+				// yeah, we didn't hit something tagged as "Player"
+				pkc.transform.position = new Vector3(hit.point.x,hit.point.y+0.75f,hit.point.z);
+				break;
+			}
+		}
 
 		Vector3 vv = pkc.transform.rotation.eulerAngles;
 		pkc.transform.rotation = Quaternion.Euler(new Vector3(0,vv.y,0));

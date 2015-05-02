@@ -23,7 +23,6 @@ public class DoParkour : MonoBehaviour {
 
 	private bool vaulting = false;
 
-
 	private bool hanging = false;
 	//private bool mantling = false;
 
@@ -226,9 +225,11 @@ public class DoParkour : MonoBehaviour {
 		}
 
 
+
 		if(!tackling){
-			if(pkc.inputUse.Pressed){
+			if(pkc.inputUse.Pressed && pkc.stamina >= .3f){
 				tackling = true;
+				pkc.stamina -= .3f;
 				//print("tackling");
 				pkc.apply_forces = false;
 				//pkc.canControl = false;
@@ -275,6 +276,14 @@ public class DoParkour : MonoBehaviour {
 				//print("I AM TACKLING AND I COLLIDED WITH PLAYER SO PLAYER SHOULD DROP FLAG");
 				col.gameObject.BroadcastMessage("OnFlagDrop");
 			}
+		}
+		if (col.gameObject.tag == "ladder"){
+			anim.SetBool("climbing",true);
+		}
+	}
+	void OnCollisionExit(Collision col){
+		if (col.gameObject.tag == "ladder"){
+			anim.SetBool("climbing",false);
 		}
 	}
 }

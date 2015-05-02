@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(PickupItem))]
 public class CTFFlag : MonoBehaviour {
 
+	public GameObject light1,light2;
+
 	private CTFCarrier carrier = null;
 	private Collider spc;
 	private Rigidbody rb;
@@ -55,5 +57,15 @@ public class CTFFlag : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void EnableLights(){
+		light1.SetActive(true);
+		light2.SetActive(true);
+	}
+
+	public void DisableLights(){
+		light1.SetActive(false);
+		light2.SetActive(false);
 	}
 }
