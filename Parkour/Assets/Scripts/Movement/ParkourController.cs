@@ -505,7 +505,7 @@ public class ParkourController : MonoBehaviour {
 				//anim.SetBool ("jumping",false);
 			}
 		}	
-		if (anim.GetNextAnimatorStateInfo(0).IsName("Hard_Fall")|| anim.GetNextAnimatorStateInfo(0).IsName("Roll")){
+		if (anim.GetNextAnimatorStateInfo(0).IsName("Landing")){
 			fallSpeed = -velocity.y;
 			print(-velocity.y);
 			
