@@ -14,7 +14,6 @@ public class ParkourController : MonoBehaviour {
 
 
 	private PhotonView photonView;
-	private PhotonTransformView ptv;
 	public float networkInputH;
 	public float networkInputV;
 
@@ -240,8 +239,6 @@ public class ParkourController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		ptv = GetComponent<PhotonTransformView>();
-
 		origMaxSpeed = maxSpeed; // for sprinting logic
 		origMaxAcceleration = maxAcceleration;
 
@@ -276,7 +273,6 @@ public class ParkourController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		getInput();//get input state for buttons 
-		ptv.SetSynchronizedValues(controller.velocity,1);
 
 		if ( inputRoll.Pressed){
 			//if(anim.GetBool("falling")){
