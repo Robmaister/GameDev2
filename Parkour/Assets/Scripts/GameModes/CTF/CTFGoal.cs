@@ -86,6 +86,7 @@ public class CTFGoal : MonoBehaviour {
 				if(!collected1){
 					flagobj1 = carrier.flagobj;
 					carrier.SendMessage("OnFlagCapture",flag1slot.position); 
+					flagobj1.GetComponent<CTFFlag>().DisableLights();
 					collected1 = true;
 
 					if(carrier.team == 0){
@@ -99,6 +100,7 @@ public class CTFGoal : MonoBehaviour {
 				}else if(!collected2){
 						flagobj2 = carrier.flagobj;
 						carrier.SendMessage("OnFlagCapture",flag2slot.position);
+						flagobj2.GetComponent<CTFFlag>().DisableLights();
 						collected2 = true;
 
 						if(collected1 && collected2){
@@ -123,6 +125,7 @@ public class CTFGoal : MonoBehaviour {
 					flagobj2.Drop(carrier.transform.position);
 					flagobj2.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj2);
+					flagobj2.GetComponent<CTFFlag>().EnableLights();
 					flagobj2 = null;
 
 					if(carrier.team == 0){
@@ -138,6 +141,7 @@ public class CTFGoal : MonoBehaviour {
 					flagobj1.Drop(carrier.transform.position);
 					flagobj1.GetComponent<Collider>().enabled = true;
 					carrier.SendMessage("OnPickedUp",flagobj1);
+					flagobj1.GetComponent<CTFFlag>().EnableLights();
 					flagobj1 = null;
 
 					if(carrier.team == 0){
