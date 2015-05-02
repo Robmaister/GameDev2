@@ -23,9 +23,6 @@ public class DoParkour : MonoBehaviour {
 
 	private bool vaulting = false;
 
-	public bool laddering = false;
-
-
 	private bool hanging = false;
 	//private bool mantling = false;
 
@@ -280,10 +277,13 @@ public class DoParkour : MonoBehaviour {
 				col.gameObject.BroadcastMessage("OnFlagDrop");
 			}
 		}
-	}
-	void OnCollisionStay(Collision col){
 		if (col.gameObject.tag == "ladder"){
-			laddering = true;
+			anim.SetBool("climbing",true);
+		}
+	}
+	void OnCollisionExit(Collision col){
+		if (col.gameObject.tag == "ladder"){
+			anim.SetBool("climbing",false);
 		}
 	}
 }
