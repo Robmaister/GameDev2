@@ -104,6 +104,7 @@ public class DoParkour : MonoBehaviour {
 
 				//when hanging, player can be up to 1 arms length above or below ledge
 				if(!hanging){
+					print("hanging");
 					hanging = true;
 					pkc.apply_forces = false;
 
@@ -136,7 +137,7 @@ public class DoParkour : MonoBehaviour {
 						}
 
 						if(pkc.transform.position.y > pkc.current_hang_point.y - .75f){//-1 because arm length
-
+							print("ontop");
 							//anim.SetTrigger("onTop");
 
 							return false;
@@ -157,7 +158,7 @@ public class DoParkour : MonoBehaviour {
 
 						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
-							hanging = false;
+							//hanging = false;
 							//print ("Topping out");
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
@@ -182,7 +183,7 @@ public class DoParkour : MonoBehaviour {
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
-							//hanging = false;
+							hanging = false;
 						}
 						return true;
 					};
@@ -194,7 +195,7 @@ public class DoParkour : MonoBehaviour {
 			}
 			//print("hanging");
 		}else{//if player isn't pressing hands button while on an edge
-			//print("nothanging");
+			print("nothanging");
 			hanging = false;
 			pkc.apply_forces = true;
 			//anim.SetTrigger("letGo");

@@ -511,7 +511,7 @@ public class ParkourController : MonoBehaviour {
 		}	
 		if (anim.GetNextAnimatorStateInfo(0).IsName("Landing")){
 			fallSpeed = -velocity.y;
-			print(-velocity.y);
+			//print(-velocity.y);
 			
 			
 			if (cacheSpeed ){
