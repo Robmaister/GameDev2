@@ -6,4 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/devinlevel.unity
+    path: Assets/Scenes/titlescreen.unity
+  - enabled: 1
+    path: Assets/Scenes/main_scene.unity
