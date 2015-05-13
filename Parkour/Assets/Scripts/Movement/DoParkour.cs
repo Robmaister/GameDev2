@@ -40,7 +40,9 @@ public class DoParkour : MonoBehaviour {
 
 	void LateUpdate(){
 		anim.SetBool("doFlip",false);
-		sp.enable_rotation=false;
+		if(sp != null){
+			sp.enable_rotation=false;
+		}
 		if (iks != null) {
 			if (!pkc.apply_forces) {
 				
@@ -276,7 +278,10 @@ public class DoParkour : MonoBehaviour {
 
 		if((anim.GetCurrentAnimatorStateInfo(0).IsName("BackFlip")|| anim.GetCurrentAnimatorStateInfo(0).IsName("FrontFlip")) && anim.GetBool("doFlip")){
 			//anim.SetBool("doFlip",false);
-			sp.enable_rotation = true;
+			if(sp != null){
+				sp.enable_rotation = true;
+			}
+
 			
 		}
 
