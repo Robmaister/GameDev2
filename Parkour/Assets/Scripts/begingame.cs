@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class begingame : MonoBehaviour {
+	public RawImage movieimg;
 
 	private Text txt;
 	public Image img;
@@ -13,6 +14,8 @@ public class begingame : MonoBehaviour {
 	public float fadeinduration2 = 2f;
 	private float endtime1,endtime2;
 
+	private MovieTexture mov;
+
 	// Use this for initialization
 	void Start () {
 		txt = GetComponent<Text>();
@@ -20,11 +23,14 @@ public class begingame : MonoBehaviour {
 		img.color = new Color(img.color.r,img.color.g,img.color.b,0);
 		endtime1 = Time.time + fadeinduration1;
 		endtime2 = endtime1 + fadeinduration2;
+
+		mov = (MovieTexture)movieimg.texture;
+		mov.loop = true;
+		mov.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		if(img.color.a < 1){
 			float val1 = Time.time/endtime1;
 			img.color = new Color(img.color.r,img.color.g,img.color.b,ac.Evaluate(val1));
