@@ -16,3 +16,6 @@ Frame 370: Backpedal - Frame 390: end
 Frame 395: Kick off - Frame: 398
 Frame 400: Hard Fall - Frame: 420
 Frame 425: Get up Back - Frame: 460
+Frame 465: Idle - Frame 495
+Frame 505: Front Flip - Frame 524
+Frame 530: Back Flip - Frame 548
