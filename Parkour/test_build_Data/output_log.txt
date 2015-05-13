@@ -18,14 +18,13 @@ Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Deve
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.179 seconds
+- Completed reload, in  0.058 seconds
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\test_build_Data\Managed\System.dll (this message is harmless)
-Shader 'Nature/Terrain/Standard': fallback shader 'Nature/Terrain/Diffuse' not found
 Update() was called by Unity. Scene is loaded. Let's connect to the Photon Master Server. Calling: PhotonNetwork.ConnectUsingSettings();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -34,7 +33,7 @@ ConnectAndJoinRandom:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring
 (Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Photon Unity Networking/UtilityScripts/ConnectAndJoinRandom.cs Line: 28)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 4090 -> priority: 1 
+  Thread -> id: 26ac -> priority: 1 
 OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -111,6 +110,297 @@ UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEven
 UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:249)
 UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:160)
 UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:272)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Joystick connected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename: C:/buildslave/unity/build/PlatformDependent/Win/RawInput.cpp Line: 1353)
+
+[Singleton] Using instance already created: Geometry Manager
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Singleton`1:get_Instance() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Singleton.cs:53)
+ParkourController:OnCollisionEnter(Collision) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:561)
+ 
+(Filename: C:/Users/carlsc2T430/Desktop/Schoolwork/Spring 2015/Game Development 2/Parkour/Assets/Scripts/Singleton.cs Line: 53)
+
+2.193705
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.186767
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+-7.336694
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+-5.204302
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+4.809349
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+7.263692
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.2781
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+4.880064
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+4.687479
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.280211
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+4.492968
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.328351
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.185139
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.29765
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.301279
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.334058
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.455355
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.409887
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.189471
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.185051
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.174044
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.220612
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.249235
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.146609
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+-7.23906
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+-5.006646
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+-2.751653
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.251291
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.255778
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.237205
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+2.1921
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+ParkourController:ApplyGravityAndJumping(Vector3) (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:514)
+ParkourController:Update() (at C:\Users\carlsc2T430\Desktop\Schoolwork\Spring 2015\Game Development 2\Parkour\Assets\Scripts\Movement\ParkourController.cs:386)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
 
