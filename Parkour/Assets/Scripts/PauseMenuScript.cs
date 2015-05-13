@@ -44,6 +44,11 @@ public class PauseMenuScript : MonoBehaviour {
 
 	}
 
+	public void Credits(){
+		PhotonNetwork.Disconnect();
+		PhotonNetwork.LoadLevel("credits");
+	}
+
 	public void Quit(){
 		Application.Quit();
 	}

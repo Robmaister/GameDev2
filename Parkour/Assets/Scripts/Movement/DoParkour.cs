@@ -197,7 +197,7 @@ public class DoParkour : MonoBehaviour {
 			}
 			//print("hanging");
 		}else{//if player isn't pressing hands button while on an edge
-			print("nothanging");
+			//print("nothanging");
 			hanging = false;
 			pkc.apply_forces = true;
 			//anim.SetTrigger("letGo");

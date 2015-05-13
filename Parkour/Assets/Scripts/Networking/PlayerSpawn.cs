@@ -44,12 +44,16 @@ public class PlayerSpawn : MonoBehaviour {
 		InputField infi = chooseName.FindInChildren("InputField").GetComponent<InputField>();
 		infi.Select();
 		infi.ActivateInputField();
+		if(PlayerPrefs.HasKey("prev_name")){
+			infi.text = PlayerPrefs.GetString("prev_name");
+		}
 
 	}
 
 
 	public void OnNameChosen(string pname){
 		playerName = pname;
+		PlayerPrefs.SetString("prev_name",pname);
 		chooseName.SetActive(false);
 		chooseTeam.SetActive(true);
 	}

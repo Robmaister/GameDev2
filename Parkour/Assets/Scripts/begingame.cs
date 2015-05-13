@@ -37,7 +37,7 @@ public class begingame : MonoBehaviour {
 			}
 		}
 		if(Input.anyKeyDown){
-			Application.LoadLevel(1);
+			Application.LoadLevel("main_scene");
 		}
 	}
 }
