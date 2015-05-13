@@ -18,14 +18,14 @@ public class DoParkour : MonoBehaviour {
 
 	public bool tackling = false;
 
-	
+	public softParent sp;
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
 
 	private bool vaulting = false;
 
 	private bool hanging = false;
 	//private bool mantling = false;
-
+	 
 	private ParkourController pkc;
 
 	private Vector3 lhandoffset, rhandoffset;
@@ -39,6 +39,8 @@ public class DoParkour : MonoBehaviour {
 	}
 
 	void LateUpdate(){
+		anim.SetBool("doFlip",false);
+		sp.enable_rotation=false;
 		if (iks != null) {
 			if (!pkc.apply_forces) {
 				
@@ -267,6 +269,18 @@ public class DoParkour : MonoBehaviour {
 			}
 				
 		}
+		if (pkc.inputFlip.Pressed){
+			//anim.SetFloat("randFlip",);
+			anim.SetBool("doFlip",true);
+		}
+
+		if((anim.GetCurrentAnimatorStateInfo(0).IsName("BackFlip")|| anim.GetCurrentAnimatorStateInfo(0).IsName("FrontFlip")) && anim.GetBool("doFlip")){
+			//anim.SetBool("doFlip",false);
+			sp.enable_rotation = true;
+			
+		}
+
+
 
 		/*if(vaulting){
 			if(pkc.armState == 0){
