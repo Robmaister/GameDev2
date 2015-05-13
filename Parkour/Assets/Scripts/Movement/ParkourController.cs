@@ -78,6 +78,8 @@ public class ParkourController : MonoBehaviour {
 	public IInput inputSprint;
 	public IInput inputUse;
 	public IInput inputRoll;
+	public IInput inputFlip;
+
 
 	public Vector3 currentMovementOffset = Vector3.zero;
 
@@ -201,6 +203,8 @@ public class ParkourController : MonoBehaviour {
 		inputSprint.Update();
 		inputUse.Update();
 		inputRoll.Update();
+		inputFlip.Update();
+		
 	}
 
 	Vector3 ClosestPointOnLine(Vector3 vA, Vector3 vB, Vector3 vPoint)
@@ -262,6 +266,7 @@ public class ParkourController : MonoBehaviour {
 			inputSprint = new NetworkInput();
 			inputUse = new NetworkInput();
 			inputRoll = new NetworkInput();
+			inputFlip = new NetworkInput();
 
 
 			gameObject.GetComponent<MouseLook>().enabled = false;
@@ -273,6 +278,8 @@ public class ParkourController : MonoBehaviour {
 			inputSprint = new LooseInput("Sprint",.2f);
 			inputUse = new LooseInput("Use",.2f,true);
 			inputRoll = new LooseInput("Roll",.2f,true);
+			inputFlip = new LooseInput("Flip",.2f,true);
+
 		}
 	}
 
@@ -511,7 +518,7 @@ public class ParkourController : MonoBehaviour {
 		}	
 		if (anim.GetNextAnimatorStateInfo(0).IsName("Landing")){
 			fallSpeed = -velocity.y;
-			print(-velocity.y);
+			//print(-velocity.y);
 			
 			
 			if (cacheSpeed ){

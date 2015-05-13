@@ -18,14 +18,14 @@ public class DoParkour : MonoBehaviour {
 
 	public bool tackling = false;
 
-	
+	public softParent sp;
 	private bool jumpedOnce = false;//flag to prevent multiple jumps up a surface
 
 	private bool vaulting = false;
 
 	private bool hanging = false;
 	//private bool mantling = false;
-
+	 
 	private ParkourController pkc;
 
 	private Vector3 lhandoffset, rhandoffset;
@@ -39,6 +39,8 @@ public class DoParkour : MonoBehaviour {
 	}
 
 	void LateUpdate(){
+		anim.SetBool("doFlip",false);
+		sp.enable_rotation=false;
 		if (iks != null) {
 			if (!pkc.apply_forces) {
 				
@@ -104,6 +106,7 @@ public class DoParkour : MonoBehaviour {
 
 				//when hanging, player can be up to 1 arms length above or below ledge
 				if(!hanging){
+					print("hanging");
 					hanging = true;
 					pkc.apply_forces = false;
 
@@ -136,7 +139,7 @@ public class DoParkour : MonoBehaviour {
 						}
 
 						if(pkc.transform.position.y > pkc.current_hang_point.y - .75f){//-1 because arm length
-
+							print("ontop");
 							//anim.SetTrigger("onTop");
 
 							return false;
@@ -157,7 +160,7 @@ public class DoParkour : MonoBehaviour {
 
 						//if(!(pkc.armState == (SurfaceType.top | SurfaceType.side))){
 						if(pkc.current_ledge_object == null){ // <-- check if hanging has ended
-							hanging = false;
+							//hanging = false;
 							//print ("Topping out");
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.up * .5f,.2f);
@@ -182,7 +185,7 @@ public class DoParkour : MonoBehaviour {
 							//pkc.addImpulse(Input.GetAxis("Vertical")  * pkc.transform.forward * .5f,.1f);
 							pkc.addImpulse(pkc.networkInputV  * pkc.transform.forward * .5f,.1f);
 							pkc.apply_forces = true;
-							//hanging = false;
+							hanging = false;
 						}
 						return true;
 					};
@@ -194,7 +197,7 @@ public class DoParkour : MonoBehaviour {
 			}
 			//print("hanging");
 		}else{//if player isn't pressing hands button while on an edge
-			//print("nothanging");
+			print("nothanging");
 			hanging = false;
 			pkc.apply_forces = true;
 			//anim.SetTrigger("letGo");
@@ -266,6 +269,18 @@ public class DoParkour : MonoBehaviour {
 			}
 				
 		}
+		if (pkc.inputFlip.Pressed){
+			//anim.SetFloat("randFlip",);
+			anim.SetBool("doFlip",true);
+		}
+
+		if((anim.GetCurrentAnimatorStateInfo(0).IsName("BackFlip")|| anim.GetCurrentAnimatorStateInfo(0).IsName("FrontFlip")) && anim.GetBool("doFlip")){
+			//anim.SetBool("doFlip",false);
+			sp.enable_rotation = true;
+			
+		}
+
+
 
 		/*if(vaulting){
 			if(pkc.armState == 0){

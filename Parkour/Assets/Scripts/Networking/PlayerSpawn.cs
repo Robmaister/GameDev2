@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using System.Linq;
 
@@ -11,6 +12,10 @@ public class PlayerSpawn : MonoBehaviour {
 	//public Quaternion cameraAttachRot;
 
 	public Image staminaBar;//UI element to display stamina
+
+	public GameObject staminaObj;
+	public GameObject minimap;
+	public GameObject score;
 
 	public GameObject chooseName;//UI element to handle name choosing
 	public GameObject chooseTeam;//UI element to handle team selection
@@ -36,7 +41,9 @@ public class PlayerSpawn : MonoBehaviour {
 			PhotonNetwork.Instantiate ("CTF Flag", flag1pos.position, transform.rotation,0);
 			PhotonNetwork.Instantiate ("CTF Flag", flag2pos.position, transform.rotation,0);
 		}
-
+		InputField infi = chooseName.FindInChildren("InputField").GetComponent<InputField>();
+		infi.Select();
+		infi.ActivateInputField();
 
 	}
 
@@ -91,12 +98,18 @@ public class PlayerSpawn : MonoBehaviour {
 		headTarget.localPosition = newPlayerObject.transform.forward*10;
 
 		softParent sp = cameraObject.AddComponent<softParent>();
+		newPlayerObject.GetComponent<DoParkour>().sp = sp;
+
 		sp.localPosition = new Vector3(0,0,0.06f);
 		sp.parent = attachObj;
 
 		newPlayerObject.GetComponent<ParkourController>().staminaBar = staminaBar;
 
 		pausemenu.player = newPlayerObject.GetComponent<ParkourController>();
+
+		staminaObj.SetActive(true);
+		minimap.SetActive(true);
+		score.SetActive(true);
 	}
 }
 
