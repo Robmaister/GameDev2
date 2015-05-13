@@ -1039,7 +1039,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185924}
-  m_LocalRotation: {x: -.302967399, y: -.638913751, z: -.638913751, w: .30296734}
+  m_LocalRotation: {x: -.302967429, y: -.63891381, z: -.63891381, w: .30296737}
   m_LocalPosition: {x: -35.2000008, y: 7.17000008, z: 25.5}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -1998,8 +1998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 44ef3795df50858468d03ce5b21bc022, type: 3}
+  m_Color: {r: .661764741, g: .56444639, b: .56444639, a: 1}
+  m_Texture: {fileID: 2800000, guid: 58eade75e7e901343a12bd98ace7b218, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2523,7 +2523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .683823526, g: .683823526, b: .683823526, a: 1}
   m_Texture: {fileID: 8400000, guid: 5b0d5aac96617dc439e85bb6b731bfc6, type: 2}
   m_UVRect:
     serializedVersion: 2
